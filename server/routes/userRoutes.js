@@ -1,9 +1,10 @@
 import express from "express"
-import { getAllUsers, testingRoute } from "../controllers/userControllers.js"
+import { testingRoute, getUsers, getUser } from "../controllers/userControllers.js"
 const userRouter = express.Router()
 
 userRouter.get("/test", testingRoute)
-userRouter.get("/allusers", getAllUsers)
+userRouter.get("/all", getUsers)
+userRouter.get("/id/:id", getUser)
 
 
 export default userRouter

@@ -6,6 +6,7 @@ dotenv.config();
 
 import userRouter from "./routes/userRoutes.js";
 import cors from "cors";
+import petRouter from "./routes/petRoutes.js";
 
 
 const app = express();
@@ -35,7 +36,8 @@ mongoose
 //     console.log("Server is running on port" + port);
 // });
 
-app.use('/api/users', userRouter)
+app.use('/api/users', userRouter);
+app.use('/api/pets', petRouter);
 
 // const helloFunction = (req, res) => {
 //     res.send({ message: 'Hello World!', array: [1, 2, 3, 4, 5, 6] })
