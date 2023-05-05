@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Register from './Pages/Register';
 
 interface User {
   email: String,
@@ -42,6 +44,7 @@ function App() {
   }, [])
 
   return (
+    <>
     <div className="App">
       <h1>Mern_project</h1>
       <h2>All users:</h2>
@@ -50,7 +53,13 @@ function App() {
       }) }
       <h2>User with ID:64537a7a01452f119fe12c49</h2>
       { user && <p>{user.username}</p> }
-    </div>
+      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='register' element={<Register/>}/>
+        </Routes>
+      </BrowserRouter>
+      </>
   );
 }
 

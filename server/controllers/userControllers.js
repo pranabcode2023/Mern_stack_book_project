@@ -65,4 +65,38 @@ const getUser = async (req, res) => {
     }
 }
 
-export { testingRoute, getUsers, getUser }
+const createUser = async (req, res) => {
+    console.log(req.body);
+    const newUser = new UserModel({
+        // email: req.body.email,
+        // username: req.body.username,
+        // password: req.body.password
+
+        // alternative with spreadoperator
+        ...req.body,
+    });
+    try {
+        const registeredUser = await newUser.save();
+        res.status(200).json({
+            message: "Registration Successfull",
+            newUser: registeredUser
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json("something went wrong...")
+    }
+}
+
+const updateUser = async (req, res) => {
+
+    try {
+        const updatedUser = await UserModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.status(200).json(updatedUser);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e.message);
+    }
+
+}
+
+export { testingRoute, getUsers, getUser, createUser, updateUser }
