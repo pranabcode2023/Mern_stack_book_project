@@ -20,7 +20,8 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true },
     username: String,
     password: { type: String, required: true },
-    pets: [{ type: mongoose.Schema.Types.ObjectId, ref: "pet" }]
+    pets: [{ type: mongoose.Schema.Types.ObjectId, ref: "pet" }],
+    avatar: { type: String, default: "https://res.cloudinary.com/dtdsw5fg2/image/upload/v1683544833/user_avatars/kitten-playing_xiwu5g.gif" }
 }, { timestamps: true })
 
 

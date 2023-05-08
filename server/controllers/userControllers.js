@@ -35,6 +35,7 @@
 // export { testingRoute, getUsers, getUser }
 
 import UserModel from "../models/userModels.js";
+import { imageUpload } from "../utils/imageManagement.js";
 
 const testingRoute = (req, res) => {
     res.send('testing users route....')
@@ -66,7 +67,11 @@ const getUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-    console.log(req.body);
+    if (!req.body.email || !req.body.password || !req.body.username) {
+        return res.status(406).json({ error: "Please fill out all fields" })
+    }
+    const avatar = await imageUpload(req.file, "user_avatars")
+
     const newUser = new UserModel({
         // email: req.body.email,
         // username: req.body.username,
@@ -74,7 +79,9 @@ const createUser = async (req, res) => {
 
         // alternative with spreadoperator
         ...req.body,
+        avatar: avatar
     });
+
     try {
         const registeredUser = await newUser.save();
         res.status(200).json({
