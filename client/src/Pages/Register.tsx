@@ -3,7 +3,7 @@ import React, { ChangeEvent, useState } from 'react'
 
 type Props = {}
 
-type Avatar = undefined | File
+// type Avatar = undefined | File
 
 // interface FormData {
 //   email: String,
