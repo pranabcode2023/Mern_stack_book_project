@@ -91,6 +91,10 @@ const createUser = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json("something went wrong...")
+
+        //   recomended
+        // error.code === 11000 ? res.status(406).json({ error: "That email is already registered" })
+        //     : res.status(500).json({ error: "Unknown error occured", ...e })
     }
 }
 
