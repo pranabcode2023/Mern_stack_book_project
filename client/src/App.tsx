@@ -73,12 +73,14 @@ import Register from './Pages/Register';
 import Homepage from './Pages/Homepage';
 import Login from './Pages/Login';
 import { AuthContextProvider } from './contexts/AuthContext';
+import NavBar from './components/NavBar';
 
 function App() {
   
   return (
     <AuthContextProvider>
       <BrowserRouter>
+        <NavBar />
         <Routes>
           <Route path='/' element={ <Homepage />} />
           <Route path='register' element={ <Register /> } />
