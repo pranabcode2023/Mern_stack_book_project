@@ -1,40 +1,5 @@
-// import UserModel from "../models/userModels.js"
-
-// const testingRoute = (req, res) => {
-//     res.send('testing users route....')
-// }
-
-// const getUsers = async (req, res) => {
-//     try {
-//         const users = await UserModel.find({})
-//         console.log(users)
-//         res.status(200).json({
-//             usersNumber: users.length,
-//             users
-//         })
-//     } catch (error) {
-//         res.status(500).json({
-//             error: "something went wrong"
-//         })
-//         console.log("error", error)
-//     }
-// }
-
-// const getUser = async (req, res) => {
-//     const id = req.params;
-//     try {
-//         const user = await UserModel.findOne({ _id: id });
-//         res.status(200).json(user)
-//     } catch (error) {
-//         // console.log(error)
-//         res.status(500).json({ error: "somthing went wrong" })
-
-//     }
-// }
-
-// export { testingRoute, getUsers, getUser }
-
 import UserModel from "../models/userModels.js";
+import { encryptPassword, verifyPassword } from "../utils/bcrypt.js";
 import { imageUpload } from "../utils/imageManagement.js";
 
 const testingRoute = (req, res) => {
@@ -67,39 +32,30 @@ const getUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
+    console.log(req.body);
     if (!req.body.email || !req.body.password || !req.body.username) {
         return res.status(406).json({ error: "Please fill out all fields" })
     }
-    const avatar = await imageUpload(req.file, "user_avatars")
-
+    const avatar = await imageUpload(req.file, "user_avatars");
+    const encryptedPassword = await encryptPassword(req.body.password);
     const newUser = new UserModel({
-        // email: req.body.email,
-        // username: req.body.username,
-        // password: req.body.password
-
-        // alternative with spreadoperator
         ...req.body,
+        password: encryptedPassword,
         avatar: avatar
     });
-
     try {
         const registeredUser = await newUser.save();
         res.status(200).json({
-            message: "Registration Successfull",
+            message: "Successfully registered!",
             newUser: registeredUser
-        });
+        })
     } catch (error) {
         console.log(error);
-        res.status(500).json("something went wrong...")
-
-        //   recomended
-        // error.code === 11000 ? res.status(406).json({ error: "That email is already registered" })
-        //     : res.status(500).json({ error: "Unknown error occured", ...e })
+        res.status(500).json("something went wrong..")
     }
 }
 
 const updateUser = async (req, res) => {
-
     try {
         const updatedUser = await UserModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.status(200).json(updatedUser);
@@ -107,7 +63,36 @@ const updateUser = async (req, res) => {
         console.log(e);
         res.status(500).send(e.message);
     }
-
 }
 
-export { testingRoute, getUsers, getUser, createUser, updateUser }
+const login = async (req, res) => {
+    try {
+        const existingUser = await UserModel.findOne({ email: req.body.email });
+        if (!existingUser) {
+            res.status(404).json({ error: "no user found" })
+            return;
+        }
+        if (existingUser) {
+            const verified = await verifyPassword(req.body.password, existingUser.password);
+            if (!verified) {
+                res.status(406).json({ error: "password doesn't match" })
+            }
+            if (verified) {
+                res.status(200).json({
+                    verified: true,
+                    user: {
+                        _id: existingUser._id,
+                        username: existingUser.username,
+                        pets: existingUser.pets,
+                        avatar: existingUser.avatar
+                    }
+                })
+            }
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({ error: "something went wrong.." })
+    }
+}
+
+export { testingRoute, getUsers, getUser, createUser, updateUser, login }

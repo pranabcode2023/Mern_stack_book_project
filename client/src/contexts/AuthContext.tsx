@@ -1,5 +1,6 @@
 import { ReactNode, createContext, useState } from "react"
 
+
 interface User {
   password: string,
   email?: string,
@@ -28,7 +29,10 @@ const initialAuth: AuthContextType = {
 
 export const AuthContext = createContext<AuthContextType>(initialAuth);
 
-export const AuthContextProvider = ({children} : {children: ReactNode}) => {
+
+export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
+  
+  
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
@@ -36,6 +40,7 @@ export const AuthContextProvider = ({children} : {children: ReactNode}) => {
     console.log({ email: email, password: password })
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    
     const urlencoded = new URLSearchParams();
     urlencoded.append("email", email);
     urlencoded.append("password", password);
@@ -58,10 +63,13 @@ export const AuthContextProvider = ({children} : {children: ReactNode}) => {
     }
 
   }
-
-  return (
+  
+return (
     <AuthContext.Provider value={{ user, login, error }}>
       { children }
     </AuthContext.Provider>
   )
 }
+
+
+

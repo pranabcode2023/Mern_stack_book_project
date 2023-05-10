@@ -3,9 +3,10 @@ import { AuthContext } from '../contexts/AuthContext';
 
 type Props = {}
 
+// eslint-disable-next-line no-empty-pattern
 function Login({}: Props) {
   const { login } = useContext(AuthContext);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<SubmitLoginData>({
     email: "",
     password: "",
   });
@@ -22,7 +23,7 @@ function Login({}: Props) {
       <form onSubmit={handleSubmit}>
         <input type='email' name='email' placeholder='email' onChange={handleChange}/>
         <input type='password' name='password' placeholder='password'onChange={handleChange}/>
-        <button type='submit'>Register me!</button>
+        <button type='submit'>Login</button>
       </form>
     </div>
   )

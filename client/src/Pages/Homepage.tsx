@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+
 type Props = {}
 
 interface User {
@@ -44,14 +45,15 @@ const Homepage = (props: Props) => {
 
   return (
     <div>
-    <h1>hello</h1>
+    <h1>Mern_stack</h1>
     <h2>All users:</h2>
     { users.map((user, i) => {
       return <p key={i}>{user.username}</p>
     }) }
-    <h2>User with ID: 6447a2bc1362e69f068f823b</h2>
-    { user && <p>{user.username}</p> }
+    {/* <h2>User with ID: 6447a2bc1362e69f068f823b</h2>
+    { user && <p>{user.username}</p> } */}
   </div>
+    
   )
 }
 
