@@ -74,6 +74,7 @@ import Homepage from './Pages/Homepage';
 import Login from './Pages/Login';
 import { AuthContextProvider } from './contexts/AuthContext';
 import NavBar from './components/NavBar';
+import './styles.css';
 
 function App() {
   
