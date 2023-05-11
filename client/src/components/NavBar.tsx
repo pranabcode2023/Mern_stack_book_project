@@ -37,11 +37,10 @@ import Navbar from 'react-bootstrap/Navbar';
 
 // bootstrap
 
-// type Props = {}
-// const NavBar = (props: Props) => {
+type Props = {}
+const NavBar = (props: Props) => {
 
-function NavBar() {
-    const { user, login, logout } = useContext(AuthContext);
+   const { user, login, logout } = useContext(AuthContext);
     return (
         <>
             <Navbar bg="dark" variant="dark">

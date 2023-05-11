@@ -65,22 +65,23 @@
 
 // export default App;
 
-
-import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Register from './Pages/Register';
 import Homepage from './Pages/Homepage';
 import Login from './Pages/Login';
-import { AuthContextProvider } from './contexts/AuthContext';
+import {AuthContextProvider } from './contexts/AuthContext';
 import NavBar from './components/NavBar';
 import './styles.css';
 
 function App() {
+  // const { user } = useContext(AuthContext);
+  // console.log("active user from app",user);
   
   return (
     <AuthContextProvider>
       <BrowserRouter>
+       {/* <div>{user? <p> User logged in!</p> : <p> User logged out!</p>} </div> */}
         <NavBar />
         <Routes>
           <Route path='/' element={ <Homepage />} />

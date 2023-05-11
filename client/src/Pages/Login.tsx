@@ -3,8 +3,6 @@ import { AuthContext } from '../contexts/AuthContext';
 
 
 type Props = {}
-
-// eslint-disable-next-line no-empty-pattern
 function Login({}: Props) {
   const { login } = useContext(AuthContext);
   const [formData, setFormData] = useState<SubmitLoginData>({

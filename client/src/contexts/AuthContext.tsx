@@ -1,18 +1,24 @@
-import { ReactNode, createContext, useState } from "react"
+import { ReactNode, createContext, useState, useEffect } from "react"
 
 
 interface User {
-  password: string,
   email?: string,
   username: string,
   avatar: string,
   pets: string[]
 }
 
+interface fetchResult{
+  token: string,
+  verified: boolean,
+  user: User
+}
+
 interface AuthContextType {
-  user: User | null,
+  user: boolean,
   error: Error | null,
   login(email: string, password: string): void,
+  logout():void
 }
 
 // export const AuthContext = createContext<AuthContextType | null>(null); // not recommended
@@ -20,24 +26,26 @@ interface AuthContextType {
 // export const AuthContext = createContext<AuthContextType>(null!); // less recommended
 
 const initialAuth: AuthContextType = {
-  user: null,
+  user: false,
   error: null,
   login: () => {
     throw new Error('login not implemented.');
+  },
+  logout: () => {
+    throw new Error('logout not implemented.');
   }
 };
 
 export const AuthContext = createContext<AuthContextType>(initialAuth);
 
 
-export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  
-  
-  const [user, setUser] = useState<User | null>(null);
+ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
+   const [user, setUser] = useState<boolean>(false);
+   console.log("active user:",user);
   const [error, setError] = useState<Error | null>(null);
 
   const login = async(email: string, password: string) => {
-    console.log({ email: email, password: password })
+    // console.log({ email: email, password: password })
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
@@ -51,9 +59,12 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     };
     try {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}users/login`, requestOptions);
-      const result = await response.json();
+      const result = await response.json() as fetchResult
       if (result.user) {
-        setUser(result.user);
+        setUser(true);
+        console.log(result.user)
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("my name", "pranab");
       }
       console.log(result);
     } catch (error) {
@@ -64,8 +75,28 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   }
   
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUser(false);
+   }
+   
+    const checkForToken = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      console.log("There is a token")
+     setUser(true)
+    } else {
+      console.log("There is no token")
+     setUser(false)
+    }
+  }
+
+  useEffect(() => {
+    checkForToken();
+  }, [])
+
 return (
-    <AuthContext.Provider value={{ user, login, error }}>
+    <AuthContext.Provider value={{ user, login, logout, error }}>
       { children }
     </AuthContext.Provider>
   )
