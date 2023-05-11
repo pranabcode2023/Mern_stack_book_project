@@ -37,9 +37,6 @@ const connectMongoose = () => {
         .catch((err) => console.log(err));
 }
 
-
-
-
 // app.listen(port, () => {
 //     console.log("Server is running on port" + port);
 // });
@@ -47,13 +44,12 @@ const connectMongoose = () => {
 const connectRoutes = () => {
     app.use('/api/users', userRouter);
     app.use('/api/pets', petRouter);
+    app.use('*', (req, res) => { res.status(500).json({ error: "Endpoint not found" }) });
 }
-
 
 // const helloFunction = (req, res) => {
 //     res.send({ message: 'Hello World!', array: [1, 2, 3, 4, 5, 6] })
 // }
-
 
 // ***********same ****************
 // app.post('/test', helloFunction);

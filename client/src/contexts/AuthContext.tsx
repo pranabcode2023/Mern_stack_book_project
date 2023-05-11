@@ -14,6 +14,10 @@ interface fetchResult{
   user: User
 }
 
+interface fetchFailed{
+  error: string 
+}
+
 interface AuthContextType {
   user: boolean,
   error: Error | null,
@@ -59,14 +63,23 @@ export const AuthContext = createContext<AuthContextType>(initialAuth);
     };
     try {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}users/login`, requestOptions);
-      const result = await response.json() as fetchResult
-      if (result.user) {
+      console.log(response)
+    
+      if (response.ok) {
+        const result = await response.json() as fetchResult
+        if (result.user) {
         setUser(true);
         console.log(result.user)
         localStorage.setItem("token", result.token);
         localStorage.setItem("my name", "pranab");
-      }
-      console.log(result);
+        }
+         console.log(result);
+      } else {
+        const result = await response.json() as fetchFailed
+        alert(result.error)
+     }
+      
+     
     } catch (error) {
       console.log(error);
       // setError(error); //I still have to figure out how to type the unknown fetch results
