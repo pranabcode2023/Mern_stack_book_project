@@ -30,7 +30,7 @@ userRouter.get("/id/:id", getUser);
 userRouter.get("/active", jwtAuth, getActiveuser);
 
 userRouter.post("/new", multerUpload.single("avatar"), createUser);
-userRouter.post("/update/:id", updateUser);
+userRouter.post("/update", jwtAuth, updateUser);
 userRouter.post("/login", login);
 
 export default userRouter;

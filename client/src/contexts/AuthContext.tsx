@@ -19,7 +19,7 @@ interface fetchFailed{
 }
 
 interface AuthContextType {
-  user: boolean,
+  user: User | null,
   error: Error | null,
   login(email: string, password: string): void,
   logout():void
@@ -30,7 +30,7 @@ interface AuthContextType {
 // export const AuthContext = createContext<AuthContextType>(null!); // less recommended
 
 const initialAuth: AuthContextType = {
-  user: false,
+  user: null,
   error: null,
   login: () => {
     throw new Error('login not implemented.');
@@ -44,8 +44,8 @@ export const AuthContext = createContext<AuthContextType>(initialAuth);
 
 
  export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-   const [user, setUser] = useState<boolean>(false);
-   console.log("active user:",user);
+   const [user, setUser] = useState< User | null>(null);
+  //  console.log("active user:",user);
   const [error, setError] = useState<Error | null>(null);
 
   const login = async(email: string, password: string) => {
@@ -68,7 +68,7 @@ export const AuthContext = createContext<AuthContextType>(initialAuth);
       if (response.ok) {
         const result = await response.json() as fetchResult
         if (result.user) {
-        setUser(true);
+        setUser(result.user);
         console.log(result.user)
         localStorage.setItem("token", result.token);
         localStorage.setItem("my name", "pranab");
@@ -90,20 +90,40 @@ export const AuthContext = createContext<AuthContextType>(initialAuth);
   
   const logout = () => {
     localStorage.removeItem("token");
-    setUser(false);
+    setUser(null);
    }
    
     const checkForToken = () => {
     const token = localStorage.getItem("token");
     if (token) {
       console.log("There is a token")
-     setUser(true)
+      fetchActiveUser(token);
     } else {
       console.log("There is no token")
-     setUser(false)
+     setUser(null)
     }
   }
 
+   
+   const fetchActiveUser = async (token: string) => {
+    const myHeaders = new Headers();
+     myHeaders.append("Authorization", `Bearer ${token}`);
+     const requestOptions = {
+         method: 'GET',
+         headers: myHeaders,
+};
+     try {
+       const response = await fetch(`${process.env.REACT_APP_BASE_URL}users/active`, requestOptions);
+       const result = await response.json();
+       console.log("active user result:", result)
+       setUser(result);
+     } catch (error) {
+       console.log(error);
+     }
+  }
+   
+   
+   
   useEffect(() => {
     checkForToken();
   }, [])

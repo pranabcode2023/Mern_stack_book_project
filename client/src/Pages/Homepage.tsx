@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-
 type Props = {}
 
 interface User {
@@ -15,7 +14,7 @@ const Homepage = (props: Props) => {
   const [users, setUsers] = useState<Users>([]);
   const [user, setUser] = useState<User | null>(null);
 
-  const getUsers = async() => {
+  const getUsers = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/users/all");
       const result = await response.json();
@@ -26,8 +25,8 @@ const Homepage = (props: Props) => {
     }
   }
 
-  const getUserById = async() => {
-    const id = "6447a2bc1362e69f068f823b";
+  const getUserById = async () => {
+    const id = "645a623c1682270c68965ff7";
     try {
       const response = await fetch(`http://localhost:5000/api/users/id/${id}`);
       const result = await response.json();
@@ -44,17 +43,52 @@ const Homepage = (props: Props) => {
   }, [])
 
   return (
-    <div>
-    <h1>Mern_stack</h1>
-    <h2>All users:</h2>
-    { users.map((user, i) => {
-      return <p key={i}>{user.username}</p>
-    }) }
-    {/* <h2>User with ID: 6447a2bc1362e69f068f823b</h2>
-    { user && <p>{user.username}</p> } */}
-  </div>
+    // <div>
+    //     <h1>Mern_stack</h1>
+    //   <button onClick={() => localStorage.setItem("myName", "pranab")}>test</button>
+    //   <button onClick={() => localStorage.setItem("myName", "pablo")}>test</button>
+    //   <h2>All users:</h2>
+    //   { users.map((user, i) => {
+    //     return <p key={i}>{user.username}</p>
+    //   }) }
+    //   {/* <h2>User with ID: 6447a2bc1362e69f068f823b</h2>
+    //   { user && <p>{user.username}</p> } */}
+    // </div>
     
+    
+    <div className="row">
+      <div className="column side">
+        <h2>Side</h2>
+        <h2>highlights</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+      </div>
+  
+      <div className="column middle">
+        <h2>Main Content</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies,
+          eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat,
+          purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
+        <h1>Mern_stack</h1>
+        <button onClick={() => localStorage.setItem("myName", "pranab")}>test</button>
+        <button onClick={() => localStorage.setItem("myName", "pablo")}>test</button>
+        <h2>All users:</h2>
+        {users.map((user, i) => {
+          return <p key={i}>
+            {user.username}
+            <br />
+            {user.email}
+          </p>
+        })}
+      </div>
+  
+      <div className="column side">
+        <h2>Side</h2>
+        <h2>coming soon</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+      </div>
+    </div>
   )
-}
+};
 
 export default Homepage
