@@ -19,13 +19,15 @@
 
 import express from "express";
 import { multerUpload } from "../middlewares/multer.js"
-import { testingRoute, getUsers, getUser, createUser, updateUser, login } from "../controllers/userControllers.js";
+import { testingRoute, getUsers, getUser, createUser, updateUser, login, getActiveuser } from "../controllers/userControllers.js";
+import jwtAuth from "../middlewares/jwtAuth.js";
 
 const userRouter = express.Router()
 
 userRouter.get("/test", testingRoute)
 userRouter.get("/all", getUsers);
 userRouter.get("/id/:id", getUser);
+userRouter.get("/active", jwtAuth, getActiveuser);
 
 userRouter.post("/new", multerUpload.single("avatar"), createUser);
 userRouter.post("/update/:id", updateUser);

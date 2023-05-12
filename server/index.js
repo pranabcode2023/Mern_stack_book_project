@@ -6,8 +6,10 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import userRouter from "./routes/userRoutes.js";
+
 import cors from "cors";
 import petRouter from "./routes/petRoutes.js";
+import passportConfig from "./config/passport.js";
 
 
 const app = express();
@@ -23,6 +25,7 @@ const setMiddlewares = () => {
     );
     app.use(cors());
     cloudinaryConfig();
+    passportConfig();
 }
 
 

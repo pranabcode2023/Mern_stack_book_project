@@ -98,6 +98,9 @@ const login = async (req, res) => {
     }
 }
 
+const getActiveuser = async (req, res) => {
 
+    res.send("testing...")
+}
 
-export { testingRoute, getUsers, getUser, createUser, updateUser, login }
+export { testingRoute, getUsers, getUser, createUser, updateUser, login, getActiveuser }
