@@ -1,8 +1,10 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
-
+import { useNavigate } from 'react-router-dom';
 type Props = {}
 
 const Register = (props: Props) => {
+
+   const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState<SubmitRegisterData>({
     email: "",
@@ -31,6 +33,7 @@ const Register = (props: Props) => {
     submitData.append("username", formData.username);
     submitData.append("password", formData.password);
     submitData.append("avatar", formData.avatar);
+    navigate('/login');   // navigate to login page
     const requestOptions = {
       method: 'POST',
       body: submitData,
@@ -70,9 +73,9 @@ const Register = (props: Props) => {
         <div className="input-container">
           <input name='username' placeholder='username' onChange={handleChange} />
         </div>
-      <div className="input-container">
+      {/* <div className="input-container">
           <textarea id="subject" name="subject" placeholder="Write something.." ></textarea>
-      </div>
+      </div> */}
         <div className="input-container">
           <input type='file' name='avatar' onChange={handleFile} />
         </div>
