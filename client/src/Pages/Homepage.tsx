@@ -61,6 +61,13 @@ const Homepage = (props: Props) => {
         <h2>Side</h2>
         <h2>highlights</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+        <div className="card">
+  {/* <img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%"> */}
+  <h1>Tailored Jeans</h1>
+  <p className="price">$19.99</p>
+  <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+  <p><button>Add to Cart</button></p>
+</div>
       </div>
   
       <div className="column middle">
@@ -86,6 +93,13 @@ const Homepage = (props: Props) => {
         <h2>Side</h2>
         <h2>coming soon</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+        <div className="card">
+  {/* <img src="/w3images/jeans3.jpg" alt="Denim Jeans" style="width:100%"> */}
+  <h1>Tailored Jeans</h1>
+  <p className="price">$19.99</p>
+  <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+  <p><button>Add to Cart</button></p>
+</div>
       </div>
     </div>
   )
