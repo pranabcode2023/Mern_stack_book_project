@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useContext, useState } from 'react'
 import { AuthContext } from '../contexts/AuthContext';
-
+import { useNavigate } from 'react-router-dom';
 
 type Props = {}
 function Login({}: Props) {
@@ -9,13 +9,21 @@ function Login({}: Props) {
     email: "",
     password: "",
   });
+  
+
+ const navigate = useNavigate();  
+  
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData({...formData, [e.target.name]: e.target.value})
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+    
   }
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login(formData.email, formData.password);
+    navigate('/');     // navigate to Homepage
   }
+  
+  
   return (
     <div className="login">
       
