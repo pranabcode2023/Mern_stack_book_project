@@ -7,7 +7,8 @@ type Props = {}
 interface User {
   email: String,
   username: String,
-  password: String
+  password: String,
+  avatar: String
 }
 
 type Users = User[]
@@ -83,8 +84,8 @@ const Homepage = (props: Props) => {
           eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat,
           purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
         <h1>Mern_stack</h1>
-        <button onClick={() => localStorage.setItem("myName", "pranab")}>test</button>
-        <button onClick={() => localStorage.setItem("myName", "pablo")}>test</button>
+        {/* <button onClick={() => localStorage.setItem("myName", "pranab")}>test</button>
+        <button onClick={() => localStorage.setItem("myName", "pablo")}>test</button> */}
         <h2>All users:</h2>
         {users.map((user, i) => {
           return <p key={i}>
