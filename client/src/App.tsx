@@ -73,6 +73,7 @@ import Login from './Pages/Login';
 import {AuthContextProvider } from './contexts/AuthContext';
 import NavBar from './components/NavBar';
 import './styles.css';
+import UserProfile from './Pages/UserProfile';
 
 function App() {
   // const { user } = useContext(AuthContext);
@@ -84,7 +85,8 @@ function App() {
        {/* <div>{user? <p> User logged in!</p> : <p> User logged out!</p>} </div> */}
         <NavBar />
         <Routes>
-          <Route path='/' element={ <Homepage />} />
+          <Route path='/' element={<Homepage />} />
+          <Route path='/userprofile' element={ <UserProfile />} />
           <Route path='register' element={ <Register /> } />
           <Route path='login' element={ <Login /> } />
         </Routes>

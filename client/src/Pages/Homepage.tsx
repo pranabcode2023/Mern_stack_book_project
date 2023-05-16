@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react'
+// import Button from 'react-bootstrap/Button';
+// import Card from 'react-bootstrap/Card';
+
+
 
 
 
@@ -57,8 +61,8 @@ const Homepage = (props: Props) => {
     //   { users.map((user, i) => {
     //     return <p key={i}>{user.username}</p>
     //   }) }
-    //   {/* <h2>User with ID: 6447a2bc1362e69f068f823b</h2>
-    //   { user && <p>{user.username}</p> } */}
+    //   <h2>User with ID: 6447a2bc1362e69f068f823b</h2>
+    //   { user && <p>{user.username}</p> }
     // </div>
     
     
@@ -110,6 +114,7 @@ const Homepage = (props: Props) => {
         </div>
       </div>
     </div>
+ 
   )
 };
 

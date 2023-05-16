@@ -42,7 +42,8 @@ const NavBar = (props: Props) => {
                             <p style={linkStyle}  onClick={logout}>Logout</p>} */}
         </div>
         <div className="topnav">
-               <Link to="/">Home</Link>
+                <Link to="/">Home</Link>
+                <Link to="/userprofile">Profile</Link> 
                <Link to="/register">Register</Link>
                 {/* <Link to="/login">Login</Link> */}
                 {!user ? <NavLink to='/login' style={linkStyle}>Log in</NavLink> :
