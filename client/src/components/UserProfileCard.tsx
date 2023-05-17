@@ -10,7 +10,7 @@ const UserProfileCard = () => {
 
 return (
      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+      <Card.Img variant="top" src="https://res.cloudinary.com/dtdsw5fg2/image/upload/v1684234717/user_avatars/ibzoaehtyhpv9itx3li5.gif" />
       <Card.Body>
         <Card.Title>Card Title</Card.Title>
         <Card.Text>
