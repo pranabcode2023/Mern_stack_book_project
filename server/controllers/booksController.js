@@ -90,9 +90,9 @@ const deleteBook = async (req, res) => {
         console.log(error)
     }
     if (!book) {
-        return res.status(404).json({ meassage: "Unable to update by this ID" })
+        return res.status(404).json({ meassage: "Unable to delete by this ID" })
     }
-    return res.status(200).json({ book })
+    return res.status(200).json({ Message: 'Succesfully Deleted' })
 }
 
 
