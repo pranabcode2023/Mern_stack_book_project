@@ -7,6 +7,7 @@ const bookSchema = new mongoose.Schema({
     description: { type: String, required: true },
     price: { type: Number, required: true },
     available: { type: Boolean },
+    image: { type: String, required: true }
 });
 const BooksModel = mongoose.model("book", bookSchema);
 export default BooksModel;

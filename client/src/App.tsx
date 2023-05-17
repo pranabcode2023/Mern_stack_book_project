@@ -73,8 +73,8 @@ import Login from './Pages/Login';
 import {AuthContextProvider } from './contexts/AuthContext';
 import NavBar from './components/NavBar';
 import './styles.css';
-import UserProfile from './Pages/UserProfile';
-
+import { About } from './Pages/About';
+import { AddBook } from './Pages/AddBook';
 function App() {
   // const { user } = useContext(AuthContext);
   // console.log("active user from app",user);
@@ -86,7 +86,8 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' element={<Homepage />} />
-          <Route path='/userprofile' element={ <UserProfile />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/addbook' element={ <AddBook/>} />
           <Route path='register' element={ <Register /> } />
           <Route path='login' element={ <Login /> } />
         </Routes>
