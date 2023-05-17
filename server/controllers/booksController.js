@@ -85,13 +85,7 @@ const deleteBook = async (req, res) => {
     const { name, author, description, price, available } = req.body;
     let book;
     try {
-        book = await BooksModel.findByIdAndDelete(id, {
-            name,
-            author,
-            description,
-            price,
-            available
-        })
+        book = await BooksModel.findByIdAndRemove(id)
     } catch (error) {
         console.log(error)
     }
