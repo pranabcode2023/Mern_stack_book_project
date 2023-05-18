@@ -35,18 +35,19 @@ interface BookProps {
 }
 
 const Book: React.FC<BookProps> = ({ book }) => {
-  const { _id, name, author, description, price, image } = book;
+  const { name, author, description, price, image } = book;
 
   return (
-    <div>
-      <img src={image} alt={name} />
-      <article> By {author}</article>
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <h2>Euro{price}</h2>
-      <button>Update</button>
-      <button>Delete</button>
-    </div>
+      <div className="card">
+        <img src={image} alt={name} />
+        <article>By {author}</article>
+         <h3>{name}</h3>
+         <p>{description}</p>
+         <h2>Euro{price}</h2>
+           <p><button>Update</button> </p>
+           <p><button>Delete</button></p>
+        </div>
+    
   );
 };
 
