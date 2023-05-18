@@ -38,6 +38,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Book from '../components/Book';
 
+
 const URL = "http://localhost:5000/api/books/all";
 
 interface BookData {
@@ -70,7 +71,7 @@ const Books: React.FC = () => {
     <div>
       <ul>
         {books.map((book: BookData, i: number) => (
-          <div key={i}>
+          <div className='book'key={i}>
             <Book book={book} />
           </div>
         ))}
