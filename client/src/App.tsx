@@ -73,7 +73,7 @@ import Login from './Pages/Login';
 import {AuthContextProvider } from './contexts/AuthContext';
 import NavBar from './components/NavBar';
 import './styles.css';
-import { About } from './Pages/About';
+import Books from './Pages/Books';
 import { AddBook } from './Pages/AddBook';
 function App() {
   // const { user } = useContext(AuthContext);
@@ -86,7 +86,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' element={<Homepage />} />
-          <Route path='/about' element={<About />} />
+          <Route path='/books' element={<Books />} />
           <Route path='/addbook' element={ <AddBook/>} />
           <Route path='register' element={ <Register /> } />
           <Route path='login' element={ <Login /> } />

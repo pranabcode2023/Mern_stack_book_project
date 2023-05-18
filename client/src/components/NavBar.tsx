@@ -43,7 +43,7 @@ const NavBar = (props: Props) => {
         </div>
         <div className="topnav">
                 <Link to="/">Home</Link>
-                <Link to="/about">About Us</Link> 
+                <Link to="/books">Books</Link> 
                  <Link to="/addbook">Add Book</Link> 
                <Link to="/register">Register</Link>
                 {/* <Link to="/login">Login</Link> */}
