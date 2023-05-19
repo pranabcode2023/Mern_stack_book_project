@@ -74,7 +74,7 @@ import {AuthContextProvider } from './contexts/AuthContext';
 import NavBar from './components/NavBar';
 import './styles.css';
 import Books from './Pages/Books';
-import { AddBook } from './Pages/AddBook';
+import AddBook from './Pages/AddBook';
 function App() {
   // const { user } = useContext(AuthContext);
   // console.log("active user from app",user);
