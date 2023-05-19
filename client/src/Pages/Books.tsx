@@ -3,7 +3,7 @@ import axios from 'axios';
 import Book from '../components/Book';
 
 
-const URL = "http://localhost:5000/api/books/all";
+const URL = `${process.env.REACT_APP_BASE_URL}books/all`;
 
 interface BookData {
   _id: any;

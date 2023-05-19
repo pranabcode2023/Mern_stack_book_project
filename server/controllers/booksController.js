@@ -1,4 +1,5 @@
 import BooksModel from "../models/booksModel.js"
+// import { imageUpload } from "../utils/imageManagement.js";
 
 
 const getAllbooks = async (req, res) => {
@@ -38,6 +39,13 @@ const getById = async (req, res) => {
 }
 
 const addBook = async (req, res) => {
+
+    // const bookImageUpload = await imageUpload(req.file, "user_books");
+    // const newBook = new BooksModel({
+    //     ...req.body,
+    //     bookImageUpload: bookImageUpload
+    // });
+
     let book;
     const { name, author, description, price, available, image } = req.body;
 

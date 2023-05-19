@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import { ChangeEvent } from 'react';
+
 
 const AddBook = () => {
   const history = useNavigate();
+  
   const [inputs, setInputs] = useState({
     name: '',
     description: '',
@@ -20,9 +23,25 @@ const AddBook = () => {
     }));
   };
 
+  // const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setInputs((prevState) => ({
+  //     ...prevState,
+  //     [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value,
+  //   }));
+  // };
+
+
+  //   const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files) {
+  //     setInputs({ ...inputs, image: e.target.files[0] })
+  //   } else {
+  //     setInputs({ ...inputs, image: "" })
+  //   }
+  // }
+  
   const sendRequest = async () => {
     try {
-      await axios.post('http://localhost:5000/api/books/all', {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}books/all`, {
         name: String(inputs.name),
         author: String(inputs.author),
         description: String(inputs.description),

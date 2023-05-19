@@ -33,7 +33,9 @@ const Register = (props: Props) => {
     submitData.append("username", formData.username);
     submitData.append("password", formData.password);
     submitData.append("avatar", formData.avatar);
+    
     navigate('/login');   // navigate to login page
+    
     const requestOptions = {
       method: 'POST',
       body: submitData,
@@ -94,6 +96,6 @@ const Register = (props: Props) => {
   )
 }
 
-export default Register
+export default Register;
 
 
