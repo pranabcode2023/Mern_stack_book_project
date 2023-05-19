@@ -1,26 +1,41 @@
-// import React from 'react'
 
-//  const book = (props: { book: { _id: any; name: any; author: any; description: any; price: any; available: any; image: any } }) => {
-//   const { _id,name, author, description, price, available, image } = props.book
-//   return (
-//     <div>
-//       book
-//       <img src={image} alt={name} />
-//       <article> By {author}</article>
-//       <h3>{name} </h3>
-//       <p>{description} </p>
-//       <h2>Euro{price} </h2>
-//       <button>Update</button>
-//       <button>Delete</button>
-//     </div>
-//   )
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+
+// interface BookProps {
+//   book: {
+//     _id: any;
+//     name: any;
+//     author: any;
+//     description: any;
+//     price: any;
+//     available: any;
+//     image: any;
+//   };
 // }
 
+// const Book: React.FC<BookProps> = ({ book }) => {
+//   const { name, author, description, price, image } = book;
 
-// export default book;
+//   return (
+   
+//       <div className="bookCard">
+//         <img src={image} alt={name} />
+//         <article>By{author}</article>
+//          <h3>{name}</h3>
+//          <p>{description}</p>
+//          <h2>Euro{price}</h2>
+//            <p><button link = {`/books/{_id}`}>Update</button> </p>
+//            <p><button>Delete</button></p>
+//         </div>
+    
+//   );
+// };
 
+// export default Book;
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface BookProps {
   book: {
@@ -35,20 +50,24 @@ interface BookProps {
 }
 
 const Book: React.FC<BookProps> = ({ book }) => {
-  const { name, author, description, price, image } = book;
+  const { _id, name, author, description, price, image } = book;
 
   return (
-      <div className="card">
-        <img src={image} alt={name} />
-        <article>By {author}</article>
-         <h3>{name}</h3>
-         <p>{description}</p>
-         <h2>Euro{price}</h2>
-           <p><button>Update</button> </p>
-           <p><button>Delete</button></p>
-        </div>
-    
+    <div className="bookCard">
+      <img src={image} alt={name} />
+      <article>By {author}</article>
+      <h3>{name}</h3>
+      <p>{description}</p>
+      <h2>Euro {price}</h2>
+      <div className="button-container">
+        <Link to={`/books/${_id}`}>
+          <button>Update</button>
+        </Link>
+        <button>Delete</button>
+      </div>
+    </div>
   );
 };
 
 export default Book;
+

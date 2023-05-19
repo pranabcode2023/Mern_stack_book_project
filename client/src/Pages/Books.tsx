@@ -32,7 +32,7 @@ const Books: React.FC = () => {
   console.log(books);
 
   return (
-    <div className='grid'>
+    <div className='booksmaping'>
       <ul>
         {books.map((book: BookData, i: number) => (
           <li className='book'key={i}>
