@@ -97,7 +97,10 @@ login/register */
     /* border: 2px solid red; */
 }
 
-.register{
+
+.register,
+.addBook,
+.bookDetails{
     font-family: sans-serif;
     display: flex;
     align-items: center;
