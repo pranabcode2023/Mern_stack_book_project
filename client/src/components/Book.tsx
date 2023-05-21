@@ -45,13 +45,14 @@ const Book: React.FC<BookProps> = ({ book }) => {
       <h3>{name}</h3>
       <p>{description}</p>
       <h2>Euro {price}</h2>
-      <div className="button-container">
-        <Link to={`/books/${_id}`}>
+      <br/>
+      <Link to={`/books/${_id}`}>
           <button>Update</button>
-        </Link>
-        <button onClick={deleteHandler}>Delete</button>
-      </div>
+      </Link>
+      <br/>
+      <button onClick={deleteHandler}>Delete</button>
     </div>
+   
   );
 };
 
