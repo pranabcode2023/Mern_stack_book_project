@@ -13,6 +13,16 @@ interface SubmitLoginData {
   email: string,
   password: string,
 }
+type AddBookData = {
+  name: string;
+  description: string;
+  price: string;
+  author: string;
+  available: boolean;
+  image: File | string;
+};
+
+
 
 interface BookData {
   _id: String,
@@ -21,5 +31,14 @@ interface BookData {
   description: String,
   price: String,
   available: String,
-  image: String
-}
+  image: File | string
+};
+
+type UpdateBookData = {
+  name: string;
+  description: string;
+  price: string;
+  author: string;
+  available: boolean;
+  image: File | string;
+};

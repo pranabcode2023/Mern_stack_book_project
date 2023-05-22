@@ -9,6 +9,7 @@ const bookSchema = new mongoose.Schema({
     available: { type: Boolean },
     image: { type: String, required: true }
 });
+
 const BooksModel = mongoose.model("book", bookSchema);
 export default BooksModel;
 

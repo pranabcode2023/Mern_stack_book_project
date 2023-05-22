@@ -23,7 +23,7 @@ interface BookData {
   description: String,
   price: String,
   available: String,
-  image: String
+  image: File | string
 }
 
 const fetchHandler = async () => {

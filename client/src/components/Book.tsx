@@ -31,40 +31,27 @@ const Book: React.FC<BookProps> = ({ book }) => {
 };
 
   return (
-    // <div className="bookCard">
-    //   <img src={image} alt={name} />
-    //   <article>By {author}</article>
-    //   <h3>{name}</h3>
-    //   <p>{description}</p>
-    //   <h2>Euro {price}</h2>
-    //   <br/>
-    //   <Link to={`/books/${_id}`}>
-    //       <button>Update</button>
-    //   </Link>
-    //   <br/>
-    //   <button onClick={deleteHandler}>Delete</button>
-    // </div>
-
-    
-    <div className="bookCard">
+   <div className="bookCard">
       <div className="container">
         <img src={image} alt={name} />
         </div>
-  <div className="container">
-  <article>By {author}</article>
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <h2>Euro {price}</h2>
+      <div className="container">
+         <article>By {author}</article>
+         <h3>{name}</h3>
+         <p>{description}</p>
+         <h2>Euro {price}</h2>
       </div>
     
-      <div className="container">
-      <Link to={`/books/${_id}`}>
+    <div className="container">
+       <Link to={`/books/${_id}`}>
           <button>Update</button>
-      </Link>
-      <br/>
+       </Link>
+    </div>
+    
+    <div className="container">
       <button onClick={deleteHandler}>Delete</button>
       </div>
- </div> 
+   </div> 
    
   );
 };
