@@ -166,6 +166,28 @@ const updateBook = async (req, res) => {
         res.status(500).json({ message: "Something went wrong..." });
     }
 };
+// const updateBook = async (req, res) => {
+//     try {
+//         const image = await imageUpload(req.file, "user_books");
+//         const updatedBookData = {
+//             ...req.body,
+//             image: image
+//         };
+//         const updatedBook = await BooksModel.findByIdAndUpdate(req.params.id, updatedBookData, { new: true });
+
+//         if (!updatedBook) {
+//             return res.status(404).json({ message: "Unable to update by this ID" });
+//         }
+
+//         res.status(200).json({ book: updatedBook });
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ message: "Unable to update the book" });
+//     }
+// };
+
+
+
 
 const deleteBook = async (req, res) => {
     const id = req.params.id;
@@ -182,4 +204,5 @@ const deleteBook = async (req, res) => {
 };
 
 export { getAllbooks, addBook, getById, updateBook, deleteBook };
+
 

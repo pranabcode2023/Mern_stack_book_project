@@ -8,7 +8,7 @@ const bookSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     available: { type: Boolean },
     image: { type: String, required: true }
-});
+}, { timestamps: true });
 
 const BooksModel = mongoose.model("book", bookSchema);
 export default BooksModel;

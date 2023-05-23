@@ -18,7 +18,7 @@
 
 
 import express from "express";
-import { multerUpload } from "../middlewares/multer.js"
+import multerUpload from "../middlewares/multer.js"
 import { testingRoute, getUsers, getUser, createUser, updateUser, login, getActiveuser } from "../controllers/userControllers.js";
 import jwtAuth from "../middlewares/jwtAuth.js";
 

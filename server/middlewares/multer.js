@@ -13,6 +13,16 @@ const multerUpload = multer({
     },
 });
 
+export default multerUpload;
+
+
+
+
+
+
+
+
+
 
 
 // const multerOptions = {
@@ -28,5 +38,3 @@ const multerUpload = multer({
 // }
 
 // multer(multerOptions);
-
-export { multerUpload }
