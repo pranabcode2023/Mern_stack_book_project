@@ -140,59 +140,85 @@ const addBook = async (req, res) => {
 };
 
 
+// const updateBook = async (req, res) => {
+//     const id = req.params.id;
+//     const { name, author, description, price, available, image } = req.body;
+//     try {
+//         const updatedBook = await BooksModel.findByIdAndUpdate(
+//             id,
+//             {
+//                 name,
+//                 author,
+//                 description,
+//                 price,
+//                 available,
+//                 image,
+//             },
+//             { new: true }
+//         );
+
+//         if (!updatedBook) {
+//             return res.status(404).json({ message: "Unable to update by this ID" });
+//         }
+//         res.status(200).json({ book: updatedBook });
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ message: "Something went wrong..." });
+//     }
+// };
 const updateBook = async (req, res) => {
-    const id = req.params.id;
-    const { name, author, description, price, available, image } = req.body;
     try {
-        const updatedBook = await BooksModel.findByIdAndUpdate(
-            id,
-            {
-                name,
-                author,
-                description,
-                price,
-                available,
-                image,
-            },
-            { new: true }
-        );
+        const image = await imageUpload(req.file, "user_books");
+        const updatedBookData = {
+            ...req.body,
+            image: image
+        };
+        const updatedBook = await BooksModel.findByIdAndUpdate(req.params.id, updatedBookData, { new: true });
 
         if (!updatedBook) {
             return res.status(404).json({ message: "Unable to update by this ID" });
         }
+
         res.status(200).json({ book: updatedBook });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Something went wrong..." });
+        res.status(500).json({ message: "Unable to update the book" });
     }
 };
-// const updateBook = async (req, res) => {
+
+
+
+
+// const deleteBook = async (req, res) => {
+//     const id = req.params.id;
 //     try {
 //         const image = await imageUpload(req.file, "user_books");
 //         const updatedBookData = {
 //             ...req.body,
 //             image: image
 //         };
-//         const updatedBook = await BooksModel.findByIdAndUpdate(req.params.id, updatedBookData, { new: true });
-
-//         if (!updatedBook) {
-//             return res.status(404).json({ message: "Unable to update by this ID" });
+//         const deletedBook = await BooksModel.findByIdAndRemove(id);
+//         if (!deletedBook) {
+//             return res.status(404).json({ message: "Unable to delete by this ID" });
 //         }
-
-//         res.status(200).json({ book: updatedBook });
+//         res.status(200).json({ message: "Successfully Deleted" });
 //     } catch (error) {
 //         console.log(error);
-//         res.status(500).json({ message: "Unable to update the book" });
+//         res.status(500).json({ message: "Something went wrong..." });
 //     }
 // };
-
 
 
 
 const deleteBook = async (req, res) => {
     const id = req.params.id;
     try {
-        const deletedBook = await BooksModel.findByIdAndRemove(id);
+        const image = await imageUpload(req.file, "user_books");
+        const deletedBookData = {
+            ...req.body,
+            image: image
+        };
+        const deletedBook = await BooksModel.findByIdAndRemove(req.params.id, deletedBookData, { new: true });
         if (!deletedBook) {
             return res.status(404).json({ message: "Unable to delete by this ID" });
         }
@@ -202,6 +228,8 @@ const deleteBook = async (req, res) => {
         res.status(500).json({ message: "Something went wrong..." });
     }
 };
+
+
 
 export { getAllbooks, addBook, getById, updateBook, deleteBook };
 

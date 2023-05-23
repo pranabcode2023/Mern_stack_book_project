@@ -10,7 +10,7 @@ booksRouter.get("/all/:id", getById);  //get by id
 
 booksRouter.put("/all/:id", multerUpload.single("image"), updateBook) //update
 
-booksRouter.delete("/all/:id", multerUpload.single("image"), deleteBook)
+booksRouter.delete("/all/:id", deleteBook)
 
 booksRouter.post("/all", multerUpload.single("image"), addBook);  // to add product/book
 
