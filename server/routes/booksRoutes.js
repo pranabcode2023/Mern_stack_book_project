@@ -8,6 +8,7 @@ const booksRouter = express.Router()
 booksRouter.get("/all", getAllbooks);
 booksRouter.get("/all/:id", getById);  //get by id
 
+
 booksRouter.put("/all/:id", multerUpload.single("image"), updateBook) //update
 
 booksRouter.delete("/all/:id", deleteBook)
