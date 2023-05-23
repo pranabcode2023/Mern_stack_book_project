@@ -186,39 +186,10 @@ const updateBook = async (req, res) => {
     }
 };
 
-
-
-
-// const deleteBook = async (req, res) => {
-//     const id = req.params.id;
-//     try {
-//         const image = await imageUpload(req.file, "user_books");
-//         const updatedBookData = {
-//             ...req.body,
-//             image: image
-//         };
-//         const deletedBook = await BooksModel.findByIdAndRemove(id);
-//         if (!deletedBook) {
-//             return res.status(404).json({ message: "Unable to delete by this ID" });
-//         }
-//         res.status(200).json({ message: "Successfully Deleted" });
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({ message: "Something went wrong..." });
-//     }
-// };
-
-
-
 const deleteBook = async (req, res) => {
     const id = req.params.id;
     try {
-        const image = await imageUpload(req.file, "user_books");
-        const deletedBookData = {
-            ...req.body,
-            image: image
-        };
-        const deletedBook = await BooksModel.findByIdAndRemove(req.params.id, deletedBookData, { new: true });
+        const deletedBook = await BooksModel.findByIdAndRemove(id);
         if (!deletedBook) {
             return res.status(404).json({ message: "Unable to delete by this ID" });
         }
@@ -228,8 +199,6 @@ const deleteBook = async (req, res) => {
         res.status(500).json({ message: "Something went wrong..." });
     }
 };
-
-
 
 export { getAllbooks, addBook, getById, updateBook, deleteBook };
 

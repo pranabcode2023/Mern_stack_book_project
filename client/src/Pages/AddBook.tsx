@@ -40,7 +40,7 @@ const AddBook = (props: Props) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-     navigate('/books'); // navigate to books page
+     
     
     console.log(formData);
     const submitData = new FormData();
@@ -52,7 +52,6 @@ const AddBook = (props: Props) => {
     submitData.append('image', formData.image);
     
    
-    
 
     const requestOptions = {
       method: 'POST',
@@ -63,17 +62,17 @@ const AddBook = (props: Props) => {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}books/all`, requestOptions);
       const result = await response.json();
       console.log(result);
-      //refresh the page after delete the items
-      window.location.reload();
       alert('Success! Check console.');
+      navigate('/books'); // navigate to books page
     } catch (error) {
       console.log(error);
       alert('Something went wrong - check console.');
-    }
+
+    } 
+
   };
   
 
-  
   
   return (
     <div className="addBook">
