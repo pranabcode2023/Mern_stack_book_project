@@ -14,6 +14,13 @@ interface SubmitLoginData {
   password: string,
 }
 
+interface SubmitAuthorRegisterData{
+  email: string,
+  password: string,
+  username: string,
+  image: Image
+}
+
 
 
 type AddBookData = {

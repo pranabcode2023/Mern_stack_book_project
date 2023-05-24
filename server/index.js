@@ -14,6 +14,7 @@ import booksRouter from "./routes/booksRoutes.js";
 
 
 import * as dotenv from "dotenv";
+import authorRouter from "./routes/authorRoutes.js";
 dotenv.config();
 
 
@@ -53,6 +54,7 @@ const connectRoutes = () => {
     app.use('/api/books', booksRouter);
     app.use('/api/users', userRouter);
     app.use('/api/pets', petRouter);
+    app.use('/api/authors', authorRouter);
     app.use('*', (req, res) => { res.status(500).json({ error: "Endpoint not found" }) });
 }
 

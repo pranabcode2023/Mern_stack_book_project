@@ -1,11 +1,14 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Register from './Pages/Register';
-import Homepage from './Pages/Homepage';
+// import Homepage from './Pages/Homepage';
+import AuthorHomepage from './Pages/AuthorHomepage';
 // import Homepage2 from './Pages/Homepage2';
 import Login from './Pages/Login';
-import {AuthContextProvider } from './contexts/AuthContext';
-import NavBar from './components/NavBar';
+// import {AuthContextProvider } from './contexts/AuthContext';
+import { AuthorAuthContextProvider } from './contexts/AuthorAuthContext';
+// import NavBar from './components/NavBar';
+import AuthorNavBar from './components/AuthorNavBar';
 import './styles.css';
 import Books from './Pages/Books';
 import AddBook from './Pages/AddBook';
@@ -15,12 +18,13 @@ function App() {
   // console.log("active user from app",user);
   
   return (
-    <AuthContextProvider>
+    <AuthorAuthContextProvider>
       <BrowserRouter>
        {/* <div>{user? <p> User logged in!</p> : <p> User logged out!</p>} </div> */}
-        <NavBar />
+        {/* <NavBar /> */}
+        <AuthorNavBar/>
         <Routes>
-          <Route path='/' element={<Homepage />} />
+          <Route path='/' element={<AuthorHomepage />} />
           <Route path='/books' element={<Books />} />
           <Route path='/addbook' element={ <AddBook/>} />
           <Route path='/register' element={ <Register /> } />
@@ -28,7 +32,7 @@ function App() {
           <Route path='/books/:id' element={ <BookDetails /> } />
         </Routes>
       </BrowserRouter>
-    </AuthContextProvider>
+    </AuthorAuthContextProvider>
   );
 }
 
