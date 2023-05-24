@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 type Props = {}
 
-const Register = (props: Props) => {
+const AuthorRegister = (props: Props) => {
 
    const navigate = useNavigate(); 
 
@@ -96,6 +96,6 @@ const Register = (props: Props) => {
   )
 }
 
-export default Register;
+export default AuthorRegister;
 
 

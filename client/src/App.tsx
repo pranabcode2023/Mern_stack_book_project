@@ -1,10 +1,13 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Register from './Pages/Register';
-// import Homepage from './Pages/Homepage';
 import AuthorHomepage from './Pages/AuthorHomepage';
+import AuthorLogin from './Pages/AuthorLogin';
+import AuthorRegister from './Pages/AuthorRegister';
+// import Register from './Pages/Register';
+// import Homepage from './Pages/Homepage';
+
 // import Homepage2 from './Pages/Homepage2';
-import Login from './Pages/Login';
+// import Login from './Pages/Login';
 // import {AuthContextProvider } from './contexts/AuthContext';
 import { AuthorAuthContextProvider } from './contexts/AuthorAuthContext';
 // import NavBar from './components/NavBar';
@@ -27,8 +30,8 @@ function App() {
           <Route path='/' element={<AuthorHomepage />} />
           <Route path='/books' element={<Books />} />
           <Route path='/addbook' element={ <AddBook/>} />
-          <Route path='/register' element={ <Register /> } />
-          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={ <AuthorRegister /> } />
+          <Route path='/login' element={<AuthorLogin />} />
           <Route path='/books/:id' element={ <BookDetails /> } />
         </Routes>
       </BrowserRouter>

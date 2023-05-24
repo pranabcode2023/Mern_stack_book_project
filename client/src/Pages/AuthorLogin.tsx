@@ -3,7 +3,7 @@ import { AuthorAuthContext } from '../contexts/AuthorAuthContext';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {}
-function Login({}: Props) {
+function AuthorLogin({}: Props) {
   const { login } = useContext(AuthorAuthContext);
   const [formData, setFormData] = useState<SubmitLoginData>({
     email: "",
@@ -65,4 +65,4 @@ function Login({}: Props) {
   );
 }
 
-export default Login;
+export default AuthorLogin;
