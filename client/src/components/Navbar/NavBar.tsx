@@ -34,7 +34,7 @@ console.log('author in navbar', author)
                <Link to="/register">Register</Link>
                 {!author ? <NavLink to='/login' style={linkStyle}>Log in</NavLink> :
                     <NavLink style={linkStyle} onClick={logout} to={'/'}>Logout</NavLink>}
-                <Link to="/authorProfile">Author Profile</Link>
+                <Link to="/profile">Profile</Link>
               </div>
         </div>
 

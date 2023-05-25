@@ -22,7 +22,13 @@ interface SubmitAuthorRegisterData{
   image: Image
 }
 
-
+interface ProfileData {
+  _id: string;
+  email: string;
+  username: string;
+  books: string;
+  image: File | string;
+}
 
 
 type AddBookData = {
