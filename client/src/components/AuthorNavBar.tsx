@@ -60,7 +60,7 @@ const AuthorNavBar = (props: Props) => {
     )
 }
 
-export default AuthorNavBar
+export default AuthorNavBar;
 
 
 

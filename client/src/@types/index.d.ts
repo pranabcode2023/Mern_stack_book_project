@@ -1,6 +1,16 @@
+
+
+
 type Avatar = string | File
 
 type image = string | File
+
+type SubmitUpdateData = {
+  email: string;
+  username: string;
+  books: string[];
+  image: File | string;
+};
 
 interface SubmitRegisterData {
   email: string,
@@ -20,6 +30,7 @@ interface SubmitAuthorRegisterData{
   username: string,
   image: Image
 }
+
 
 
 

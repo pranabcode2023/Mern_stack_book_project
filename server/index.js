@@ -6,16 +6,17 @@ import cloudinaryConfig from "./config/cloudinary.js";
 import cors from "cors";
 import passportConfig from "./config/passport.js";
 
+import * as dotenv from "dotenv";
+dotenv.config();
+
 
 import userRouter from "./routes/userRoutes.js";
 import petRouter from "./routes/petRoutes.js";
+
 import booksRouter from "./routes/booksRoutes.js";
-
-
-
-import * as dotenv from "dotenv";
 import authorRouter from "./routes/authorRoutes.js";
-dotenv.config();
+
+
 
 
 const app = express();
@@ -51,10 +52,12 @@ const connectMongoose = () => {
 // });
 
 const connectRoutes = () => {
-    app.use('/api/books', booksRouter);
     app.use('/api/users', userRouter);
     app.use('/api/pets', petRouter);
+
+    app.use('/api/books', booksRouter);
     app.use('/api/authors', authorRouter);
+
     app.use('*', (req, res) => { res.status(500).json({ error: "Endpoint not found" }) });
 }
 

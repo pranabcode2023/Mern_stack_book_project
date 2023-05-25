@@ -56,15 +56,54 @@ const createAuthor = async (req, res) => {
 }
 
 const updateAuthor = async (req, res) => {
-    const me = req.author;
     try {
-        const updatedAuthor = await AuthorModel.findByIdAndUpdate(me._id, req.body, { new: true });
+        const image = await imageUpload(req.file, "user_authors");
+        const updatedAuthorProfile = {
+            ...req.body,
+            image: image,
+        };
+        const updatedAuthor = await AuthorModel.findByIdAndUpdate(
+            req.params.id,
+            updatedAuthorProfile,
+            { new: true }
+        );
+        if (!updatedAuthor) {
+            return res
+                .status(404)
+                .json({ message: "Unable to update this profile" });
+        }
         res.status(200).json(updatedAuthor);
-    } catch (e) {
-        console.log(e);
-        res.status(500).send(e.message);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: "Unable to update the profile" });
     }
-}
+
+
+    // const me = req.user;
+    // try {
+    //     const updatedUser = await UserModel.findByIdAndUpdate(me._id, req.body, { new: true });
+    //     res.status(200).json(updatedUser);
+    // } catch (e) {
+    //     console.log(e);
+    //     res.status(500).send(e.message);
+    // }
+};
+
+
+const deleteAuthor = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const deletedAuthor = await BooksModel.findByIdAndRemove(id);
+        if (!deletedAuthor) {
+            return res.status(404).json({ message: "Unable to delete by this ID" });
+        }
+        res.status(200).json({ message: "Successfully Deleted" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Something went wrong..." });
+    }
+};
+
 
 const login = async (req, res) => {
     try {
@@ -108,4 +147,4 @@ const getActiveAuthor = async (req, res) => {
     });
 }
 
-export { getAuthors, getAuthor, createAuthor, updateAuthor, login, getActiveAuthor }
+export { getAuthors, getAuthor, createAuthor, updateAuthor, deleteAuthor, login, getActiveAuthor }

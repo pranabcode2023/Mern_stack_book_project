@@ -25,11 +25,11 @@ const passportConfig = () => {
 
         //  use for userModel
 
-        UserModel.findById(jwt_payload.sub).then((user) => {
-            return user ? done(null, user) : done(null, false)
-        }).catch(error => {
-            return done(error, false);
-        })
+        // UserModel.findById(jwt_payload.sub).then((user) => {
+        //     return user ? done(null, user) : done(null, false)
+        // }).catch(error => {
+        //     return done(error, false);
+        // })
 
         //  use for authorModel
 

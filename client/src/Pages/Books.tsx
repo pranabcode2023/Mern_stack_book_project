@@ -5,17 +5,6 @@ import Book from '../components/Book';
 
 const URL = `${process.env.REACT_APP_BASE_URL}books/all`;
 
-// interface BookData {
-//   _id: any;
-//   name: any;
-//   author: any;
-//   description: any;
-//   price: any;
-//   available: any;
-//   image: any;
-// }
-
-
 interface BookData {
   _id: String,
   name: String,

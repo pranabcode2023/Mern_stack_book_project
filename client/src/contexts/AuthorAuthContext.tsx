@@ -62,7 +62,7 @@ export const AuthorAuthContext = createContext<AuthorAuthContextType>(initialAut
       body: urlencoded,
     };
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}users/login`, requestOptions);
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/login`, requestOptions);
       console.log(response)
     
       if (response.ok) {
@@ -70,7 +70,7 @@ export const AuthorAuthContext = createContext<AuthorAuthContextType>(initialAut
         if (result.author) {
         setAuthor(result.author);
         console.log(result.author)
-        localStorage.setItem("token", result.authorToken);
+        localStorage.setItem("authorToken", result.authorToken);
         localStorage.setItem("my name", "pranab");
         }
          console.log(result);
@@ -89,7 +89,7 @@ export const AuthorAuthContext = createContext<AuthorAuthContextType>(initialAut
   }
   
   const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("authorToken");
     setAuthor(null);
    }
    
@@ -134,6 +134,5 @@ return (
     </AuthorAuthContext.Provider>
   )
 }
-
 
 

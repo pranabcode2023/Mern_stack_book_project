@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-// import Button from 'react-bootstrap/Button';
-// import Card from 'react-bootstrap/Card';
+import AuthorProfile from '../components/AuthorProfile'
+
 
 
 
@@ -22,6 +22,7 @@ const AuthorHomepage = (props: Props) => {
     const [author, setAuthor] = useState<Author | null>(null);
     const [error, setError] = useState(false)
 
+  
   const getAuthors = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/authors/all");
@@ -29,7 +30,7 @@ const AuthorHomepage = (props: Props) => {
         if (!response.ok) {
             setError(result.error)
         } else {
-           setAuthors(result); 
+           setAuthors(result);
         }
         console.log('response', response)
         console.log('result', result)
@@ -40,21 +41,22 @@ const AuthorHomepage = (props: Props) => {
     }
   }
 
-//   const getAuthorById = async () => {
-//     const id = "645a623c1682270c68965ff7";
-//     try {
-//       const response = await fetch(`http://localhost:5000/api/users/id/${id}`);
-//       const result = await response.json();
-//       console.log("single author:", result);
-//       setAuthor(result);
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
+
+  const getAuthorById = async () => {
+    const id ="646dfa8030ddfa257e002bd1";
+    try {
+      const response = await fetch(`http://localhost:5000/api/authors/id/${id}`);
+      const result = await response.json();
+      console.log("single author:", result);
+      setAuthor(result);
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     getAuthors();
-    // getAuthorById();
+    getAuthorById();
   }, [])
 
 
@@ -98,7 +100,9 @@ const AuthorHomepage = (props: Props) => {
         <h1>Mern_stack</h1>
         {/* <button onClick={() => localStorage.setItem("myName", "pranab")}>test</button>
         <button onClick={() => localStorage.setItem("myName", "pablo")}>test</button> */}
+        
         <h2>All authors:</h2>
+        <AuthorProfile authorId={''} />
         {authors && authors.map((author, i) => {
           return <p key={i}>
             {author.username}
@@ -127,3 +131,6 @@ const AuthorHomepage = (props: Props) => {
 };
 
 export default AuthorHomepage;
+
+
+
