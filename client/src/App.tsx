@@ -1,49 +1,41 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AuthorNavBar from './components/AuthorNavBar';
-import AuthorHomepage from './Pages/AuthorHomepage';
-import AuthorLogin from './Pages/AuthorLogin';
-import AuthorRegister from './Pages/AuthorRegister';
-import { AuthorAuthContextProvider } from './contexts/AuthorAuthContext';
+import NavBar from './components/Navbar/NavBar';
+import Homepage from './Pages/Homepage';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import { AuthContextProvider } from './contexts/AuthContext';
 
 import Books from './Pages/Books';
+import BookDetails from './components/Books/BookDetails';
 import AddBook from './Pages/AddBook';
-import BookDetails from './components/BookDetails';
-
-
-// import NavBar from './components/NavBar';
-
-// import Register from './Pages/Register';
-// import Homepage from './Pages/Homepage';
-
-// import Homepage2 from './Pages/Homepage2';
-// import Login from './Pages/Login';
-// import {AuthContextProvider } from './contexts/AuthContext';
-
-
+import AuthorProfile from './Pages/Profile';
 
 import './styles.css';
+
 
 function App() {
   // const { user } = useContext(AuthContext);
   // console.log("active user from app",user);
   
   return (
-    <AuthorAuthContextProvider>
+    <AuthContextProvider>
       <BrowserRouter>
        {/* <div>{author? <p> User logged in!</p> : <p> User logged out!</p>} </div> */}
         {/* <NavBar /> */}
-        <AuthorNavBar/>
+        <NavBar/>
         <Routes>
-          <Route path='/' element={<AuthorHomepage/>} />
+          <Route path='/' element={<Homepage/>} />
           <Route path='/books' element={<Books />} />
-          <Route path='/addbook' element={ <AddBook/>} />
-          <Route path='/register' element={ <AuthorRegister /> } />
-          <Route path='/login' element={<AuthorLogin />} />
           <Route path='/books/:id' element={ <BookDetails /> } />
+          <Route path='/addbook' element={ <AddBook/>} />
+          <Route path='/register' element={ <Register /> } />
+          <Route path='/login' element={<Login />} />
+           <Route path='/authorProfile' element={<AuthorProfile />} />
+          
         </Routes>
       </BrowserRouter>
-    </AuthorAuthContextProvider>
+    </AuthContextProvider>
   );
 }
 

@@ -124,6 +124,8 @@ const getById = async (req, res) => {
 };
 
 const addBook = async (req, res) => {
+    console.log('req.file>>>>>>', req.file)
+    console.log('req.body>>>>>>', req.body)
 
     try {
         const image = await imageUpload(req.file, "user_books");
@@ -167,6 +169,8 @@ const addBook = async (req, res) => {
 //     }
 // };
 const updateBook = async (req, res) => {
+    console.log('req.file>>>><', req.file)
+    console.log('req.body>>>><', req.body)
     try {
         const image = await imageUpload(req.file, "user_books");
         const updatedBookData = {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Book from '../components/Book';
+import Book from '../components/Books/Book';
 
 
 const URL = `${process.env.REACT_APP_BASE_URL}books/all`;

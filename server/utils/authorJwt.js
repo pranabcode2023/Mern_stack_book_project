@@ -5,7 +5,6 @@ dotenv.config();
 const generateAuthorToken = (existingAuthor) => {
     const payload = {
         sub: existingAuthor._id,
-        msg: "Hello"
     };
 
     const options = {

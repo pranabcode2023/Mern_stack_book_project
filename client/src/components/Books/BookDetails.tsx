@@ -1,9 +1,9 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-type Props = {}
+type Props = {};
 
-type AddBookData = {
+type BookData = {
   name: string;
   description: string;
   price: string;
@@ -12,11 +12,11 @@ type AddBookData = {
   image: File | string;
 };
 
-const AddBook = (props: Props) => {
+const BookDetails = (props: Props) => {
   const navigate = useNavigate();
-  
- 
-  const [formData, setFormData] = useState<AddBookData>({
+  const { id } = useParams<{ id: string }>();
+
+  const [formData, setFormData] = useState<BookData>({
     name: '',
     description: '',
     price: '',
@@ -24,6 +24,21 @@ const AddBook = (props: Props) => {
     available: false,
     image: '',
   });
+
+  useEffect(() => {
+    const fetchBookDetails = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}books/all/${id}`);
+        const data = await response.json();
+        const bookData = data.book;
+        setFormData(bookData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchBookDetails();
+  }, [id]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
@@ -40,46 +55,41 @@ const AddBook = (props: Props) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-     
-    
-    console.log(formData);
-    const submitData = new FormData();
-    submitData.append('name', formData.name);
-    submitData.append('description', formData.description);
-    submitData.append('price', formData.price);
-    submitData.append('author', formData.author);
-    submitData.append('available', String(formData.available));
-    submitData.append('image', formData.image);
-    
-   
 
-    const requestOptions = {
-      method: 'POST',
-      body: submitData,
-    };
-       
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}books/addbook`, requestOptions);
-      const result = await response.json();
-      console.log(result);
-      alert('Success! Check console.');
-      navigate('/books'); // navigate to books page
+      const submitData = new FormData();
+      submitData.append('name', formData.name);
+      submitData.append('description', formData.description);
+      submitData.append('price', formData.price);
+      submitData.append('author', formData.author);
+      submitData.append('available', String(formData.available));
+      submitData.append('image', formData.image);
+
+      const requestOptions = {
+        method: 'PUT',
+        body: submitData,
+      };
+
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}books/updatebook/${id}`, requestOptions);
+      if (response.ok) {
+        navigate('/books');
+        alert('Book updated successfully.');
+      } else {
+        throw new Error('Failed to update the book.');
+      }
     } catch (error) {
-      console.log(error);
-      alert('Something went wrong - check console.');
-
-    } 
-
+      console.error(error);
+      alert('Failed to update the book.');
+    }
   };
-  
 
-  
   return (
-    <div className="addBook">
+    <div className="bookDetails">
       <form className="form" onSubmit={handleSubmit}>
-        <div className="title">Add Book</div>
+        <div className="title">Book Details</div>
 
         <div className="input-container">
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
@@ -90,6 +100,7 @@ const AddBook = (props: Props) => {
           />
         </div>
         <div className="input-container">
+          <label htmlFor="author">Author</label>
           <input
             type="text"
             id="author"
@@ -100,6 +111,7 @@ const AddBook = (props: Props) => {
           />
         </div>
         <div className="input-container">
+          <label htmlFor="description">Description</label>
           <input
             type="text"
             id="description"
@@ -110,6 +122,7 @@ const AddBook = (props: Props) => {
           />
         </div>
         <div className="input-container">
+          <label htmlFor="price">Price</label>
           <input
             type="text"
             id="price"
@@ -121,11 +134,12 @@ const AddBook = (props: Props) => {
         </div>
 
         <div className="input-container">
-          <input type="file" id="image" placeholder="Image" onChange={handleFile} name="image" />
+          <label htmlFor="image">Image</label>
+          <input type="file" id="image" onChange={handleFile} name="image" />
         </div>
 
         <div className="input-container">
-          <label>Available</label>
+          <label htmlFor="available">Available</label>
           <input
             type="checkbox"
             id="available"
@@ -136,11 +150,15 @@ const AddBook = (props: Props) => {
         </div>
 
         <div className="button-container">
-          <button type="submit">Add Book</button>
+          <button type="submit">Update Book</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default AddBook;
+export default BookDetails;
+
+
+
+

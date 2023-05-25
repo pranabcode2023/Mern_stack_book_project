@@ -6,11 +6,11 @@ const Register = (props: Props) => {
 
    const navigate = useNavigate(); 
 
-  const [formData, setFormData] = useState<SubmitRegisterData>({
+  const [formData, setFormData] = useState<SubmitAuthorRegisterData>({
     email: "",
     password: "",
     username: "",
-    avatar: ""
+    image: ""
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,9 +19,9 @@ const Register = (props: Props) => {
 
   const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFormData({ ...formData, avatar: e.target.files[0] })
+      setFormData({ ...formData, image: e.target.files[0] })
     } else {
-      setFormData({ ...formData, avatar: "" })
+      setFormData({ ...formData, image: "" })
     }
   }
   
@@ -32,7 +32,7 @@ const Register = (props: Props) => {
     submitData.append("email", formData.email);
     submitData.append("username", formData.username);
     submitData.append("password", formData.password);
-    submitData.append("avatar", formData.avatar);
+    submitData.append("image", formData.image);
     
     navigate('/login');   // navigate to login page
     
@@ -41,7 +41,7 @@ const Register = (props: Props) => {
       body: submitData,
     };
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}users/new`, requestOptions);
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/new`, requestOptions);
       const result = await response.json();
       console.log(result);
       alert("Success! Check console.")
@@ -79,7 +79,7 @@ const Register = (props: Props) => {
           <textarea id="subject" name="subject" placeholder="Write something.." ></textarea>
       </div> */}
         <div className="input-container">
-          <input type='file' name='avatar' onChange={handleFile} />
+          <input type='file' name='image' onChange={handleFile} />
         </div>
         {/* <div className="input-container">
           <input type='file' name='avatar' onChange={handleFile} />

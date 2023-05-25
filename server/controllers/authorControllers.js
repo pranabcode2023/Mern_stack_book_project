@@ -9,7 +9,7 @@ const getAuthors = async (req, res) => {
     console.log("getAuthors called")
     try {
         const authors = await AuthorModel.find();
-        console.log(authors);
+        // console.log(authors);
         res.status(200).json(authors);
     } catch (e) {
         res.status(500).json({ error: "something went wrong..." })
@@ -54,30 +54,33 @@ const createAuthor = async (req, res) => {
         res.status(500).json("something went wrong..")
     }
 }
-
 const updateAuthor = async (req, res) => {
     try {
-        const image = await imageUpload(req.file, "user_authors");
+        const id = req.params.id;
+        const existingAuthor = await AuthorModel.findById(id);
+        if (!existingAuthor) {
+            return res.status(404).json({ message: "Author not found" });
+        }
+
+        const image = req.file ? await imageUpload(req.file, "user_authors") : existingAuthor.image;
+
         const updatedAuthorProfile = {
-            ...req.body,
+            email: req.body.email || existingAuthor.email,
+            username: req.body.username || existingAuthor.username,
+            password: req.body.password ? await encryptPassword(req.body.password) : existingAuthor.password,
             image: image,
         };
-        const updatedAuthor = await AuthorModel.findByIdAndUpdate(
-            req.params.id,
-            updatedAuthorProfile,
-            { new: true }
-        );
+
+        const updatedAuthor = await AuthorModel.findByIdAndUpdate(id, updatedAuthorProfile, { new: true });
         if (!updatedAuthor) {
-            return res
-                .status(404)
-                .json({ message: "Unable to update this profile" });
+            return res.status(404).json({ message: "Unable to update this profile" });
         }
+
         res.status(200).json(updatedAuthor);
     } catch (error) {
         console.log(error);
-        res.status(500).send({ message: "Unable to update the profile" });
+        res.status(500).json({ message: "Unable to update the profile" });
     }
-
 
     // const me = req.user;
     // try {
@@ -88,6 +91,8 @@ const updateAuthor = async (req, res) => {
     //     res.status(500).send(e.message);
     // }
 };
+
+
 
 
 const deleteAuthor = async (req, res) => {
@@ -106,8 +111,11 @@ const deleteAuthor = async (req, res) => {
 
 
 const login = async (req, res) => {
+    // console.log('req>>>>', req)
+
     try {
         const existingAuthor = await AuthorModel.findOne({ email: req.body.email });
+        console.log('exisitingAuthor>>>>>', existingAuthor)
         if (!existingAuthor) {
             res.status(404).json({ error: "no user found" })
             return;

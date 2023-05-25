@@ -9,11 +9,11 @@ booksRouter.get("/all", getAllbooks);
 booksRouter.get("/all/:id", getById);  //get by id
 
 
-booksRouter.put("/all/:id", multerUpload.single("image"), updateBook) //update
+booksRouter.put("/updatebook/:id", multerUpload.single("image"), updateBook) //update
 
 booksRouter.delete("/all/:id", deleteBook)
 
-booksRouter.post("/all", multerUpload.single("image"), addBook);  // to add product/book
+booksRouter.post("/addbook", multerUpload.single("image"), addBook);  // to add product/book
 
 export default booksRouter;
 
