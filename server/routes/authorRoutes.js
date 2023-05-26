@@ -12,13 +12,15 @@ authorRouter.get("/id/:id", getAuthor);
 authorRouter.get("/active", jwtAuth, getActiveAuthor);
 
 
-authorRouter.put("/all/:id", multerUpload.single("image"), updateAuthor)
+authorRouter.put("/update/:id", multerUpload.single("image"), updateAuthor)
 
-authorRouter.delete("/all/:id", deleteAuthor)
+authorRouter.delete("/delete/:id", deleteAuthor)
 
 
 authorRouter.post("/new", multerUpload.single("image"), createAuthor);
+
 authorRouter.post("/update", jwtAuth, updateAuthor);
 authorRouter.post("/login", login);
+
 
 export default authorRouter;

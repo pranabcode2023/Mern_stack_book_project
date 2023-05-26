@@ -11,7 +11,7 @@ booksRouter.get("/all/:id", getById);  //get by id
 
 booksRouter.put("/updatebook/:id", multerUpload.single("image"), updateBook) //update
 
-booksRouter.delete("/all/:id", deleteBook)
+booksRouter.delete("/deleteBook/:id", deleteBook)
 
 booksRouter.post("/addbook", multerUpload.single("image"), addBook);  // to add product/book
 

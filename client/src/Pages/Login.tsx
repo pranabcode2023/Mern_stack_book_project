@@ -20,7 +20,7 @@ function Login({}: Props) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login(formData.email, formData.password);
-    navigate('/');     // navigate to Homepage
+    navigate('/profile');     // navigate to Homepage
   }
   
   

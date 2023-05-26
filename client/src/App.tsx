@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/Navbar/NavBar';
-import Homepage from './Pages/Homepage';
+import { Homepage } from './Pages/Homepage';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import { AuthContextProvider } from './contexts/AuthContext';
@@ -10,6 +10,7 @@ import Books from './Pages/Books';
 import BookDetails from './components/Books/BookDetails';
 import AddBook from './Pages/AddBook';
 import Profile from './Pages/Profile';
+import ProfilesDetails from './components/Profile/Profileupdate';
 
 import './styles.css';
 
@@ -31,7 +32,8 @@ function App() {
           <Route path='/addbook' element={ <AddBook/>} />
           <Route path='/register' element={ <Register /> } />
           <Route path='/login' element={<Login />} />
-           <Route path='/profile' element={<Profile />} />
+          <Route path='/profile' element={<Profile />} />
+           <Route path='/authors/:id' element={ <ProfilesDetails /> } />
           
         </Routes>
       </BrowserRouter>

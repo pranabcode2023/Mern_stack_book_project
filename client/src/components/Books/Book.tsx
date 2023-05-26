@@ -83,7 +83,7 @@ const Book: React.FC<BookProps> = ({ book }) => {
   const deleteHandler = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/all/${_id}`,
+        `${process.env.REACT_APP_BASE_URL}books/deleteBook/${_id}`,
         {
           method: 'DELETE',
         }

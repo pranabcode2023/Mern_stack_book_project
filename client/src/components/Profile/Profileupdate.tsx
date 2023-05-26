@@ -27,7 +27,7 @@ const ProfilesDetails = (props: Props) => {
         const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/all/${id}`);
         const data = await response.json();
         const profileData: ProfileData = data.profile;
-        setFormData(profileData);
+        setFormData((prevData) => ({ ...prevData, ...profileData }));
       } catch (error) {
         console.error(error);
       }
@@ -36,18 +36,23 @@ const ProfilesDetails = (props: Props) => {
     fetchProfileDetails();
   }, [id]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const value = e.target.value;
-    setFormData({ ...formData, [e.target.name]: value });
-  };
+ const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const { name, value } = e.target;
+  setFormData((prevData) => ({ ...prevData, [name]: value }));
+};
 
-  const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData({ ...formData, image: e.target.files[0] });
-    } else {
-      setFormData({ ...formData, image: '' });
-    }
-  };
+
+const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files && e.target.files[0];
+  if (file) {
+    setFormData((prevData) => ({ ...prevData, image: file }));
+  } else {
+    setFormData((prevData) => ({ ...prevData, image: '' }));
+  }
+};
+
+
+
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -64,23 +69,23 @@ const ProfilesDetails = (props: Props) => {
         body: submitData,
       };
 
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/updatebook/${id}`, requestOptions);
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/update/${id}`, requestOptions);
       if (response.ok) {
         navigate('/profile');
-        alert('Book updated successfully.');
+        alert('Profile updated successfully.');
       } else {
-        throw new Error('Failed to update the book.');
+        throw new Error('Failed to update the profile');
       }
     } catch (error) {
       console.error(error);
-      alert('Failed to update the book.');
+      alert('Failed to update the profile.');
     }
   };
 
   return (
     <div className="bookDetails">
       <form className="form" onSubmit={handleSubmit}>
-        <div className="title">Book Details</div>
+        <div className="title">Profile Details</div>
         <div className="input-container">
           <label htmlFor="email">Email</label>
           <input
@@ -119,7 +124,7 @@ const ProfilesDetails = (props: Props) => {
           <input type="file" id="image" onChange={handleFile} name="image" />
         </div>
         <div className="button-container">
-          <button type="submit">Update Book</button>
+          <button type="submit">Update Profile</button>
         </div>
       </form>
     </div>
@@ -127,3 +132,7 @@ const ProfilesDetails = (props: Props) => {
 };
 
 export default ProfilesDetails;
+
+
+
+
