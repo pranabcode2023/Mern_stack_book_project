@@ -9,6 +9,7 @@ const authorRouter = express.Router()
 
 authorRouter.get("/all", getAuthors);
 authorRouter.get("/id/:id", getAuthor);
+
 authorRouter.get("/active", jwtAuth, getActiveAuthor);
 
 

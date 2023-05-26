@@ -23,7 +23,7 @@ const getAuthor = async (req, res) => {
     const id = req.params.id;
     console.log(id); // will show just "blahblah"
     try {
-        const author = await AuthorModel.findById(id).populate("books");
+        const author = await AuthorModel.findById(id).populate({ path: "books" });
         res.status(200).json(author);
     } catch (error) {
         console.log(error);
@@ -114,7 +114,7 @@ const login = async (req, res) => {
     // console.log('req>>>>', req)
 
     try {
-        const existingAuthor = await AuthorModel.findOne({ email: req.body.email });
+        const existingAuthor = await AuthorModel.findOne({ email: req.body.email }).populate({ path: "books" });
         console.log('exisitingAuthor>>>>>', existingAuthor)
         if (!existingAuthor) {
             res.status(404).json({ error: "no user found" })
@@ -146,12 +146,13 @@ const login = async (req, res) => {
 }
 
 const getActiveAuthor = async (req, res) => {
+    console.log('req.user', req.user)
     res.status(200).json({
-        _id: req.author._id,
-        email: req.author.email,
-        username: req.author.username,
-        image: req.author.image,
-        books: req.author.books
+        _id: req.user._id,
+        email: req.user.email,
+        username: req.user.username,
+        image: req.user.image,
+        books: req.user.books
     });
 }
 

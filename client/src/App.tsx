@@ -32,7 +32,9 @@ function App() {
           <Route path='/addbook' element={ <AddBook/>} />
           <Route path='/register' element={ <Register /> } />
           <Route path='/login' element={<Login />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile' element={
+            <Profile />
+         } />
            <Route path='/authors/:id' element={ <ProfilesDetails /> } />
           
         </Routes>

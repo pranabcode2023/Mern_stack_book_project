@@ -5,6 +5,7 @@ const authorSchema = new mongoose.Schema({
     username: String,
     password: { type: String, required: true },
     books: [{ type: mongoose.Schema.Types.ObjectId, ref: "book" }],
+    // books: { type: String },
     image: { type: String }
     // image: { type: String, default: "https://res.cloudinary.com/dtdsw5fg2/image/upload/v1683544833/user_avatars/kitten-playing_xiwu5g.gif" }
 }, { timestamps: true })

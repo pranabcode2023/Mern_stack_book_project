@@ -1,20 +1,21 @@
-import jwt from 'jsonwebtoken';
-import * as dotenv from "dotenv";
-dotenv.config();
+// import jwt from 'jsonwebtoken';
 
-const generateToken = (existingUser) => {
-    const payload = {
-        sub: existingUser._id,
-        msg: "hello"
-    };
+// import * as dotenv from "dotenv";
+// dotenv.config();
 
-    const options = {
-        expiresIn: "7d",
-    };
+// const generateToken = (existingUser) => {
+//     const payload = {
+//         sub: existingUser._id,
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET, options);
-    return token
-}
+//     };
 
-export { generateToken };
+//     const options = {
+//         expiresIn: "7d",
+//     };
+
+//     const token = jwt.sign(payload, process.env.JWT_SECRET, options);
+//     return token
+// }
+
+// export { generateToken };
 

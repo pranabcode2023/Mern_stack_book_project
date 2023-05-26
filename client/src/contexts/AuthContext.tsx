@@ -2,6 +2,7 @@ import { ReactNode, createContext, useState, useEffect } from "react"
 
 
 interface Author {
+  _id:string
   email?: string,
   username: string,
   image: string,
@@ -96,7 +97,7 @@ export const AuthContext = createContext<AuthContextType>(initialAuth);
    }
    
     const checkForToken = () => {
-    const authorToken = localStorage.getItem("authorToken");
+    const authorToken = localStorage.getItem("token");
     if (authorToken) {
       console.log("There is a token")
       fetchActiveAuthor(authorToken);
