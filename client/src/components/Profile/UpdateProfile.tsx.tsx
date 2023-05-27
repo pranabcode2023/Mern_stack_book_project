@@ -10,7 +10,7 @@ interface ProfileData {
   image: File | string;
 }
 
-const ProfilesDetails = (props: Props) => {
+const UpdateProfile = (props: Props) => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
@@ -131,7 +131,7 @@ const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
   );
 };
 
-export default ProfilesDetails;
+export default UpdateProfile;
 
 
 

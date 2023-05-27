@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Profile from '../components/Profile/profiledelete';
+import DeleteProfile from '../components/Profile/DeleteProfile';
 import { AuthContext } from '../contexts/AuthContext';
 
 
@@ -65,7 +65,7 @@ const Profiles: React.FC = () => {
   return (
     <div className='books-container'>
       <h1>Profile info</h1>
-          <Profile profile={userProfile} />
+          <DeleteProfile profile={userProfile} />
 
       {/* {profiles.map((profile: ProfileData, i: number) => (
         <div className='book' key={i}>
@@ -80,66 +80,3 @@ const Profiles: React.FC = () => {
 export default Profiles;
 
 
-// import React, { useEffect, useState } from 'react';
-// import Profile from '../components/Profile/profiledelete';
-
-// const URL = `${process.env.REACT_APP_BASE_URL}authors/all`;
-
-// interface ProfileData {
-//   _id: string;
-//   email: string;
-//   username: string;
-//   books: string;
-//   image: File | string;
-// }
-
-// const fetchHandler = async () => {
-//   try {
-//     const response = await fetch(URL);
-//     if (response.ok) {
-//       const data = await response.json();
-//       return { profiles: data }; // Wrap the data in an object with the 'profiles' key
-//     } else {
-//       throw new Error('Failed to fetch data');
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     return null;
-//   }
-// };
-
-// const Profiles: React.FC = () => {
-//   const [profiles, setProfiles] = useState<ProfileData[]>([]);
-//   const [activeUser, setActiveUser] = useState<ProfileData | null>(null);
-
-//   useEffect(() => {
-//     fetchHandler().then((data: { profiles: ProfileData[] } | null) => {
-//       if (data && data.profiles) {
-//         setProfiles(data.profiles);
-//       }
-//     });
-//   }, []);
-
-//   // Assuming you have a way to determine the active user, update the setActiveUser call accordingly
-//   const determineActiveUser = () => {
-//     const activeUserId = 'your-active-user-id';
-//     const user = profiles.find((profile) => profile._id === activeUserId);
-//     setActiveUser(user || null);
-//   };
-
-//   useEffect(() => {
-//     determineActiveUser();
-//   }, [profiles]);
-
-//   return (
-//     <div className='books-container'>
-//       {activeUser && (
-//         <div className='book'>
-//           <Profile profile={activeUser} />
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Profiles;

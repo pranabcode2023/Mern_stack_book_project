@@ -80,7 +80,7 @@ interface ProfileProps {
   profile:any
 }
 
-const Profile: React.FC<ProfileProps> = ({ profile }) => {
+const DeleteProfile: React.FC<ProfileProps> = ({ profile }) => {
   // const { _id, email, username, books, image } = profile;
   console.log('profile', profile)
   const [isDeleted, setIsDeleted] = useState(false);
@@ -145,7 +145,7 @@ const Profile: React.FC<ProfileProps> = ({ profile }) => {
   );
 };
 
-export default Profile;
+export default DeleteProfile;
 
 
 

@@ -10,7 +10,7 @@ import Books from './Pages/Books';
 import BookDetails from './components/Books/BookDetails';
 import AddBook from './Pages/AddBook';
 import Profile from './Pages/Profile';
-import ProfilesDetails from './components/Profile/Profileupdate';
+import UpdateProfile from './components/Profile/UpdateProfile.tsx';
 
 import './styles.css';
 
@@ -35,7 +35,7 @@ function App() {
           <Route path='/profile' element={
             <Profile />
          } />
-           <Route path='/authors/:id' element={ <ProfilesDetails /> } />
+           <Route path='/authors/:id' element={ <UpdateProfile /> } />
           
         </Routes>
       </BrowserRouter>
