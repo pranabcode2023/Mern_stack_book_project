@@ -23,13 +23,12 @@ interface SubmitAuthorRegisterData{
 }
 
 interface ProfileData {
-  _id: string;
-  email: string;
-  username: string;
-  books: string;
-  image: File | string;
+_id: string;
+email: string;
+username: string;
+books: string[];
+image: File | string;
 }
-
 
 type AddBookData = {
   name: string;
