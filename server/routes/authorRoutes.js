@@ -20,8 +20,10 @@ authorRouter.delete("/delete/:id", deleteAuthor)
 
 //NOTE - post method
 authorRouter.post("/new", multerUpload.single("image"), createAuthor);
-authorRouter.post("/update", jwtAuth, updateAuthor);
 authorRouter.post("/login", login);
+
+// authorRouter.post("/update/:id", jwtAuth, updateAuthor);
+
 
 
 export default authorRouter;

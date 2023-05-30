@@ -190,6 +190,20 @@ const updateBook = async (req, res) => {
     }
 };
 
+const commentsBook = async (req, res) => {
+
+    try {
+        const newComments = {
+            ...req.body
+        };                                                                 //NOTE - moongoose push method
+        const comments = await BooksModel.findByIdAndUpdate(req.params.id, { $push: { comments: newComments } }, { new: true });
+        res.status(200).json({ message: "new comments" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Something went wrong..." });
+    }
+};
+
 const deleteBook = async (req, res) => {
     const id = req.params.id;
     try {
@@ -204,6 +218,6 @@ const deleteBook = async (req, res) => {
     }
 };
 
-export { getAllbooks, addBook, getById, updateBook, deleteBook };
+export { getAllbooks, addBook, getById, updateBook, deleteBook, commentsBook };
 
 

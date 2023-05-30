@@ -7,9 +7,11 @@ const Register = (props: Props) => {
    const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState<SubmitAuthorRegisterData>({
+  //  name:"",
     email: "",
     password: "",
     username: "",
+    // bio:"",
     image: ""
   });
 
@@ -29,9 +31,11 @@ const Register = (props: Props) => {
     e.preventDefault();
     console.log(formData)
     const submitData = new FormData();
+    //  submitData.append("name", formData.name);
     submitData.append("email", formData.email);
     submitData.append("username", formData.username);
     submitData.append("password", formData.password);
+    // submitData.append("bio", formData.bio);
     submitData.append("image", formData.image);
     
     navigate('/login');   // navigate to login page
@@ -66,6 +70,7 @@ const Register = (props: Props) => {
      <div className="register">
       <form className="form" onSubmit={handleSubmit}>
         <div className="title">Register</div>
+       
         <div className="input-container">
           <input type='email' name='email' placeholder='Email' onChange={handleChange} />
         </div>
@@ -75,6 +80,7 @@ const Register = (props: Props) => {
         <div className="input-container">
           <input name='username' placeholder='username' onChange={handleChange} />
         </div>
+
       {/* <div className="input-container">
           <textarea id="subject" name="subject" placeholder="Write something.." ></textarea>
       </div> */}

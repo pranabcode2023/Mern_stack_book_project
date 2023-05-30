@@ -64,98 +64,89 @@
 
 // export default Profile;
 
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-// // interface profile: {
-// //     _id: any;
-// //     email: any;
-// //     username: any;
-// //     books: any;
-// //     image: any;
-// //   };
-// //
-// interface ProfileProps {
-//   profile:any
-// }
-
-// const DeleteProfile: React.FC<ProfileProps> = ({ profile }) => {
-//   // const { _id, email, username, books, image } = profile;
-//   console.log('profile', profile)
-//   const [isDeleted, setIsDeleted] = useState(false);
-
-//   const deleteHandler = async () => {
-//     // try {
-//     //   const response = await fetch(
-//     //     `${process.env.REACT_APP_BASE_URL}authors/delete/${_id}`,
-//     //     {
-//     //       method: 'DELETE',
-//     //     }
-//     //   );
-
-//     //   if (response.ok) {
-//     //     setIsDeleted(true);
-//     //   } else {
-//     //     console.log('Error deleting profile:', response.status);
-//     //   }
-//     // } catch (error) {
-//     //   console.log('Error:', error);
-//     // }
+// interface profile: {
+//     _id: any;
+//     email: any;
+//     username: any;
+//     books: any;
+//     image: any;
 //   };
+// 
+interface ProfileProps {
+  profile:any
+}
 
-//   if (isDeleted) {
-//     return null; // Render nothing if the profile is deleted
-//   }
+const DeleteProfile: React.FC<ProfileProps> = ({ profile }) => {
+  // const { _id, email, username, books, image } = profile;
+  console.log('profile', profile)
+  const [isDeleted, setIsDeleted] = useState(false);
 
-//   return (
-//     <div className="bookCard">
-//       <div className="container">
-//         {/* <img src={image} alt={image} /> */}
-//       </div>
-//       <div className="container">
-//         <h3>{profile?.username}</h3>
-//         {/* <h3>{username}</h3>
-//         <h3>{books}</h3> */}
-//         <img src={profile?.image} alt="" />
-//       </div>
+  const deleteHandler = async () => {
+    // try {
+    //   const response = await fetch(
+    //     `${process.env.REACT_APP_BASE_URL}authors/delete/${_id}`,
+    //     {
+    //       method: 'DELETE',
+    //     }
+    //   );
 
-//       <div className="container">
-//         {/* <Link to={`/authors/${_id}`}>
-//           <button>Update</button>
-//         </Link> */}
-//       </div>
+    //   if (response.ok) {
+    //     setIsDeleted(true);
+    //   } else {
+    //     console.log('Error deleting profile:', response.status);
+    //   }
+    // } catch (error) {
+    //   console.log('Error:', error);
+    // }
+  };
 
-//       <div className="container">
-//         <button onClick={deleteHandler}>Delete</button>
-//       </div>
-//       <div className="container">
-//         {/* NOTE this would be the authors uploaded book section, add there whatever you want */}
-//         <h2>you uploaded this books</h2>
-//         {profile.books && profile.books.map((book:any) => {
-//           return (
-//             <div>
-//               <p>{book.name}</p>
+  if (isDeleted) {
+    return null; // Render nothing if the profile is deleted
+  }
+
+  return (
+    <div className="bookCard">
+      <div className="container">
+        {/* <img src={image} alt={image} /> */}
+      </div>
+      <div className="container">
+        <h3>{profile?.username}</h3>
+        {/* <h3>{username}</h3>
+        <h3>{books}</h3> */}
+        <img src={profile?.image} alt="" />
+      </div>
+
+      <div className="container">
+        {/* <Link to={`/authors/${_id}`}>
+          <button>Update</button>
+        </Link> */}
+      </div>
+
+      <div className="container">
+        <button onClick={deleteHandler}>Delete</button>
+      </div>
+      <div className="container">
+        {/* NOTE this would be the authors uploaded book section, add there whatever you want */}
+        <h2>you uploaded this books</h2>
+        {profile.books && profile.books.map((book:any) => {
+          return (
+            <div>
+              <p>{book.name}</p>
               
-//             </div>
-//           )
-//         })}
-//       </div>
-//     </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
 
 
-//   );
-// };
+  );
+};
 
-// export default DeleteProfile;
- import React from 'react'
- 
- const DeleteProfile = () => {
-   return (
-     <div>DeleteProfile</div>
-   )
- }
- 
- export default DeleteProfile
+export default DeleteProfile;
 
 
 

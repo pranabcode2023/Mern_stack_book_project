@@ -47,7 +47,7 @@ export const AuthContext = createContext<AuthContextType>(initialAuth);
 
  export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
    const [author, setAuthor] = useState< Author | null>(null);
-  //  console.log("active author:",author);
+   console.log("active author:",author);
   const [error, setError] = useState<Error | null>(null);
 
   const login = async(email: string, password: string) => {

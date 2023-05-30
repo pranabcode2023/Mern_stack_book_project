@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
-
+const commentschema = new mongoose.Schema({
+    author: { type: String, required: true },
+    text: { type: String, required: true }
+}, { timestamps: true });
 
 const bookSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -8,7 +11,8 @@ const bookSchema = new mongoose.Schema({
     description: { type: String, required: true },
     price: { type: Number, required: true },
     available: { type: Boolean },
-    image: { type: String, required: true }
+    image: { type: String, required: true },
+    comments: [commentschema]
 }, { timestamps: true });
 
 const BooksModel = mongoose.model("book", bookSchema);

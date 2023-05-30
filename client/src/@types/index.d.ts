@@ -16,27 +16,20 @@ interface SubmitLoginData {
 }
 
 interface SubmitAuthorRegisterData{
-  email: string,
+ email: string,
   password: string,
   username: string,
   image: Image
 }
 
 interface ProfileData {
-_id: string;
-email: string;
-username: string;
-books: string[];
-image: File | string;
-}
-
-interface Profile {
   _id: string;
   email: string;
   username: string;
   books: string[];
   image: File | string;
 }
+
 
 type AddBookData = {
   name: string;
