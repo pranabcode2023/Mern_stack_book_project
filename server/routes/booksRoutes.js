@@ -15,6 +15,7 @@ booksRouter.put("/commentsbook/:id", commentsBook)
 
 //NOTE - delete method
 booksRouter.delete("/deleteBook/:id", deleteBook)
+// booksRouter.delete("/deletecomment/:id", deleteComment)
 
 //NOTE - post method
 booksRouter.post("/addbook", multerUpload.single("image"), addBook);  // to add product/book

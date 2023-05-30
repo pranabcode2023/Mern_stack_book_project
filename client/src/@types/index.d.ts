@@ -61,14 +61,13 @@ type BookData = {
 //   available: string;
 //    image: File | string;
 // };
-
 interface CommentData {
   _id: String,
   author: String,
   text: String,
   createdAt: Date,
- 
-}
+ updatedAt: Date
 
+}
 
 
