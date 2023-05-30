@@ -191,11 +191,12 @@ const updateBook = async (req, res) => {
 };
 
 const commentsBook = async (req, res) => {
-
+    const newComments = {
+        ...req.body
+    };
+    console.log(newComments)
     try {
-        const newComments = {
-            ...req.body
-        };                                                                 //NOTE - moongoose push method
+        //NOTE - moongoose push method
         const comments = await BooksModel.findByIdAndUpdate(req.params.id, { $push: { comments: newComments } }, { new: true });
         res.status(200).json({ message: "new comments" });
     } catch (error) {

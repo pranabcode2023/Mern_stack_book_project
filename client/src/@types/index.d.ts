@@ -48,6 +48,27 @@ type BookData = {
   price: string;
   author: string;
   available: boolean;
+  comments: [];
   image: image;
 };
+
+
+// type Book= {
+//     name: string;
+//     author: string;
+//     description: string;
+//     price: string;
+//   available: string;
+//    image: File | string;
+// };
+
+interface CommentData {
+  _id: String,
+  author: String,
+  text: String,
+  createdAt: Date,
+ 
+}
+
+
 

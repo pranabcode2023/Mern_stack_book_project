@@ -10,10 +10,24 @@ interface BookData {
   description: String,
   price: String,
   available: String,
+  comments: [],
   image: File | string
 }
 
-const fetchHandler = async () => {
+interface CommentData {
+  _id: String,
+  author: String,
+  text: String,
+  createdAt: Date,
+ updatedAt: Date
+
+}
+
+const Books: React.FC = () => {
+  const [books, setBooks] = useState<BookData[]>([]);
+  
+  
+  const fetchHandler = async () => {
   try {
     const response = await fetch(URL);
     if (response.ok) {
@@ -28,9 +42,6 @@ const fetchHandler = async () => {
   }
 };
 
-const Books: React.FC = () => {
-  const [books, setBooks] = useState<BookData[]>([]);
-
   useEffect(() => {
     fetchHandler().then((data: { books: BookData[] } | null) => {
       if (data) {
@@ -39,15 +50,90 @@ const Books: React.FC = () => {
     });
   }, []);
 
-  console.log(books);
+  // const handleAddComment = (bookIndex: number) => {
+  //   // Handle adding comment logic here
+  //   // You can access the book using `books[bookIndex]` and get the comment input value
+  //   // Update the book's comments array with the new comment
+  // };
+
+    const handleAddComment = (bookIndex: number, comment: CommentData) => {
+    const bookId = books[bookIndex]._id;
+    
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("author", comment.author);
+    urlencoded.append("text", comment.text);
+    
+    const requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      body: urlencoded,
+    };
+    
+    fetch(`http://localhost:5000/api/books/commentsbook/${bookId}`, requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log(result);
+        
+        // Assuming the API response returns the updated book with the new comment,
+        // you can update the books state with the updated book
+        const updatedBooks = [...books];
+        updatedBooks[bookIndex] = JSON.parse(result);
+        setBooks(updatedBooks);
+      })
+      .catch(error => console.log('error', error));
+  };
+
+  const handleDeleteComment = (bookIndex: number, commentId: string) => {
+    const bookId = books[bookIndex]._id;
+    
+    const requestOptions = {
+      method: 'DELETE',
+    };
+    
+    fetch(`http://localhost:5000/api/books/commentsbook/${bookId}/${commentId}`, requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log(result);
+        
+        // Assuming the API response returns the updated book without the deleted comment,
+        // you can update the books state with the updated book
+        const updatedBooks = [...books];
+        updatedBooks[bookIndex] = JSON.parse(result);
+        setBooks(updatedBooks);
+      })
+      .catch(error => console.log('error', error));
+  }
+
+
+  console.log("books", books);
 
   return (
     <div className='books-container'>
      {books.map((book: BookData, i: number) => (
           <div className='book' key={i}>
-            <Book book={book} />
-          </div>
+         <Book book={book} />
+
+        
+        {book.comments.map((comment: CommentData) => (
+        <div>
+           <h4> {comment.author} </h4>
+            <p> {comment.text}</p>
+            <button onClick={() => handleDeleteComment(i, comment._id)}>Delete Comment</button>
+        </div>
         ))}
+         
+          <div>
+            <input type='text' placeholder='Add a comment...' />
+            <button onClick={() => handleAddComment(i)}>Add Comment</button>
+          </div>
+         
+       </div>
+     
+     ))}
+      
     </div>
   );
 };

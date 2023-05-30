@@ -23,6 +23,7 @@ const BookDetails = (props: Props) => {
     author: '',
     available: false,
     image: '',
+
   });
 
   useEffect(() => {

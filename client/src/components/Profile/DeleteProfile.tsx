@@ -81,7 +81,7 @@ interface ProfileProps {
 
 const DeleteProfile: React.FC<ProfileProps> = ({ profile }) => {
   // const { _id, email, username, books, image } = profile;
-  console.log('profile', profile)
+  // console.log('profile', profile)
   const [isDeleted, setIsDeleted] = useState(false);
 
   const deleteHandler = async () => {

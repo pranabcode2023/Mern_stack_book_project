@@ -65,18 +65,18 @@ export const AuthContext = createContext<AuthContextType>(initialAuth);
     };
     try {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/login`, requestOptions);
-      console.log(response)
+      // console.log(response)
     
       if (response.ok) {
         const result = await response.json() as fetchResult
-        console.log('restult >>>>', result)
+        // console.log('restult >>>>', result)
         if (result.user) {
         setAuthor(result.user);
-        console.log("author login function", result.user)
+        // console.log("author login function", result.user)
         localStorage.setItem("token", result.authorToken);
         localStorage.setItem("my name", "pranab");
         }
-         console.log(result);
+        //  console.log(result);
       } else {
         const result = await response.json() as fetchFailed
         alert(result.error)
@@ -118,7 +118,7 @@ export const AuthContext = createContext<AuthContextType>(initialAuth);
      try {
        const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/active`, requestOptions);
        const result = await response.json();
-       console.log("active author result:", result)
+      //  console.log("active author result:", result)
        setAuthor(result);
      } catch (error) {
        console.log(error);

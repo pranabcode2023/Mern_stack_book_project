@@ -9,7 +9,7 @@ type Props = {}
 
 const NavBar = (props: Props) => {
     const { author, login, logout } = useContext(AuthContext);
-console.log('author in navbar', author)
+// console.log('author in navbar', author)
    
     
     const linkStyle = {

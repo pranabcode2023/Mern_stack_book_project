@@ -116,12 +116,12 @@ const Profiles: React.FC = () => {
 
   const getAuthorProfile = async () => {
 
-    console.log("author?._id", author?._id)
+    // console.log("author?._id", author?._id)
     if (author) {
           try {
       const response = await fetch(`http://localhost:5000/api/authors/id/${author._id}`);
       const result = await response.json();
-      console.log('result', result);
+      // console.log('result', result);
       setUserProfile(result);
     } catch (error) {
       console.log('error getting author profile', error);
