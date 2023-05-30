@@ -30,6 +30,14 @@ books: string[];
 image: File | string;
 }
 
+interface Profile {
+  _id: string;
+  email: string;
+  username: string;
+  books: string[];
+  image: File | string;
+}
+
 type AddBookData = {
   name: string;
   description: string;

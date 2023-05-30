@@ -9,8 +9,8 @@ import { AuthContextProvider } from './contexts/AuthContext';
 import Books from './Pages/Books';
 import BookDetails from './components/Books/BookDetails';
 import AddBook from './Pages/AddBook';
-import Profile from './Pages/Profile';
-import UpdateProfile from './components/Profile/UpdateProfile.tsx';
+import UserProfile from './Pages/UserProfile';
+// import { UpdateProfile } from './components/Profile/UpdateProfile';
 
 import './styles.css';
 
@@ -32,10 +32,8 @@ function App() {
           <Route path='/addbook' element={ <AddBook/>} />
           <Route path='/register' element={ <Register /> } />
           <Route path='/login' element={<Login />} />
-          <Route path='/profile' element={
-            <Profile />
-         } />
-           <Route path='/authors/:id' element={ <UpdateProfile /> } />
+          <Route path='/profile' element={<UserProfile />} />
+           {/* <Route path='/authors/:id' element={ <UpdateProfile /> } /> */}
           
         </Routes>
       </BrowserRouter>

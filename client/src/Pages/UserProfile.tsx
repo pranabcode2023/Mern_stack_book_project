@@ -82,60 +82,77 @@
 
 
 
-import React, { useContext, useEffect, useState } from 'react';
-import DeleteProfile from '../components/Profile/DeleteProfile';
-import { AuthContext } from '../contexts/AuthContext';
+// import React, { useContext, useEffect, useState } from 'react';
+// import DeleteProfile from '../components/Profile/DeleteProfile';
+// import { AuthContext } from '../contexts/AuthContext';
 
-const URL = `${process.env.REACT_APP_BASE_URL}authors/all`;
+// const URL = `${process.env.REACT_APP_BASE_URL}authors/all`;
 
-interface ProfileData {
-  _id: string;
-  email: string;
-  username: string;
-  books: string[];
-  image: File | string;
+// interface ProfileData {
+//   _id: string;
+//   email: string;
+//   username: string;
+//   books: string[];
+//   image: File | string;
+// }
+// const Profiles: React.FC = () => {
+//   const [userProfile, setUserProfile] = useState<ProfileData | null>(null);
+//   const { author } = useContext(AuthContext);
+  
+//   const fetchURL = async () => {
+//   try {
+//     const response = await fetch(URL);
+//     if (response.ok) {
+//       const data = await response.json();
+//       return { profiles: data };
+//     } else {
+//       throw new Error('Failed to fetch data');
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     return null;
+//   }
+// };
+
+//   const getAuthorProfile = async () => {
+//     try {
+//       const response = await fetch(`http://localhost:5000/api/authors/id/${author?._id}`);
+//       const result = await response.json();
+//       console.log('result', result);
+//       setUserProfile(result);
+//     } catch (error) {
+//       console.log('error getting author profile', error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getAuthorProfile();
+//   }, []);
+
+//   return (
+//     <div className="books-container">
+//       <h1>Profile info</h1>
+//       {userProfile && <DeleteProfile profile={userProfile} />}
+//     </div>
+    
+//   );
+// };
+
+
+
+// export default Profiles;
+
+
+
+
+import React from 'react'
+
+const Profile = () => {
+  return (
+    <div>Profile</div>
+    
+  )
 }
 
-const fetchHandler = async () => {
-  try {
-    const response = await fetch(URL);
-    if (response.ok) {
-      const data = await response.json();
-      return { profiles: data };
-    } else {
-      throw new Error('Failed to fetch data');
-    }
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
+export default Profile
 
-const Profiles: React.FC = () => {
-  const [userProfile, setUserProfile] = useState<ProfileData | null>(null);
-  const { author } = useContext(AuthContext);
-
-  const getAuthorProfile = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/authors/id/${author?._id}`);
-      const result = await response.json();
-      console.log('result', result);
-      setUserProfile(result);
-    } catch (error) {
-      console.log('error getting author profile', error);
-    }
-  };
-
-  useEffect(() => {
-    getAuthorProfile();
-  }, []);
-
-  return (
-    <div className="books-container">
-      <h1>Profile info</h1>
-      {userProfile && <DeleteProfile profile={userProfile} />}
-    </div>
-  );
-};
-
-export default Profiles;
