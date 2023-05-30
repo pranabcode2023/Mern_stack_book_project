@@ -42,15 +42,25 @@ type AddBookData = {
 
 
 
+// type BookData = {
+//   name: string;
+//   description: string;
+//   price: string;
+//   author: string;
+//   available: boolean;
+//   comments: [];
+//   image: image;
+// };
 type BookData = {
+  _id: string;
   name: string;
+  author: string;
   description: string;
   price: string;
-  author: string;
-  available: boolean;
-  comments: [];
-  image: image;
-};
+  available: string;
+  comments: CommentData[]; // Updated type to include CommentData interface
+  image: File | string;
+}
 
 
 // type Book= {
@@ -61,13 +71,17 @@ type BookData = {
 //   available: string;
 //    image: File | string;
 // };
-interface CommentData {
-  _id: String,
-  author: String,
-  text: String,
-  createdAt: Date,
- updatedAt: Date
 
+// type CommentData = {
+//   _id: string; // ID of the comment
+//   author: string;
+//   text: string;
+//   createdAt: Date;
+//   updatedAt: Date;
+// }
+
+type CommentData = {
+  author: string;
+  text: string;
 }
-
 

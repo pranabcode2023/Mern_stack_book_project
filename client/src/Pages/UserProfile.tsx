@@ -1,8 +1,7 @@
+
 // import React, { useContext, useEffect, useState } from 'react';
 // import DeleteProfile from '../components/Profile/DeleteProfile';
 // import { AuthContext } from '../contexts/AuthContext';
-
-
 
 // const URL = `${process.env.REACT_APP_BASE_URL}authors/all`;
 
@@ -10,16 +9,19 @@
 //   _id: string;
 //   email: string;
 //   username: string;
-//   books: string;
+//   books: string[];
 //   image: File | string;
 // }
-
-// const fetchHandler = async () => {
+// const UserProfile: React.FC = () => {
+//   const [userProfile, setUserProfile] = useState<ProfileData | null>(null);
+//   const { author } = useContext(AuthContext);
+  
+//   const fetchURL = async () => {
 //   try {
 //     const response = await fetch(URL);
 //     if (response.ok) {
 //       const data = await response.json();
-//       return { profiles: data }; // Wrap the data in an object with the 'profiles' key
+//       return { profiles: data };
 //     } else {
 //       throw new Error('Failed to fetch data');
 //     }
@@ -29,60 +31,42 @@
 //   }
 // };
 
-// const Profiles: React.FC = () => {
-//   // const [profiles, setProfiles] = useState<ProfileData[]>([]); //NOTE modify ProfileData type to match the info coming from the database (books is now an array of Books)
-//   const [userProfile, setUserProfile] = useState<any>({});
-//   const { author } = useContext(AuthContext)
-//   console.log('author.id', author)
-
 //   const getAuthorProfile = async () => {
 
-//     try {
-//       const response = await fetch(`http://localhost:5000/api/authors/id/${author?._id}`)
-//       const result = await response.json()
-//       console.log('result', result)
-//       setUserProfile(result)
+//     // console.log("author?._id", author?._id)
+//     if (author) {
+//           try {
+//       const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/id/${author._id}`);
+//       const result = await response.json();
+//       // console.log('result', result);
+//       setUserProfile(result);
 //     } catch (error) {
-//      console.log('error getting author profile', error)
+//       console.log('error getting author profile', error);
 //     }
-    
-//   }
+//     }
+
+//   };
+
 //   useEffect(() => {
-//    getAuthorProfile()
-//   }, [])
-  
-
-//   // useEffect(() => {
-//   //   fetchHandler().then((data: { profiles: ProfileData[] } | null) => {
-//   //     if (data && data.profiles) {
-//   //       setProfiles(data.profiles);
-//   //     }
-//   //   });
-//   // }, []);
-
-//   // console.log(profiles);
+//     getAuthorProfile();
+//   }, [author]);
 
 //   return (
-//     <div className='books-container'>
+//     <div className="books-container">
 //       <h1>Profile info</h1>
-//           <DeleteProfile profile={userProfile} />
-
-//       {/* {profiles.map((profile: ProfileData, i: number) => (
-//         <div className='book' key={i}>
-         
-//           <Profile profile={author} />
-//         </div>
-//       ))} */}
+//       {userProfile && <DeleteProfile profile={userProfile} />}
 //     </div>
+    
 //   );
 // };
 
-// export default Profiles;
 
 
+// export default UserProfile;
 
 
 import React, { useContext, useEffect, useState } from 'react';
+import { Card, Button } from 'react-bootstrap';
 import DeleteProfile from '../components/Profile/DeleteProfile';
 import { AuthContext } from '../contexts/AuthContext';
 
@@ -95,39 +79,36 @@ interface ProfileData {
   books: string[];
   image: File | string;
 }
-const Profiles: React.FC = () => {
+
+const UserProfile: React.FC = () => {
   const [userProfile, setUserProfile] = useState<ProfileData | null>(null);
   const { author } = useContext(AuthContext);
-  
+
   const fetchURL = async () => {
-  try {
-    const response = await fetch(URL);
-    if (response.ok) {
-      const data = await response.json();
-      return { profiles: data };
-    } else {
-      throw new Error('Failed to fetch data');
+    try {
+      const response = await fetch(URL);
+      if (response.ok) {
+        const data = await response.json();
+        return { profiles: data };
+      } else {
+        throw new Error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.log(error);
+      return null;
     }
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
+  };
 
   const getAuthorProfile = async () => {
-
-    // console.log("author?._id", author?._id)
     if (author) {
-          try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/id/${author._id}`);
-      const result = await response.json();
-      // console.log('result', result);
-      setUserProfile(result);
-    } catch (error) {
-      console.log('error getting author profile', error);
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/id/${author._id}`);
+        const result = await response.json();
+        setUserProfile(result);
+      } catch (error) {
+        console.log('error getting author profile', error);
+      }
     }
-    }
-
   };
 
   useEffect(() => {
@@ -136,16 +117,24 @@ const Profiles: React.FC = () => {
 
   return (
     <div className="books-container">
-      <h1>Profile info</h1>
-      {userProfile && <DeleteProfile profile={userProfile} />}
+   
+      {userProfile && (
+        <Card style={{ width: '40rem' }}>
+             <h1>Profile Info</h1>
+          <Card.Body>
+            <DeleteProfile profile={userProfile} />
+            {/* <Card.Title>{userProfile.username}</Card.Title> */}
+            {/* <Card.Text>{userProfile.email}</Card.Text> */}
+            {/* <Button variant="primary">Edit Profile</Button> */}
+            
+          </Card.Body>
+        </Card>
+      )}
     </div>
-    
   );
 };
 
-
-
-export default Profiles;
+export default UserProfile;
 
 
 

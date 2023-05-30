@@ -110,36 +110,22 @@ const DeleteProfile: React.FC<ProfileProps> = ({ profile }) => {
   return (
     <div className="bookCard">
       <div className="container">
-        {/* <img src={image} alt={image} /> */}
-      </div>
-      <div className="container">
-        <h3>{profile?.username}</h3>
-        {/* <h3>{username}</h3>
-        <h3>{books}</h3> */}
         <img src={profile?.image} alt="" />
-      </div>
-
-      <div className="container">
-        {/* <Link to={`/authors/${_id}`}>
-          <button>Update</button>
-        </Link> */}
-      </div>
-
-      <div className="container">
-        <button onClick={deleteHandler}>Delete</button>
-      </div>
-      <div className="container">
-        {/* NOTE this would be the authors uploaded book section, add there whatever you want */}
-        <h2>you uploaded this books</h2>
+        <h3>{profile?.username}</h3>
+        <h3>{profile?.email}</h3>
+        <button onClick={deleteHandler}>Delete </button>
+          <h1>Uploaded Books</h1>
         {profile.books && profile.books.map((book:any) => {
           return (
             <div>
               <p>{book.name}</p>
+              {/* NOTE this would be the authors uploaded book section, add there whatever you want */}
+              <img src={book.image} alt=""/>
               
             </div>
           )
         })}
-      </div>
+     </div>
     </div>
 
 
