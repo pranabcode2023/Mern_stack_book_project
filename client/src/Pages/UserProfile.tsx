@@ -56,7 +56,7 @@ const UserProfile: React.FC = () => {
         <Card style={{ width: '40rem' }}>
              <h1>Profile Info</h1>
           <Card.Body>
-             <Button variant="primary">Edit Profile</Button>
+             {/* <Button variant="primary">Edit Profile</Button> */}
             <DeleteProfile profile={userProfile} />
             {/* <Card.Title>{userProfile.username}</Card.Title> */}
             {/* <Card.Text>{userProfile.email}</Card.Text> */}

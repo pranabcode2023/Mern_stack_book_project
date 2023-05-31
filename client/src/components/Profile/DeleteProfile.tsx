@@ -47,6 +47,11 @@ const DeleteProfile: React.FC<ProfileProps> = ({ profile }) => {
         <img src={profile?.image} alt="" />
         <h3>User Name:  {profile?.username}</h3>
         <h3>Email:  {profile?.email}</h3>
+      <div className="container">
+        <Link to={`/profile/${_id}`}>
+          <button>Update</button>
+        </Link>
+      </div>
         <button onClick={deleteHandler}>Delete </button>
           <h1>Uploaded Books</h1>
         {profile.books && profile.books.map((book:any) => {

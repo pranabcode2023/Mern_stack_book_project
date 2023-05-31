@@ -10,8 +10,8 @@ import Books from './Pages/Books';
 import BookDetails from './components/Books/BookDetails';
 import AddBook from './Pages/AddBook';
 import UserProfile from './Pages/UserProfile';
-// import { UpdateProfile } from './components/Profile/UpdateProfile';
-import ProtectedRoute from './components/ProtectedRoute';
+import UpdateProfile from './components/Profile/UpdateProfile';
+// import ProtectedRoute from './components/ProtectedRoute';
 
 import './styles.css';
 
@@ -30,11 +30,13 @@ function App() {
           <Route path='/' element={<Homepage/>} />
           <Route path='/books' element={<Books />} />
           <Route path='/books/:id' element={ <BookDetails /> } />
-          <Route path='/addbook' element={ <ProtectedRoute><AddBook/></ProtectedRoute>} />
+          {/* <Route path='/addbook' element={ <ProtectedRoute><AddBook/></ProtectedRoute>} /> */}
+           <Route path='/addbook' element={ <AddBook/>} />
           <Route path='/register' element={ <Register /> } />
           <Route path='/login' element={<Login />} />
-          <Route path='/profile' element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
-           {/* <Route path='/authors/:id' element={ <UpdateProfile /> } /> */}
+          {/* <Route path='/profile' element={<ProtectedRoute><UserProfile /></ProtectedRoute>} /> */}
+           <Route path='/profile' element={<UserProfile />} />
+           <Route path='/authors/:id' element={ <UpdateProfile /> } />
           
         </Routes>
       </BrowserRouter>

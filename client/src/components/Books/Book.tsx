@@ -44,10 +44,10 @@ const Book: React.FC<BookProps> = ({ book }) => {
         <img src={image} alt={name} />
       </div>
       <div className="container">
-        <article>By {author}</article>
-        <h3>{name}</h3>
-        <p>{description}</p>
-        <h2>Euro {price}</h2>
+        <article>Author Name:  {author}</article>
+        <h3> Book Name: {name}</h3>
+        <h3>Book Description : {description}</h3>
+        <h2>Price : {price} €</h2>
         
       </div>
 
