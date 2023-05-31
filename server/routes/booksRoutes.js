@@ -1,6 +1,6 @@
 import express from "express"
 import multerUpload from "../middlewares/multer.js";
-import { getAllbooks, addBook, getById, updateBook, deleteBook, commentsBook } from "../controllers/booksController.js";
+import { getAllbooks, addBook, getById, updateBook, deleteBook, commentsBook, uncommentsBook } from "../controllers/booksController.js";
 
 const booksRouter = express.Router()
 
@@ -15,7 +15,7 @@ booksRouter.put("/commentsbook/:id", commentsBook)
 
 //NOTE - delete method
 booksRouter.delete("/deleteBook/:id", deleteBook)
-// booksRouter.delete("/deletecomment/:id", deleteComment)
+booksRouter.delete("/uncommentsbook/:id", uncommentsBook)
 
 //NOTE - post method
 booksRouter.post("/addbook", multerUpload.single("image"), addBook);  // to add product/book

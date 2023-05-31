@@ -55,7 +55,6 @@ const DeleteProfile: React.FC<ProfileProps> = ({ profile }) => {
               <p>{book.name}</p>
               {/* NOTE authors uploaded book section */}
               <img src={book.image} alt=""/>
-              
             </div>
           )
         })}

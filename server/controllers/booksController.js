@@ -205,6 +205,20 @@ const commentsBook = async (req, res) => {
     }
 };
 
+const uncommentsBook = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const uncommentsBook = await BooksModel.findByIdAndRemove(id, { $pull: { comments: comments } }, { new: true });
+        if (!uncommentsBook) {
+            return res.status(404).json({ message: "Unable to delete by this ID" });
+        }
+        res.status(200).json({ message: "Successfully Deleted" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Something went wrong..." });
+    }
+};
+
 const deleteBook = async (req, res) => {
     const id = req.params.id;
     try {
@@ -219,6 +233,6 @@ const deleteBook = async (req, res) => {
     }
 };
 
-export { getAllbooks, addBook, getById, updateBook, deleteBook, commentsBook };
+export { getAllbooks, addBook, getById, updateBook, deleteBook, commentsBook, uncommentsBook };
 
 

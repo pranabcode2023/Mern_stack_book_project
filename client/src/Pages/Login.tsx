@@ -17,13 +17,13 @@ function Login({}: Props) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
     
   }
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {  
     e.preventDefault();
+    navigate('/profile');    
     login(formData.email, formData.password);
-    navigate('/profile');     // navigate to Homepage
+   
   }
-  
-  
+   
   return (
     <div className="login">
       
