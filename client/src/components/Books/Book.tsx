@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 interface BookProps {
@@ -17,6 +17,68 @@ interface BookProps {
 const Book: React.FC<BookProps> = ({ book }) => {
   const { _id, name, author, description, price, comments, image } = book;
   console.log(book)
+
+
+  const [inputValue, setInputValue] = useState("");
+  
+  const handleAddComment = async () => {
+    
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("delete", "6478a7666ded9683ca1be2c2");
+    urlencoded.append("author", "64707630309ba87cafe941ee");
+      
+     const requestOptions = {
+      method: 'PUT',
+        headers: {
+         "Content-Type": "application/json", 
+         "Authorization": "Bearer " +localStorage.getItem("token")
+       },
+       body: JSON.stringify({
+         text:inputValue
+      })
+    };
+       
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}books/commentsbook/${_id}`, requestOptions);
+      const result = await response.json();
+      console.log("result", result);
+      alert('Successfull! Check console.');
+      setInputValue("");
+    } catch (error) {
+      console.log(error);
+      alert('Something went wrong - check console.');
+
+    } 
+
+  };
+
+
+  const handleDeleteComment = async () => {
+      
+     const requestOptions = {
+      method: 'DELETE',
+        headers: {
+         "Content-Type": "application/json", 
+         "Authorization": "Bearer " +localStorage.getItem("token")
+       },
+       body: JSON.stringify({
+         text:inputValue
+      })
+    };
+       
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}books/commentsbook/${_id}`, requestOptions);
+      const result = await response.json();
+      console.log("result", result);
+      alert('Successfull! Check console.');
+      setInputValue("");
+    } catch (error) {
+      console.log(error);
+      alert('Something went wrong - check console.');
+
+    } 
+
+  };
   
   const deleteHandler = async () => {
     try {
@@ -39,6 +101,7 @@ const Book: React.FC<BookProps> = ({ book }) => {
   };
 
   return (
+    <>
     <div className="bookCard">
       <div className="container">
         <img src={image} alt={name} />
@@ -60,7 +123,41 @@ const Book: React.FC<BookProps> = ({ book }) => {
       <div className="container">
         <button onClick={deleteHandler}>Delete</button>
       </div>
-    </div>
+      </div>
+
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        handleAddComment();
+            // console.log(e.target);
+          }} >
+  
+          <div>
+            <input onChange= {(e) => {
+           setInputValue (e.target.value)
+           
+          }} 
+              type='text'
+            placeholder='Add a comment...'
+            value={inputValue}
+            />
+            <button type='submit'>
+            Add Comment
+          </button>
+          </div>
+      </form>
+      
+      <div>
+        {comments.map((comment) => {
+          return (
+            <div key={comment._id}>
+              <p>{comment.author}</p>
+              <p>{comment.text} </p>
+            </div>
+          )
+          
+        })}
+      </div>
+      </>
   );
 };
 

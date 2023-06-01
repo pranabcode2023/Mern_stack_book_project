@@ -16,10 +16,10 @@ interface BookData {
   image: File | string;
 }
 
-interface CommentData {
-  author: string;
-  text: string;
-}
+// interface CommentData {
+//   author: string;
+//   text: string;
+// }
 
 const Books: React.FC = () => {
   const [books, setBooks] = useState<BookData[]>([]);
@@ -51,37 +51,9 @@ const Books: React.FC = () => {
   //   setCommentInput('');
   // };
 
-   const handleAddComment = async (author: string, text: string, id: string) => {
-      
-     const requestOptions = {
-      method: 'Put',
-        headers: {
-         "Content-Type": "application/json", 
-         "Authorization": "bearer" +localStorage.getItem("jwt")
-       },
-       body: JSON.stringify({
-        author,
-        text
-      })
-    };
-       
-    try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}books/commentsbook/${id}`, requestOptions);
-      const result = await response.json();
-      console.log(result);
-      alert('Successfull! Check console.');
-  
-    } catch (error) {
-      console.log(error);
-      alert('Something went wrong - check console.');
 
-    } 
-
-  };
   
-  
- 
-  const fetchData = async () => {
+ const fetchData = async () => {
     const data = await fetchHandler();
     if (data) {
       setBooks(data.books);
@@ -100,9 +72,9 @@ const Books: React.FC = () => {
         <div className='book' key={i}>
           <Book book={book} />
          
-     <form onSubmit={(e) => {
+     {/* <form onSubmit={(e) => {
             e.preventDefault();
-        console.log(e.target);
+            // console.log(e.target);
           }} >
   
           <div>
@@ -110,11 +82,11 @@ const Books: React.FC = () => {
               type='text'
               placeholder='Add a comment...'
             />
-            <button>
+            <button type='submit'>
             Add Comment
           </button>
           </div>
-          </form>
+          </form> */}
       
         </div>
       ))}

@@ -101,7 +101,7 @@ import { imageUpload } from "../utils/imageManagement.js";
 
 const getAllbooks = async (req, res) => {
     try {
-        const books = await BooksModel.find();
+        const books = await BooksModel.find().populate({ path: "author" });
         res.status(200).json({ books });
     } catch (error) {
         console.log(error);
@@ -210,15 +210,27 @@ const commentsBook = async (req, res) => {
 
 const uncommentsBook = async (req, res) => {
     const id = req.params.id;
-    try {
-        const uncommentsBook = await BooksModel.findByIdAndRemove(id, { $pull: { comments: comments } }, { new: true });
-        if (!uncommentsBook) {
-            return res.status(404).json({ message: "Unable to delete by this ID" });
+    const userId = req.user._id
+    const commentAuthor = req.body.author
+    const check = userId.equals(commentAuthor) //NOTE - mongoose equal method
+
+    // const isEqual = user._id.equals(oid)
+    // res.send(check)
+
+    if (check) {
+        try {
+            const uncommentsBook = await BooksModel.findByIdAndRemove(id, { $pull: { comments: { _id: req.body.delete } } }, { new: true });
+            if (!uncommentsBook) {
+                return res.status(404).json({ message: "Unable to delete by this ID" });
+            }
+            res.status(200).json({ message: "Successfully Deleted" });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: "Something went wrong..." });
         }
-        res.status(200).json({ message: "Successfully Deleted" });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: "Something went wrong..." });
+    }
+    else {
+        res.status(403).json({ message: "you can't delete someone comment" })
     }
 };
 

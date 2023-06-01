@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const commentschema = new mongoose.Schema({
-    author: { type: String, required: true },
+    author: { type: mongoose.Schema.Types.ObjectId, ref: "author" },
     text: { type: String, required: true }
 }, { timestamps: true });
 

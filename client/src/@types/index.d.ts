@@ -83,5 +83,6 @@ type BookData = {
 type CommentData = {
   author: string;
   text: string;
+  _id: string;
 }
 
