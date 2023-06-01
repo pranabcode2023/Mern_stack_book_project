@@ -81,7 +81,9 @@ import React from 'react'
 
 export const Homepage = () => {
   return (
-    <div>Homepage</div>
+    <div>
+      <h1>Welcome to Book Sharing App</h1>
+    </div>
   )
 }
 

@@ -191,14 +191,17 @@ const updateBook = async (req, res) => {
 };
 
 const commentsBook = async (req, res) => {
+
     const newComments = {
-        ...req.body
+        ...req.body,
+        author: req.user._id
     };
     console.log(newComments)
+    // res.send("testing")
     try {
         //NOTE - moongoose push method
         const comments = await BooksModel.findByIdAndUpdate(req.params.id, { $push: { comments: newComments } }, { new: true });
-        res.status(200).json({ message: "new comments" });
+        res.status(200).json({ message: "comments added" });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Something went wrong..." });

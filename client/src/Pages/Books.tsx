@@ -23,7 +23,6 @@ interface CommentData {
 
 const Books: React.FC = () => {
   const [books, setBooks] = useState<BookData[]>([]);
-  const [commentInput, setCommentInput] = useState<string>('');
 
   const fetchHandler = async () => {
     try {
@@ -40,26 +39,48 @@ const Books: React.FC = () => {
     }
   };
 
-  const handleAddComment = (bookIndex: number) => {
-    const updatedBooks = [...books];
-    const book = updatedBooks[bookIndex];
-    const newComment: CommentData = {
-      author: '',
-      text: commentInput,
+  // const handleAddComment = (bookIndex: number) => {
+  //   const updatedBooks = [...books];
+  //   const book = updatedBooks[bookIndex];
+  //   const newComment: CommentData = {
+  //     author: '',
+  //     text: commentInput,
+  //   };
+  //   book.comments.push(newComment);
+  //   setBooks(updatedBooks);
+  //   setCommentInput('');
+  // };
+
+   const handleAddComment = async (author: string, text: string, id: string) => {
+      
+     const requestOptions = {
+      method: 'Put',
+        headers: {
+         "Content-Type": "application/json", 
+         "Authorization": "bearer" +localStorage.getItem("jwt")
+       },
+       body: JSON.stringify({
+        author,
+        text
+      })
     };
-    book.comments.push(newComment);
-    setBooks(updatedBooks);
-    setCommentInput('');
-  };
-
+       
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}books/commentsbook/${id}`, requestOptions);
+      const result = await response.json();
+      console.log(result);
+      alert('Successfull! Check console.');
   
-  const handleDeleteComment = (bookIndex: number, commentIndex: number) => {
-    const updatedBooks = [...books];
-    const book = updatedBooks[bookIndex];
-    book.comments.splice(commentIndex, 1); //NOTE - splice method
-    setBooks(updatedBooks);
-  };
+    } catch (error) {
+      console.log(error);
+      alert('Something went wrong - check console.');
 
+    } 
+
+  };
+  
+  
+ 
   const fetchData = async () => {
     const data = await fetchHandler();
     if (data) {
@@ -78,24 +99,23 @@ const Books: React.FC = () => {
       {books.map((book: BookData, i: number) => (
         <div className='book' key={i}>
           <Book book={book} />
-
-          {book.comments.map((comment: CommentData, commentIndex: number) => (
-            <div key={commentIndex}>
-              <h4>{comment.author}</h4>
-              <p>{comment.text}</p>
-              <button onClick={(e) => { e.preventDefault(); handleDeleteComment(i, commentIndex); } }>Delete Comment</button>
-            </div>
-          ))}
-
+         
+     <form onSubmit={(e) => {
+            e.preventDefault();
+        console.log(e.target);
+          }} >
+  
           <div>
             <input
               type='text'
               placeholder='Add a comment...'
-              value={commentInput}
-              onChange={(e) => setCommentInput(e.target.value)}
             />
-            <button onClick={(e) => { e.preventDefault(); handleAddComment(i); }}>Add Comment</button>
+            <button>
+            Add Comment
+          </button>
           </div>
+          </form>
+      
         </div>
       ))}
     </div>
