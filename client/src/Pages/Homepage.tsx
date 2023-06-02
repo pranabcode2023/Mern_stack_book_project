@@ -82,7 +82,7 @@ import React from 'react'
 export const Homepage = () => {
   return (
     <div>
-      <h1>Welcome to Book Sharing App</h1>
+      <h1>Welcome to Book Lovers Platform </h1>
     </div>
   )
 }
