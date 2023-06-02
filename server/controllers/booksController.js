@@ -101,7 +101,7 @@ import { imageUpload } from "../utils/imageManagement.js";
 
 const getAllbooks = async (req, res) => {
     try {
-        const books = await BooksModel.find().populate({ path: "author" });
+        const books = await BooksModel.find();
         res.status(200).json({ books });
     } catch (error) {
         console.log(error);
@@ -112,7 +112,7 @@ const getAllbooks = async (req, res) => {
 const getById = async (req, res) => {
     const id = req.params.id;
     try {
-        const book = await BooksModel.findById(id);
+        const book = await BooksModel.findById(id).populate({ path: "author" });
         if (!book) {
             return res.status(404).json({ message: "No Book Found" });
         }

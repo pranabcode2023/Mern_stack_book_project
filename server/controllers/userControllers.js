@@ -1,5 +1,6 @@
 import UserModel from "../models/userModels.js";
-import { generateAuthorToken } from "../utils/authorJwt.js";
+// import { generateAuthorToken } from "../utils/authorJwt.js";
+import { generateToken } from "../utils/Jwt.js";
 import { encryptPassword, verifyPassword } from "../utils/bcrypt.js";
 import { imageUpload } from "../utils/imageManagement.js";
 
@@ -81,7 +82,7 @@ const login = async (req, res) => {
                 res.status(406).json({ error: "password doesn't match" })
             }
             if (verified) {
-                const token = generateAuthorToken(existingUser);
+                const token = generateToken(existingUser);
                 res.status(200).json({
                     verified: true,
                     token: token,

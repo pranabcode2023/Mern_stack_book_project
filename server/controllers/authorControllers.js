@@ -1,7 +1,8 @@
 
 import { encryptPassword, verifyPassword } from "../utils/bcrypt.js";
 import { imageUpload } from "../utils/imageManagement.js";
-import { generateAuthorToken } from "../utils/authorJwt.js";
+// import { generateAuthorToken } from "../utils/authorJwt.js";
+import { generateToken } from "../utils/Jwt.js";
 import AuthorModel from "../models/authorModel.js";
 
 
@@ -152,7 +153,7 @@ const login = async (req, res) => {
                 res.status(406).json({ error: "password doesn't match" })
             }
             if (verified) {
-                const authorToken = generateAuthorToken(existingAuthor);
+                const authorToken = generateToken(existingAuthor);
                 res.status(200).json({
                     verified: true,
                     authorToken: authorToken,
