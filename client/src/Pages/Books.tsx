@@ -38,20 +38,6 @@ const Books: React.FC = () => {
       return null;
     }
   };
-
-  // const handleAddComment = (bookIndex: number) => {
-  //   const updatedBooks = [...books];
-  //   const book = updatedBooks[bookIndex];
-  //   const newComment: CommentData = {
-  //     author: '',
-  //     text: commentInput,
-  //   };
-  //   book.comments.push(newComment);
-  //   setBooks(updatedBooks);
-  //   setCommentInput('');
-  // };
-
-
   
  const fetchData = async () => {
     const data = await fetchHandler();
@@ -71,23 +57,6 @@ const Books: React.FC = () => {
       {books.map((book: BookData, i: number) => (
         <div className='book' key={i}>
           <Book book={book} />
-         
-     {/* <form onSubmit={(e) => {
-            e.preventDefault();
-            // console.log(e.target);
-          }} >
-  
-          <div>
-            <input
-              type='text'
-              placeholder='Add a comment...'
-            />
-            <button type='submit'>
-            Add Comment
-          </button>
-          </div>
-          </form> */}
-      
         </div>
       ))}
     </div>

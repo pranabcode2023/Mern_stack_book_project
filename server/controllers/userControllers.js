@@ -1,5 +1,4 @@
 import UserModel from "../models/userModels.js";
-// import { generateAuthorToken } from "../utils/authorJwt.js";
 import { generateToken } from "../utils/Jwt.js";
 import { encryptPassword, verifyPassword } from "../utils/bcrypt.js";
 import { imageUpload } from "../utils/imageManagement.js";

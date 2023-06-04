@@ -1,7 +1,6 @@
 
 import { encryptPassword, verifyPassword } from "../utils/bcrypt.js";
 import { imageUpload } from "../utils/imageManagement.js";
-// import { generateAuthorToken } from "../utils/authorJwt.js";
 import { generateToken } from "../utils/Jwt.js";
 import AuthorModel from "../models/authorModel.js";
 
@@ -55,43 +54,7 @@ const createAuthor = async (req, res) => {
         res.status(500).json("something went wrong..")
     }
 }
-// const updateAuthor = async (req, res) => {
-//     try {
-//         const id = req.params.id;
-//         const existingAuthor = await AuthorModel.findById(id);
-//         if (!existingAuthor) {
-//             return res.status(404).json({ message: "Author not found" });
-//         }
 
-//         const image = req.file ? await imageUpload(req.file, "user_authors") : existingAuthor.image;
-
-//         const updatedAuthorProfile = {
-//             email: req.body.email || existingAuthor.email,
-//             username: req.body.username || existingAuthor.username,
-//             password: req.body.password ? await encryptPassword(req.body.password) : existingAuthor.password,
-//             image: image,
-//         };
-
-//         const updatedAuthor = await AuthorModel.findByIdAndUpdate(id, updatedAuthorProfile, { new: true });
-//         if (!updatedAuthor) {
-//             return res.status(404).json({ message: "Unable to update this profile" });
-//         }
-
-//         res.status(200).json(updatedAuthor);
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({ message: "Unable to update the profile" });
-//     }
-
-//     // const me = req.user;
-//     // try {
-//     //     const updatedUser = await UserModel.findByIdAndUpdate(me._id, req.body, { new: true });
-//     //     res.status(200).json(updatedUser);
-//     // } catch (e) {
-//     //     console.log(e);
-//     //     res.status(500).send(e.message);
-//     // }
-// };
 
 const updateAuthor = async (req, res) => {
     console.log('req.file>>>><', req.file)
