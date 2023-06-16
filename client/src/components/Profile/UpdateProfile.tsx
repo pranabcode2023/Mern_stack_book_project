@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 type Props = {};
 
@@ -15,16 +15,18 @@ const UpdateProfile = (props: Props) => {
   const { id } = useParams<{ id: string }>();
 
   const [formData, setFormData] = useState<ProfileData>({
-    email: '',
-    username: '',
-    books: '',
-    image: '',
+    email: "",
+    username: "",
+    books: "",
+    image: "",
   });
 
   useEffect(() => {
     const fetchProfileDetails = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/all/${id}`);
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}authors/all/${id}`
+        );
         const data = await response.json();
         const profileData: ProfileData = data.profile;
         setFormData((prevData) => ({ ...prevData, ...profileData }));
@@ -36,49 +38,50 @@ const UpdateProfile = (props: Props) => {
     fetchProfileDetails();
   }, [id]);
 
- const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  const { name, value } = e.target;
-  setFormData((prevData) => ({ ...prevData, [name]: value }));
-};
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
-
-const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
-  const file = e.target.files && e.target.files[0];
-  if (file) {
-    setFormData((prevData) => ({ ...prevData, image: file }));
-  } else {
-    setFormData((prevData) => ({ ...prevData, image: '' }));
-  }
-};
-
-
-
+  const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      setFormData((prevData) => ({ ...prevData, image: file }));
+    } else {
+      setFormData((prevData) => ({ ...prevData, image: "" }));
+    }
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       const submitData = new FormData();
-      submitData.append('email', formData.email);
-      submitData.append('username', formData.username);
-      submitData.append('books', formData.books);
-      submitData.append('image', formData.image);
+      submitData.append("email", formData.email);
+      submitData.append("username", formData.username);
+      submitData.append("books", formData.books);
+      submitData.append("image", formData.image);
 
       const requestOptions = {
-        method: 'PUT',
+        method: "PUT",
         body: submitData,
       };
 
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}authors/update/${id}`, requestOptions);
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}authors/update/${id}`,
+        requestOptions
+      );
       if (response.ok) {
-        navigate('/profile');
-        alert('Profile updated successfully.');
+        navigate("/profile");
+        alert("Profile updated successfully.");
       } else {
-        throw new Error('Failed to update the profile');
+        throw new Error("Failed to update the profile");
       }
     } catch (error) {
       console.error(error);
-      alert('Failed to update the profile.');
+      alert("Failed to update the profile.");
     }
   };
 
@@ -132,17 +135,3 @@ const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
 };
 
 export default UpdateProfile;
-
-
-
-// import React from 'react'
-
-// export const UpdateProfile = () => {
-//   return (
-//     <div>UpdateProfile.tsx</div>
-//   )
-// }
-
-
-
-
