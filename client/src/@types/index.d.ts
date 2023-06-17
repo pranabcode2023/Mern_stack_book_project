@@ -41,16 +41,6 @@ type AddBookData = {
 };
 
 
-
-// type BookData = {
-//   name: string;
-//   description: string;
-//   price: string;
-//   author: string;
-//   available: boolean;
-//   comments: [];
-//   image: image;
-// };
 type BookData = {
   _id: string;
   name: string;
@@ -62,23 +52,6 @@ type BookData = {
   image: File | string;
 }
 
-
-// type Book= {
-//     name: string;
-//     author: string;
-//     description: string;
-//     price: string;
-//   available: string;
-//    image: File | string;
-// };
-
-// type CommentData = {
-//   _id: string; // ID of the comment
-//   author: string;
-//   text: string;
-//   createdAt: Date;
-//   updatedAt: Date;
-// }
 
 type CommentData = {
   author: string;
