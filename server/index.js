@@ -53,11 +53,11 @@ const connectMongoose = () => {
 
 const connectRoutes = () => {
     app.use('/api/users', userRouter);
-    app.use('/api/pets', petRouter);
+    // app.use('/api/pets', petRouter);
 
     app.use('/api/books', booksRouter);
 
-    app.use('/api/authors', authorRouter);
+    // app.use('/api/authors', authorRouter);
 
     app.use('*', (req, res) => { res.status(500).json({ error: "Endpoint not found" }) });
 }
