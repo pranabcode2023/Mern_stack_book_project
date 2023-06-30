@@ -11,10 +11,10 @@ dotenv.config();
 
 
 import userRouter from "./routes/userRoutes.js";
-import petRouter from "./routes/petRoutes.js";
+// import petRouter from "./routes/petRoutes.js";
 
 import booksRouter from "./routes/booksRoutes.js";
-import authorRouter from "./routes/authorRoutes.js";
+// import authorRouter from "./routes/authorRoutes.js";
 
 
 
@@ -57,7 +57,7 @@ const connectRoutes = () => {
 
     app.use('/api/books', booksRouter);
 
-    app.use('/api/authors', authorRouter);
+    // app.use('/api/authors', authorRouter);
 
     app.use('*', (req, res) => { res.status(500).json({ error: "Endpoint not found" }) });
 }

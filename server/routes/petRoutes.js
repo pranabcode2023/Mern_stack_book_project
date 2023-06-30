@@ -1,13 +1,13 @@
-import express from "express"
-import getAllPets from "../controllers/petController.js"
+// import express from "express"
+// import getAllPets from "../controllers/petController.js"
 
 
 
-const petRouter = express.Router()
+// const petRouter = express.Router()
 
 
-petRouter.get("/all", getAllPets)
+// petRouter.get("/all", getAllPets)
 
 
 
-export default petRouter
+// export default petRouter
