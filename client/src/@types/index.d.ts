@@ -1,6 +1,6 @@
 type Avatar = string | File
 
-type image = string | File
+type avatar = string | File
 
 
 interface SubmitRegisterData {
@@ -15,11 +15,11 @@ interface SubmitLoginData {
   password: string,
 }
 
-interface SubmitAuthorRegisterData{
+interface SubmitUserRegisterData{
  email: string,
   password: string,
   username: string,
-  image: Image
+  avatar: Avatar
 }
 
 interface ProfileData {
@@ -27,7 +27,7 @@ interface ProfileData {
   email: string;
   username: string;
   books: string[];
-  image: File | string;
+  avatar: File | string;
 }
 
 
@@ -35,9 +35,9 @@ type AddBookData = {
   name: string;
   description: string;
   price: string;
-  author: string;
+  user: string;
   available: boolean;
-  image: image;
+  avatar: avatar;
 };
 
 
@@ -49,12 +49,12 @@ type BookData = {
   price: string;
   available: string;
   comments: CommentData[]; // Updated type to include CommentData interface
-  image: File | string;
+  avatar: File | string;
 }
 
 
 type CommentData = {
-  author: string;
+  user: string;
   text: string;
   _id: string;
 }

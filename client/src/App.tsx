@@ -35,8 +35,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           {/* <Route path='/profile' element={<ProtectedRoute><UserProfile /></ProtectedRoute>} /> */}
           <Route path="/profile" element={<UserProfile />} />
-          <Route path="/authors/:id" element={<UpdateProfile />} />
-          {/* <Route path="/users/:id" element={<UpdateProfile />} /> */}
+          {/* <Route path="/authors/:id" element={<UpdateProfile />} /> */}
+          <Route path="/users/:id" element={<UpdateProfile />} />
         </Routes>
       </BrowserRouter>
     </AuthContextProvider>

@@ -11,19 +11,16 @@ userRouter.get("/id/:id", getUser);
 userRouter.get("/active", jwtAuth, getActiveUser);
 
 //NOTE - put method
-userRouter.put("/update/:id", multerUpload.single("image"), updateUser)
+userRouter.put("/update/:id", multerUpload.single("avatar"), updateUser)
 
 //NOTE - delete method
 userRouter.delete("/delete/:id", deleteUser)
 
 
 //NOTE - post method
-userRouter.post("/new", multerUpload.single("image"), createUser);
-authorRouter.post("/login", login);
-
-// authorRouter.post("/update/:id", jwtAuth, updateAuthor);
-
-
+userRouter.post("/new", multerUpload.single("avatar"), createUser);
+userRouter.post("/login", login);
+// userRouter.post("/update", jwtAuth, updateUser);
 
 export default userRouter;
 

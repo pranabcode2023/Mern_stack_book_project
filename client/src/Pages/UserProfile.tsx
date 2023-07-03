@@ -75,19 +75,19 @@ import { Card, Button } from "react-bootstrap";
 import DeleteProfile from "../components/Profile/DeleteProfile";
 import { AuthContext } from "../contexts/AuthContext";
 
-const URL = `${process.env.REACT_APP_BASE_URL}authors/all`;
+const URL = `${process.env.REACT_APP_BASE_URL}users/all`;
 
 interface ProfileData {
   _id: string;
   email: string;
   username: string;
   books: string[];
-  image: File | string;
+  avatar: File | string;
 }
 
 const UserProfile: React.FC = () => {
   const [userProfile, setUserProfile] = useState<ProfileData | null>(null);
-  const { author } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const fetchURL = async () => {
     try {
@@ -104,23 +104,23 @@ const UserProfile: React.FC = () => {
     }
   };
 
-  const getAuthorProfile = async () => {
-    if (author) {
+  const getUserProfile = async () => {
+    if (user) {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}authors/id/${author._id}`
+          `${process.env.REACT_APP_BASE_URL}users/id/${user._id}`
         );
         const result = await response.json();
         setUserProfile(result);
       } catch (error) {
-        console.log("error getting author profile", error);
+        console.log("error getting user profile", error);
       }
     }
   };
 
   useEffect(() => {
-    getAuthorProfile();
-  }, [author]);
+    getUserProfile();
+  }, [user]);
 
   return (
     <div className="books-container">

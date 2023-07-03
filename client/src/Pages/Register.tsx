@@ -5,13 +5,13 @@ type Props = {};
 const Register = (props: Props) => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<SubmitAuthorRegisterData>({
+  const [formData, setFormData] = useState<SubmitUserRegisterData>({
     //  name:"",
     email: "",
     password: "",
     username: "",
     // bio:"",
-    image: "",
+    avatar: "",
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,9 +20,9 @@ const Register = (props: Props) => {
 
   const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFormData({ ...formData, image: e.target.files[0] });
+      setFormData({ ...formData, avatar: e.target.files[0] });
     } else {
-      setFormData({ ...formData, image: "" });
+      setFormData({ ...formData, avatar: "" });
     }
   };
 
@@ -35,7 +35,7 @@ const Register = (props: Props) => {
     submitData.append("username", formData.username);
     submitData.append("password", formData.password);
     // submitData.append("bio", formData.bio);
-    submitData.append("image", formData.image);
+    submitData.append("avatar", formData.avatar);
 
     navigate("/login"); // navigate to login page
 
@@ -45,7 +45,7 @@ const Register = (props: Props) => {
     };
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}authors/new`,
+        `${process.env.REACT_APP_BASE_URL}users/new`,
         requestOptions
       );
       const result = await response.json();
@@ -90,7 +90,7 @@ const Register = (props: Props) => {
           <textarea id="subject" name="subject" placeholder="Write something.." ></textarea>
       </div> */}
         <div className="input-container">
-          <input type="file" name="image" onChange={handleFile} />
+          <input type="file" name="avatar" onChange={handleFile} />
         </div>
         {/* <div className="input-container">
           <input type='file' name='avatar' onChange={handleFile} />

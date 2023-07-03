@@ -52,7 +52,7 @@ import { NavLink } from "react-router-dom";
 type Props = {};
 
 const NavBar = (props: Props) => {
-  const { author, login, logout } = useContext(AuthContext);
+  const { user, login, logout } = useContext(AuthContext);
   // console.log('author in navbar', author)
 
   const linkStyle = {
@@ -65,7 +65,7 @@ const NavBar = (props: Props) => {
   return (
     <div>
       <div className="header">
-        <h1>Welcome {author ? author.username : "guest"}</h1>
+        <h1>Welcome {user ? user.username : "guest"}</h1>
       </div>
 
       <div className="topnav">
@@ -73,7 +73,7 @@ const NavBar = (props: Props) => {
         <Link to="/books">Books</Link>
         <Link to="/addbook">Add Book</Link>
         <Link to="/register">Register</Link>
-        {!author ? (
+        {!user ? (
           <NavLink to="/login" style={linkStyle}>
             Log in
           </NavLink>

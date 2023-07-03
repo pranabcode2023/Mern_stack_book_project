@@ -6,14 +6,14 @@ interface ProfileProps {
 }
 
 const DeleteProfile: React.FC<ProfileProps> = ({ profile }) => {
-  const { _id, email, username, books, image } = profile;
+  const { _id, email, username, books, avatar } = profile;
   // console.log("profile", profile);
   const [isDeleted, setIsDeleted] = useState(false);
 
   const deleteHandler = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}authors/delete/${_id}`,
+        `${process.env.REACT_APP_BASE_URL}users/delete/${_id}`,
         {
           method: "DELETE",
         }
@@ -36,7 +36,7 @@ const DeleteProfile: React.FC<ProfileProps> = ({ profile }) => {
   return (
     <div className="bookCard">
       <div className="container">
-        <img src={profile?.image} alt="" />
+        <img src={profile?.avatar} alt="" />
         <h3>User Name: {profile?.username}</h3>
         <h3>Email: {profile?.email}</h3>
         <div className="container">
@@ -52,7 +52,7 @@ const DeleteProfile: React.FC<ProfileProps> = ({ profile }) => {
               <div>
                 <p>{book.name}</p>
                 {/* NOTE authors uploaded book section */}
-                <img src={book.image} alt="" />
+                <img src={book.avatar} alt="" />
               </div>
             );
           })}

@@ -14,8 +14,8 @@ import { Navigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 function ProtectedRoute(props: { children: any }) {
-  const { author } = useContext(AuthContext);
-  return <>{author ? props.children : <Navigate to={"/login"} />}</>;
+  const { user } = useContext(AuthContext);
+  return <>{user ? props.children : <Navigate to={"/login"} />}</>;
 }
 
 export default ProtectedRoute;

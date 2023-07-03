@@ -1,5 +1,5 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 type Props = {};
 
@@ -7,9 +7,9 @@ type BookData = {
   name: string;
   description: string;
   price: string;
-  author: string;
+  user: string;
   available: boolean;
-  image: File | string;
+  avatar: File | string;
 };
 
 const BookDetails = (props: Props) => {
@@ -17,19 +17,20 @@ const BookDetails = (props: Props) => {
   const { id } = useParams<{ id: string }>();
 
   const [formData, setFormData] = useState<BookData>({
-    name: '',
-    description: '',
-    price: '',
-    author: '',
+    name: "",
+    description: "",
+    price: "",
+    user: "",
     available: false,
-    image: '',
-
+    avatar: "",
   });
 
   useEffect(() => {
     const fetchBookDetails = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}books/all/${id}`);
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}books/all/${id}`
+        );
         const data = await response.json();
         const bookData = data.book;
         setFormData(bookData);
@@ -42,15 +43,16 @@ const BookDetails = (props: Props) => {
   }, [id]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setFormData({ ...formData, [e.target.name]: value });
   };
 
   const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFormData({ ...formData, image: e.target.files[0] });
+      setFormData({ ...formData, avatar: e.target.files[0] });
     } else {
-      setFormData({ ...formData, image: '' });
+      setFormData({ ...formData, avatar: "" });
     }
   };
 
@@ -59,28 +61,31 @@ const BookDetails = (props: Props) => {
 
     try {
       const submitData = new FormData();
-      submitData.append('name', formData.name);
-      submitData.append('description', formData.description);
-      submitData.append('price', formData.price);
-      submitData.append('author', formData.author);
-      submitData.append('available', String(formData.available));
-      submitData.append('image', formData.image);
+      submitData.append("name", formData.name);
+      submitData.append("description", formData.description);
+      submitData.append("price", formData.price);
+      submitData.append("user", formData.user);
+      submitData.append("available", String(formData.available));
+      submitData.append("avatar", formData.avatar);
 
       const requestOptions = {
-        method: 'PUT',
+        method: "PUT",
         body: submitData,
       };
 
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}books/updatebook/${id}`, requestOptions);
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}books/updatebook/${id}`,
+        requestOptions
+      );
       if (response.ok) {
-        navigate('/books');
-        alert('Book updated successfully.');
+        navigate("/books");
+        alert("Book updated successfully.");
       } else {
-        throw new Error('Failed to update the book.');
+        throw new Error("Failed to update the book.");
       }
     } catch (error) {
       console.error(error);
-      alert('Failed to update the book.');
+      alert("Failed to update the book.");
     }
   };
 
@@ -106,7 +111,7 @@ const BookDetails = (props: Props) => {
             type="text"
             id="author"
             placeholder="Author"
-            value={formData.author}
+            value={formData.user}
             onChange={handleChange}
             name="author"
           />
@@ -159,7 +164,3 @@ const BookDetails = (props: Props) => {
 };
 
 export default BookDetails;
-
-
-
-
