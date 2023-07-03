@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     books: [{ type: mongoose.Schema.Types.ObjectId, ref: "book" }],
     avatar: { type: String, required: true }
-    // image: { type: String, default: "https://res.cloudinary.com/dtdsw5fg2/image/upload/v1683544833/user_avatars/kitten-playing_xiwu5g.gif" }
+    // avatar: { type: String, default: "https://res.cloudinary.com/dtdsw5fg2/image/upload/v1683544833/user_avatars/kitten-playing_xiwu5g.gif" }
 }, { timestamps: true })
 
 

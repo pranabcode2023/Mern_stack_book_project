@@ -46,9 +46,9 @@ const AddBook = (props: Props) => {
     submitData.append("name", formData.name);
     submitData.append("description", formData.description);
     submitData.append("price", formData.price);
-    submitData.append("author", formData.user);
+    submitData.append("user", formData.user);
     submitData.append("available", String(formData.available));
-    submitData.append("image", formData.avatar);
+    submitData.append("avatar", formData.avatar);
 
     const requestOptions = {
       method: "POST",

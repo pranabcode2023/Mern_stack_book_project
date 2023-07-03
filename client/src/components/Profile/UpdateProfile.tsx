@@ -7,7 +7,7 @@ interface ProfileData {
   email: string;
   username: string;
   books: string;
-  image: File | string;
+  avatar: File | string;
 }
 
 const UpdateProfile = (props: Props) => {
@@ -18,14 +18,14 @@ const UpdateProfile = (props: Props) => {
     email: "",
     username: "",
     books: "",
-    image: "",
+    avatar: "",
   });
 
   useEffect(() => {
     const fetchProfileDetails = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}authors/all/${id}`
+          `${process.env.REACT_APP_BASE_URL}users/all/${id}`
         );
         const data = await response.json();
         const profileData: ProfileData = data.profile;
@@ -62,7 +62,7 @@ const UpdateProfile = (props: Props) => {
       submitData.append("email", formData.email);
       submitData.append("username", formData.username);
       submitData.append("books", formData.books);
-      submitData.append("image", formData.image);
+      submitData.append("avatar", formData.avatar);
 
       const requestOptions = {
         method: "PUT",
@@ -70,7 +70,7 @@ const UpdateProfile = (props: Props) => {
       };
 
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}authors/update/${id}`,
+        `${process.env.REACT_APP_BASE_URL}users/update/${id}`,
         requestOptions
       );
       if (response.ok) {

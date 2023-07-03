@@ -60,18 +60,18 @@ const updateUser = async (req, res) => {
     console.log('req.file>>>><', req.file)
     console.log('req.body>>>><', req.body)
     try {
-        const avatar = await imageUpload(req.file, "user_users");
+        const avatar = await imageUpload(req.file, "user_avatars");
         const updatedUserData = {
             ...req.body,
             avatar: avatar
         };
-        const updatedUser = await UserModelModel.findByIdAndUpdate(req.params.id, updatedUserData, { new: true });
+        const updatedUser = await UserModel.findByIdAndUpdate(req.params.id, updatedUserData, { new: true });
 
         if (!updatedUser) {
             return res.status(404).json({ message: "Unable to update by this ID" });
         }
 
-        res.status(200).json({ author: updatedUser });
+        res.status(200).json({ user: updatedUser });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Unable to update the User" });
@@ -86,7 +86,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     const id = req.params.id;
     try {
-        const deletedUser = await UserModelModel.findByIdAndRemove(id);
+        const deletedUser = await UserModel.findByIdAndRemove(id);
         if (!deletedUser) {
             return res.status(404).json({ message: "Unable to delete by this ID" });
         }

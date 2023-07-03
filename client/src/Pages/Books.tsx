@@ -14,10 +14,11 @@ interface BookData {
   avatar: File | string;
 }
 
-// interface CommentData {
-//   author: string;
-//   text: string;
-// }
+type CommentData = {
+  user: string;
+  text: string;
+  _id: string;
+};
 
 const Books: React.FC = () => {
   const [books, setBooks] = useState<BookData[]>([]);

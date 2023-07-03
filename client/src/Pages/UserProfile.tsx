@@ -86,7 +86,7 @@ interface ProfileData {
 }
 
 const UserProfile: React.FC = () => {
-  const [userProfile, setUserProfile] = useState<ProfileData | null>(null);
+  const [deleteProfile, setDeleteProfile] = useState<ProfileData | null>(null);
   const { user } = useContext(AuthContext);
 
   const fetchURL = async () => {
@@ -104,14 +104,14 @@ const UserProfile: React.FC = () => {
     }
   };
 
-  const getUserProfile = async () => {
+  const profileDelete = async () => {
     if (user) {
       try {
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}users/id/${user._id}`
         );
         const result = await response.json();
-        setUserProfile(result);
+        setDeleteProfile(result);
       } catch (error) {
         console.log("error getting user profile", error);
       }
@@ -119,20 +119,21 @@ const UserProfile: React.FC = () => {
   };
 
   useEffect(() => {
-    getUserProfile();
+    profileDelete();
   }, [user]);
 
   return (
     <div className="books-container">
-      {userProfile && (
+      {deleteProfile && (
         <Card style={{ width: "40rem" }}>
           <h1>Profile Info</h1>
           <Card.Body>
-            {/* <Button variant="primary">Edit Profile</Button> */}
-            <DeleteProfile profile={userProfile} />
-            {/* <Card.Title>{userProfile.username}</Card.Title> */}
-            {/* <Card.Text>{userProfile.email}</Card.Text> */}
-            {/* <Button variant="primary">Edit Profile</Button> */}
+            <DeleteProfile profile={deleteProfile} />
+
+            {/* <Button variant="primary">Edit Profile</Button>
+             <Card.Title>{userProfile.username}</Card.Title>
+            <Card.Text>{userProfile.email}</Card.Text>
+            <Button variant="primary">Edit Profile</Button> */}
           </Card.Body>
         </Card>
       )}
