@@ -10,6 +10,7 @@ booksRouter.get("/all/:id", getById);  //get by id
 
 //NOTE - put method for update
 booksRouter.put("/updatebook/:id", multerUpload.single("avatar"), updateBook) //update
+// booksRouter.post("/authors/addbook/:authorId", multerUpload.single("image"), addBookToUserProfile);
 booksRouter.put("/commentsbook/:id", jwtAuth, commentsBook)
 
 //NOTE - delete method
@@ -20,21 +21,7 @@ booksRouter.delete("/uncommentsbook/:id", jwtAuth, uncommentsBook)
 booksRouter.post("/addbook", multerUpload.single("avatar"), addBook);  // to add product/book
 // booksRouter.post("/users/addbook/:userId", multerUpload.single("avatar"), addBookToUserProfile);
 
-
-
-
-
-
-
-// booksRouter.put("/likes/:bookId", jwtAuth, addOrRemoveLike);
-
-// booksRouter.get("/allcomments/:bookId", jwtAuth, getAllComments);
-// booksRouter.post("/comments/:bookId", jwtAuth, createComment);
-
-// booksRouter.delete("/delete/:bookId/comments/:commentId", jwtAuth, deleteComment);
-
 export default booksRouter;
-
 
 
 

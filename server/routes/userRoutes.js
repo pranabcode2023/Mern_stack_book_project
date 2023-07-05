@@ -12,7 +12,7 @@ userRouter.get("/active", jwtAuth, getActiveUser);
 
 //NOTE - put method
 // userRouter.put("/update/:id", multerUpload.single("avatar"), updateUser)
-userRouter.put("/update/:id", multerUpload.single("avatar"), updateUser)
+userRouter.put("/updateuser/:id", multerUpload.single("avatar"), updateUser)
 
 //NOTE - delete method
 userRouter.delete("/delete/:id", deleteUser)
