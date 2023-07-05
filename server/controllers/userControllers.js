@@ -36,7 +36,7 @@ const createUser = async (req, res) => {
     if (!req.body.email || !req.body.password || !req.body.username) {
         return res.status(406).json({ error: "Please fill out all fields" })
     }
-    const avatar = await imageUpload(req.file, "user_users");
+    const avatar = await imageUpload(req.file, "user_avatars");
     const encryptedPassword = await encryptPassword(req.body.password);
     const newUser = new UserModel({
         ...req.body,
