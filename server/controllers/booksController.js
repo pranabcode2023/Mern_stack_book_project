@@ -2,15 +2,26 @@
 // import BooksModel from "../models/booksModel.js";
 // import { imageUpload } from "../utils/imageManagement.js";
 
+// // const getAllbooks = async (req, res) => {
+// //     try {
+// //         const books = await BooksModel.find();
+// //         res.status(200).json({ books });
+// //     } catch (error) {
+// //         console.log(error);
+// //         res.status(500).json({ error: "Something went wrong..." });
+// //     }
+// // };
 // const getAllbooks = async (req, res) => {
 //     try {
-//         const books = await BooksModel.find();
-//         res.status(200).json({ books });
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({ error: "Something went wrong..." });
+//         const book = await BooksModel.find().populate({ path: "owner", select: ["username", "email", "avatar"] });
+//         res.status(200).json(book);
+//     } catch (e) {
+//         res.status(500).json({ error: "something went wrong.." })
+//         console.log(e);
 //     }
-// };
+// }
+
+
 
 // const getById = async (req, res) => {
 //     const id = req.params.id;
@@ -26,23 +37,66 @@
 //     }
 // };
 
-// const addBook = async (req, res) => {
-//     console.log('req.file>>>>>>', req.file)
-//     console.log('req.body>>>>>>', req.body)
+// // const addBook = async (req, res) => {
+// //     console.log('req.file>>>>>>', req.file)
+// //     console.log('req.body>>>>>>', req.body)
 
-//     try {
-//         const image = await imageUpload(req.file, "user_books");
-//         const newBook = new BooksModel({
-//             ...req.body,
-//             image: image
-//         });
-//         const savedBook = await newBook.save();
-//         res.status(201).json({ book: savedBook });
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({ message: "Unable to add the book" });
-//     }
-// };
+// //     try {
+// //         const image = await imageUpload(req.file, "user_books");
+// //         const newBook = new BooksModel({
+// //             ...req.body,
+// //             image: image
+// //         });
+// //         const savedBook = await newBook.save();
+// //         res.status(201).json({ book: savedBook });
+// //     } catch (error) {
+// //         console.log(error);
+// //         res.status(500).json({ message: "Unable to add the book" });
+// //     }
+// // };
+
+
+// // const addBook = async (req, res) => {
+// //     const userId = req.user._id; // The jwtAuth middleware decoding the token from the Authorization-header request and attaching the user's info in the req.user object.
+
+// //     if (!req.body.name || !req.body.description || !req.body.price) {
+// //         return res.status(406).json({ error: "Please fill out all required fields" });
+// //     }
+
+// //     const avatar = await imageUpload(req.file, "user_books");
+// //     // "user_books" represent the folder, it will create a folder if not exist already.
+
+// //     const newBook = new BooksModel({
+// //         ...req.body,
+// //         avatar: avatar,
+// //         owner: userId, // Use the userId from the token
+// //         likes: [], // Initialize the likes array as empty
+// //         Comments: []
+// //     });
+
+
+
+
+//     // try {
+//     //     const createdBook = await newBook.save();
+//     //     console.log(createdBook);
+
+//     //     // Find the user by the owner field and update their books array
+//     //     const updatedUser = await UserModel.findByIdAndUpdate(
+//     //         userId,
+//     //         { $push: { books: createdBook._id } },
+//     //         { new: true, useFindAndModify: false }
+//     //     );
+
+
+
+//     //     console.log("User'books array updated successfully:", updatedUser.books);
+//     //     res.status(200).json({ msg: "book successfully created!", newBook: createdBook });
+//     // } catch (e) {
+//     //     console.log(e);
+//     //     res.status(500).json({ eroor: "Something went wrong while creating the book." });
+//     // }
+// }
 
 
 
