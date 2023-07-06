@@ -5,7 +5,8 @@ import jwtAuth from "../middlewares/jwtAuth.js";
 
 const userRouter = express.Router()
 
-//NOTE - get method
+
+
 userRouter.get("/all", getUsers);
 userRouter.get("/id/:id", getUserById);
 userRouter.get("/active", jwtAuth, getActiveUser);
@@ -15,7 +16,7 @@ userRouter.post("/new", multerUpload.single("avatar"), createUser);
 userRouter.post("/login", login);
 
 
-userRouter.put("/update/:id", multerUpload.single("avatar"), updateUser);
+userRouter.put("/update/:id", multerUpload.single("avatar"), jwtAuth, updateUser);
 
 
 userRouter.delete("/delete/:id", deleteUser);

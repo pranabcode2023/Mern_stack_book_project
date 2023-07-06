@@ -1,18 +1,27 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 type Props = {};
+
+type Avatar = string | File;
+
+interface FormData {
+  email: string;
+  password: string;
+  username: string;
+  avatar: Avatar;
+}
 
 const Register = (props: Props) => {
   const navigate = useNavigate();
-
-  const [formData, setFormData] = useState<SubmitUserRegisterData>({
-    //  name:"",
+  const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
     username: "",
-    // bio:"",
     avatar: "",
   });
+
+  const fileInput = React.useRef<HTMLInputElement>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,17 +37,14 @@ const Register = (props: Props) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    navigate("/login");
+    // console.log(formData)
     const submitData = new FormData();
-    //  submitData.append("name", formData.name);
     submitData.append("email", formData.email);
-    submitData.append("username", formData.username);
     submitData.append("password", formData.password);
-    // submitData.append("bio", formData.bio);
+    submitData.append("username", formData.username);
     submitData.append("avatar", formData.avatar);
-
-    navigate("/login"); // navigate to login page
-
+    console.log("testing registration - submitdata", submitData);
     const requestOptions = {
       method: "POST",
       body: submitData,
@@ -69,37 +75,29 @@ const Register = (props: Props) => {
             placeholder="Email"
             onChange={handleChange}
           />
-        </div>
-        <div className="input-container">
+
           <input
             type="password"
             name="password"
             placeholder="Password"
             onChange={handleChange}
           />
-        </div>
-        <div className="input-container">
+
           <input
+            type="text"
             name="username"
+            value={formData.username}
             placeholder="username"
             onChange={handleChange}
           />
-        </div>
+          <input
+            type="file"
+            ref={fileInput}
+            name="avatar"
+            onChange={handleFile}
+            accept="image/png, image/jpg, image/jpeg, image/jpeg"
+          />
 
-        {/* <div className="input-container">
-          <textarea id="subject" name="subject" placeholder="Write something.." ></textarea>
-      </div> */}
-        <div className="input-container">
-          <input type="file" name="avatar" onChange={handleFile} />
-        </div>
-        {/* <div className="input-container">
-          <input type='file' name='avatar' onChange={handleFile} />
-        </div>
-        <div className="input-container">
-          <input type='file' name='avatar' onChange={handleFile} />
-        </div> */}
-
-        <div className="button-container">
           <button type="submit">Register me!</button>
         </div>
       </form>

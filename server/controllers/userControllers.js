@@ -61,24 +61,25 @@ const createUser = async (req, res) => {
             res.status(500).json({ error: "Something went wrong with your registration" });
         }
     }
-}
-
-
-const updatePassword = async (password) => {
-    const encryptedPassword = await encryptPassword(password);
-    return encryptedPassword;
 };
 
-const updateAvatar = async (file) => {
-    const avatar = await imageUpload(file, "user_avatars");
-    return avatar;
-};
 
 
 
 const updateUser = async (req, res) => {
 
     try {
+
+        const updatePassword = async (password) => {
+            const encryptedPassword = await encryptPassword(password);
+            return encryptedPassword;
+        };
+
+        const updateAvatar = async (file) => {
+            const avatar = await imageUpload(file, "user_avatars");
+            return avatar;
+        };
+
 
         let updatedData = { ...req.body };
         // Get the user ID to be updated from the request params

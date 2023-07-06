@@ -3,7 +3,13 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 type Props = {};
-function Login({}: Props) {
+
+interface SubmitLoginData {
+  email: string;
+  password: string;
+}
+
+const Login = (props: Props) => {
   const { login } = useContext(AuthContext);
   const [formData, setFormData] = useState<SubmitLoginData>({
     email: "",
@@ -49,6 +55,6 @@ function Login({}: Props) {
       </form>
     </div>
   );
-}
+};
 
 export default Login;

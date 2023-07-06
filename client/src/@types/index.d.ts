@@ -3,24 +3,24 @@ type Avatar = string | File
 type avatar = string | File
 
 
-interface SubmitRegisterData {
-  email: string,
-  password: string,
-  username: string,
-  avatar: Avatar
-}
+// interface SubmitRegisterData {
+//   email: string,
+//   password: string,
+//   username: string,
+//   avatar: Avatar
+// }
 
-interface SubmitLoginData {
-  email: string,
-  password: string,
-}
+// interface SubmitLoginData {
+//   email: string,
+//   password: string,
+// }
 
-interface SubmitUserRegisterData{
- email: string,
-  password: string,
-  username: string,
-  avatar: Avatar
-}
+// interface SubmitUserRegisterData{
+//  email: string,
+//   password: string,
+//   username: string,
+//   avatar: Avatar
+// }
 
 interface ProfileData {
   _id: string;
