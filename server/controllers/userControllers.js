@@ -6,10 +6,10 @@ import UserModel from "../models/userModels.js";
 
 
 const getUsers = async (req, res) => {
-    console.log("getUsers called")
+    console.log('getUsers>>>>>>all', getUsers)
     try {
-        const users = await UserModel.find();
-        // console.log(authors);
+        const users = await UserModel.find().populate("books");
+        console.log(users);
         res.status(200).json(users);
     } catch (e) {
         res.status(500).json({ error: "something went wrong..." })
@@ -23,7 +23,7 @@ const getUser = async (req, res) => {
     const id = req.params.id;
     console.log(id); // will show just "blahblah"
     try {
-        const user = await UserModel.findById(id).populate({ path: "books" });
+        const user = await UserModel.findById(id).populate("books");
         res.status(200).json(user);
     } catch (error) {
         console.log(error);
@@ -32,22 +32,24 @@ const getUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-    console.log(req.body);
     if (!req.body.email || !req.body.password || !req.body.username) {
         return res.status(406).json({ error: "Please fill out all fields" })
     }
     const avatar = await imageUpload(req.file, "user_avatars");
     const encryptedPassword = await encryptPassword(req.body.password);
-    const newUser = new UserModel({
+
+    const c = new UserModel({
         ...req.body,
         password: encryptedPassword,
+        books: [],
         avatar: avatar
     });
+
     try {
         const registeredUser = await newUser.save();
         res.status(200).json({
             message: "Successfully registered!",
-            newAuthor: registeredUser
+            newUser: registeredUser
         })
     } catch (error) {
         console.log(error);
@@ -145,6 +147,8 @@ const getActiveUser = async (req, res) => {
 }
 
 export { getUsers, getUser, createUser, updateUser, deleteUser, login, getActiveUser }
+
+
 
 
 

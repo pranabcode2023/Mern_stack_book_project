@@ -6,7 +6,7 @@ dotenv.config();
 const generateToken = (existingUser) => {
     const payload = {
         sub: existingUser._id,
-
+        role: existingUser.role
     };
 
     const options = {
