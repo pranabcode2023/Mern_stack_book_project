@@ -1,25 +1,26 @@
 import React, { useContext } from "react";
-// import ProfileHistory from "../components/ProfileHistory";
-// import ProfileUpdate from "../components/ProfileUpdate";
 import { AuthContext } from "../contexts/AuthContext";
+
+import UpdateProfile from "../components/Profile/UpdateProfile";
+import DeleteProfile from "../components/Profile/DeleteProfile";
 
 type Props = {};
 
-const Profile = (props: Props) => {
+const UserProfile = (props: Props) => {
   const { loading, setLoading } = useContext(AuthContext);
 
   return (
     <div className="parent-div">
       <div className="page-container">
-        {/* <ProfileUpdate /> */}
+        <UpdateProfile />
         <hr />
-        {/* <ProfileHistory /> */}
+        <DeleteProfile />
       </div>
     </div>
   );
 };
 
-export default Profile;
+export default UserProfile;
 
 // import React, { useContext, useEffect, useState } from "react";
 // import { Card, Button } from "react-bootstrap";

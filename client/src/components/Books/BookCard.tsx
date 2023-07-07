@@ -1,5 +1,6 @@
 import { AuthContext } from "../../contexts/AuthContext";
-
+import BookCardModal from "./BookCardModal";
+import BookModalElement from "./BookModalElement";
 import React, {
   ChangeEvent,
   FormEvent,
@@ -13,6 +14,7 @@ import { MdComment } from "react-icons/md";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import { RiArrowGoBackFill } from "react-icons/ri";
+import { ModalContext } from "../../contexts/ModalContext";
 
 interface Owner {
   _id: string;
@@ -24,6 +26,7 @@ interface Owner {
 interface Comment {
   authorId: string;
   authorName: string;
+  authorImage: string;
   text: string;
   _id: string;
   createdAt: string;
@@ -35,7 +38,7 @@ interface Book {
   owner: Owner;
   image: string;
   description: string;
-  price: number;
+  price: string;
   likes: string[];
   Comments: Comment[];
   createdAt: string;
@@ -58,11 +61,19 @@ interface BookCardProps {
 
 const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
   const { user } = useContext(AuthContext);
+  const {
+    isModalOpen,
+    closeModal,
+    openModal,
+    modalContent,
+    setModalContent,
+    setModalContent2,
+  } = useContext(ModalContext);
 
   const token = localStorage.getItem("token");
   const userId = user?._id.toString();
   const [likes, setLikes] = useState(book.likes);
-
+  const [isFlipped, setIsFlipped] = useState(false);
   const [comments, setComments] = useState<Comment[]>([]);
   const [textInput, setTextInput] = useState("");
   // const [, forceUpdate] = useReducer((x) => x + 1, 0);
@@ -73,7 +84,6 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
   });
   const fileInput = React.useRef<HTMLInputElement>(null);
   const { loading, setLoading } = useContext(AuthContext);
-  const [isFlipped, setIsFlipped] = useState(false);
 
   const fetchBooks = async () => {
     const requestOptions = {
@@ -106,6 +116,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
   ) => {
     setEditFormData({ ...editFormData, [e.target.name]: e.target.value });
   };
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEditFormData({
       ...editFormData,
@@ -172,6 +183,12 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
   const handleCommentSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(textInput);
+    if (!user) {
+      setModalContent("Members only feature!");
+      openModal();
+      return;
+    }
+
     try {
       console.log("test for submit data :", textInput);
       const submitData = new URLSearchParams();
@@ -196,11 +213,16 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
       // convert the response to JSON
       const data = await response.json();
 
+      if (!response.ok) {
+        setModalContent(data.error); // set the error message as modal content
+        openModal();
+      }
+
       const newComment = data.book.Comments[data.book.Comments.length - 1];
 
       setComments([...comments, newComment]);
       setTextInput("");
-
+      toggleModal([...comments, newComment]);
       fetchBooks();
     } catch (error) {
       console.error("Failed to create a comment:", error);
@@ -230,19 +252,45 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
       const updatedComments = result.book.Comments; // this is the new book back from the server without the comment we deleted
 
       setComments(updatedComments);
+      toggleModal(updatedComments);
       fetchBooks();
     } catch (error) {
       console.error("Failed to delete comment:", error);
     }
   };
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
+  const toggleModal = async (updatedComments: any) => {
+    if (!user) {
+      setModalContent("Members only feature");
+      openModal();
+    } else {
+      setModalContent2(
+        <BookModalElement
+          user={user}
+          book={book}
+          comments={updatedComments}
+          setComments={setComments}
+          handleCommentSubmit={handleCommentSubmit}
+          handleCommentChange={handleCommentChange}
+          deleteCommentModal={deleteCommentModal}
+          textInput={textInput}
+        />
+      );
+      openModal();
+    }
+  };
+
   const addOrRemoveLike = async () => {
+    // check if user exists
+    if (!user) {
+      setModalContent("Members only feature");
+      openModal();
+      return;
+    }
     try {
       // Send a PUT request to the server with the succulent's ID
       const response = await fetch(
@@ -302,6 +350,9 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
       console.log("%call comments :>> ", "color:green", updatedComments);
 
       setComments(updatedComments);
+      toggleModal(updatedComments);
+      // toggleModal()
+      // openModal();
     } catch (error) {
       console.error("Failed to delete comment:", error);
     }
@@ -357,9 +408,9 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
                 onClick={handleDeleteBook}
               />
             )}
-            {/* {book.owner._id === userId && (
+            {book.owner._id === userId && (
               <FaEdit className="book-card-btn" onClick={handleFlip} />
-            )} */}
+            )}
           </div>
         </div>
         <div className="back">

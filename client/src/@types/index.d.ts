@@ -3,17 +3,17 @@ type Avatar = string | File
 type avatar = string | File
 
 
-// interface SubmitRegisterData {
-//   email: string,
-//   password: string,
-//   username: string,
-//   avatar: Avatar
-// }
+interface SubmitRegisterData {
+  email: string,
+  password: string,
+  username: string,
+  avatar: Avatar
+}
 
-// interface SubmitLoginData {
-//   email: string,
-//   password: string,
-// }
+interface SubmitLoginData {
+  email: string,
+  password: string,
+}
 
 // interface SubmitUserRegisterData{
 //  email: string,
@@ -31,14 +31,14 @@ interface ProfileData {
 }
 
 
-type AddBookData = {
-  name: string;
-  description: string;
-  price: string;
-  user: string;
-  available: boolean;
-  avatar: avatar;
-};
+// type AddBookData = {
+//   name: string;
+//   description: string;
+//   price: string;
+//   user: string;
+//   available: boolean;
+//   avatar: avatar;
+// };
 
 
 type BookData = {
