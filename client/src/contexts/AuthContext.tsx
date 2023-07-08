@@ -58,7 +58,7 @@ export const AuthContext = createContext<AuthContextType>(initialAuth);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  console.log("active user:", user);
+  // console.log("active user:", user);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
 

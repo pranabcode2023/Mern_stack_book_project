@@ -15,7 +15,7 @@ const bookSchema = new mongoose.Schema({
     available: { type: Boolean },
     image: { type: String, required: true },
     likes: [{ type: String }],
-    comments: [commentSchema]
+    Comments: [commentSchema]
 }, { timestamps: true });
 
 const BooksModel = mongoose.model("book", bookSchema);

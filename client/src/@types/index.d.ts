@@ -22,13 +22,13 @@ interface SubmitLoginData {
 //   avatar: Avatar
 // }
 
-interface ProfileData {
-  _id: string;
-  email: string;
-  username: string;
-  books: string[];
-  avatar: File | string;
-}
+// interface ProfileData {
+//   _id: string;
+//   email: string;
+//   username: string;
+//   books: string[];
+//   avatar: File | string;
+// }
 
 
 // type AddBookData = {
@@ -41,21 +41,21 @@ interface ProfileData {
 // };
 
 
-type BookData = {
-  _id: string;
-  name: string;
-  author: string;
-  description: string;
-  price: string;
-  available: string;
-  comments: CommentData[]; // Updated type to include CommentData interface
-  avatar: File | string;
-}
+// type BookData = {
+//   _id: string;
+//   name: string;
+//   author: string;
+//   description: string;
+//   price: string;
+//   available: string;
+//   comments: CommentData[]; // Updated type to include CommentData interface
+//   avatar: File | string;
+// }
 
 
-type CommentData = {
-  user: string;
-  text: string;
-  _id: string;
-}
+// type CommentData = {
+//   user: string;
+//   text: string;
+//   _id: string;
+// }
 
