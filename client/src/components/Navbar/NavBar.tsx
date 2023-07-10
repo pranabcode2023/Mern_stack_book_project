@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
@@ -8,19 +8,19 @@ type Props = {};
 const NavBar = (props: Props) => {
   const { user, login, logout } = useContext(AuthContext);
 
-  // const [formData, setFormData] = useState<SubmitLoginData>({
-  //   email: "",
-  //   password: "",
-  // });
+  const [formData, setFormData] = useState<SubmitLoginData>({
+    email: "",
+    password: "",
+  });
 
-  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   login(formData.email, formData.password);
-  // };
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    login(formData.email, formData.password);
+  };
 
   const useActivePath = () => {
     const location = useLocation();
@@ -40,6 +40,12 @@ const NavBar = (props: Props) => {
     <div>
       <div className="header">
         <h1>Welcome {user ? user.username : "guest"}</h1>
+
+        {user !== null ? <button onClick={logout}>Log-Out</button> : <> <form onSubmit={handleSubmit}>
+            <input type='email' name='email' placeholder='email' onChange={handleChange}/>
+            <input type='password' name='password' placeholder='password' onChange={handleChange}/>
+            <button type='submit'>Log-In</button>
+          </form></>}
       </div>
 
       <div className="topnav">
@@ -58,6 +64,7 @@ const NavBar = (props: Props) => {
         >
           Register
         </NavLink>
+       
         {!user ? (
           <NavLink to="/login" style={linkStyle}>
             Log in

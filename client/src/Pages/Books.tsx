@@ -8,9 +8,7 @@ import React, {
 import BookCard from "../components/Books/BookCard";
 import { AuthContext } from "../contexts/AuthContext";
 import { ModalContext } from "../contexts/ModalContext";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faLeaf } from "@fortawesome/free-solid-svg-icons";
-import { FiPlusSquare } from "react-icons/fi";
+import { FiPlusSquare } from "react-icons/fi"
 import { FiMinusSquare } from "react-icons/fi";
 
 type Props = {};
@@ -81,6 +79,7 @@ const Books = (props: Props) => {
   ) => {
     setEditFormData({ ...editFormData, [e.target.name]: e.target.value });
   };
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEditFormData({
       ...editFormData,
@@ -109,35 +108,42 @@ const Books = (props: Props) => {
         `${process.env.REACT_APP_BASE_URL}books/new`,
         requestOptions
       );
+
       if (!response.ok) {
         throw new Error("HTTP error " + response.status);
       }
       const result = await response.json();
       console.log(result);
 
-      // setSucculents((prevState) =>
-      //   prevState.map((succ) =>
-      //     succ._id === succulent._id ? result.updatedSucculent : succ
-      //   )
+      setBooks((prevState) =>
+        prevState.map((book) =>
+          book._id === result.updatedBook._id ? result.updatedBook : book
+        )
+      );
 
       setEditFormData({
         description: "",
         price: "",
         image: "",
       });
+
       if (fileInput.current) {
         fileInput.current.value = ""; // reset the file input
       }
+
       fetchBooks().then(() => {
         scrollToBottom();
       });
+
       setShowForm(false);
       setLoading(false);
     } catch (error) {
-      console.error("Failed to update succulent:", error);
+      console.error("Failed to update book:", error);
     }
   };
 
+  
+  
   const fetchBooks = async () => {
     const requestOptions = {
       method: "GET",
@@ -148,12 +154,17 @@ const Books = (props: Props) => {
         `${process.env.REACT_APP_BASE_URL}books/all`,
         requestOptions
       );
+
       if (!response.ok) {
         throw new Error("HTTP error " + response.status);
       }
       const result = await response.json();
-      // console.log(result);
-      setBooks(result);
+
+      if (Array.isArray(result)) {
+        setBooks(result);
+      } else {
+        console.error("Returned data is not an array:", result);
+      }
     } catch (error) {
       console.error("Failed to fetch books:", error);
     }
@@ -164,7 +175,6 @@ const Books = (props: Props) => {
   }, []);
 
   const deleteBook = async (id: string) => {
-    // check if user exists
     if (!user) {
       setModalContent("Members only feature");
       return;
@@ -187,10 +197,9 @@ const Books = (props: Props) => {
         throw new Error(data.error);
       }
 
-      // Handle the response data here
       console.log(data.msg); // Book successfully deleted!
-      setBooks(books.filter((book) => book._id !== id));
-      setModalContent(null); // Clear the modal content
+      setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
+      setModalContent(null);
     } catch (error) {
       console.error("Failed to delete succulent:", error);
     }
@@ -210,11 +219,6 @@ const Books = (props: Props) => {
     );
     setBooks(sortedBooks);
   };
-  // const sortAlphabeticallyBySpecies = () => {
-  //   setBooks(
-  //     books.slice().sort((a, b) => a.species.localeCompare(b.species))
-  //   );
-  // };
 
   const toggleFormVisibility = () => {
     if (!user) {
@@ -225,17 +229,21 @@ const Books = (props: Props) => {
     setShowForm((prevShowForm) => !prevShowForm);
   };
 
+  // function handleEditChangeApologies(
+  //   event: ChangeEvent<HTMLTextAreaElement>
+  // ): void {
+  //   throw new Error("Function not implemented.");
+  // }
+
   return (
     <>
       {loading && (
-        <>
-          <div className="spinner">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </>
+        <div className="spinner">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       )}
       <div className="filter-buttons-container">
         <button className="custom-button2" onClick={sortBooksByLikes}>
@@ -244,20 +252,12 @@ const Books = (props: Props) => {
         <button className="custom-button2" onClick={sortBooksByComments}>
           Sort by comments
         </button>
-        {/* <button
-          className="custom-button2"
-          onClick={sortAlphabeticallyBySpecies}
-        >
-          Sort alphabetically
-        </button> */}
         <button className="custom-button2" onClick={fetchBooks}>
           Default order
         </button>
       </div>
       <div>
-        <h1 className="wobble-hor-bottom succulent-page-header">
-          Click To Post
-        </h1>
+        <h1 className="wobble-hor-bottom book-page-header">Click To Post</h1>
         <span>
           {showForm ? (
             <FiMinusSquare
@@ -273,21 +273,13 @@ const Books = (props: Props) => {
         </span>
         {showForm && (
           <form className="create-book-form" onSubmit={handleEditSubmit}>
-            {/* <input
-              type="text"
-              name="species"
-              value={editFormData.species}
-              onChange={handleEditChange}
-              placeholder="Species"
-              required
-            /> */}
             <br />
             <textarea
               name="description"
               value={editFormData.description}
               onChange={handleEditChange}
               placeholder="Description 
-            (Max 120 characters)"
+              (Max 120 characters)"
               maxLength={120}
               rows={4}
               required
@@ -295,7 +287,7 @@ const Books = (props: Props) => {
             <br />
             <input
               type="text"
-              name="city"
+              name="price"
               value={editFormData.price}
               onChange={handleEditChange}
               placeholder="Price"
@@ -305,11 +297,11 @@ const Books = (props: Props) => {
             <input
               ref={fileInput}
               type="file"
-              name="img"
+              name="image"
               onChange={handleFileChange}
-              accept="image/png, image/jpg, image/jpeg"
+              accept="image/png, image/jpg, image/jpeg, image/gif"
               required
-              className="text-input-position-create-succulent"
+              className="text-input-position-create-book"
             />
             <br />
             <button className="custom-button" type="submit">

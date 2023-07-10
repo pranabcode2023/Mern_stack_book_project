@@ -72,15 +72,15 @@ function App() {
             <Route path="*" element={<ErrorPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/books" element={<Books />} />
-            <Route path="/profile" element={<UserProfile />} />
-            {/* <Route
+            {/* <Route path="/profile" element={<UserProfile />} /> */}
+            <Route
               path="/profile"
               element={
                 <ProtectedRoute>
                   <UserProfile />
                 </ProtectedRoute>
               }
-            /> */}
+            />
           </Routes>
           {isModalOpen && (
             <BookCardModal

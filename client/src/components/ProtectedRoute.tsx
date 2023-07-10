@@ -10,7 +10,7 @@
 // export default ProtectedRoute;
 
 import React, { ReactNode, useContext } from "react";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 type Props = {
@@ -19,7 +19,11 @@ type Props = {
 
 function ProtectedRoute(props: Props) {
   const { user } = useContext(AuthContext);
-  return <>{user !== null ? props.children : <Navigate to={"/login"} />}</>;
+  return <>
+  {/* {user !== null ? props.children : <Navigate to={"/login"} />} */}
+
+  {user !== null  ? props.children : <h1>This page is restricted.</h1>}
+  </>;
 }
 
 export default ProtectedRoute;

@@ -79,6 +79,8 @@ const createBook = async (req, res) => {
 
 
 
+
+
 const createComment = async (req, res) => {
     const userId = req.user._id; // The jwtAuth middleware decoding the token from the Authorization-header request and attaching the user's info in the req.user object.
     const { bookId } = req.params; // Get the book ID from the request params
@@ -179,7 +181,7 @@ const deleteBook = async (req, res) => {
 
         // Check if the user is the owner of the succulent or the user is an admin
         if (book.owner.toString() !== userId.toString() && req.user.role !== 'admin') {
-            return res.status(403).json({ error: "Keep your fingers to yourself!" });
+            return res.status(403).json({ error: "for admin!" });
         }
 
         // Delete the book

@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
@@ -13,7 +13,7 @@ interface FormData {
 }
 
 const Register = (props: Props) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
@@ -37,8 +37,8 @@ const Register = (props: Props) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/login");
-    // console.log(formData)
+    // navigate("/login");
+    console.log(formData)
     const submitData = new FormData();
     submitData.append("email", formData.email);
     submitData.append("password", formData.password);
@@ -95,7 +95,7 @@ const Register = (props: Props) => {
             ref={fileInput}
             name="avatar"
             onChange={handleFile}
-            accept="image/png, image/jpg, image/jpeg, image/jpeg"
+            accept="image/png, image/jpg, image/jpeg, image/gif"
           />
 
           <button type="submit">Register me!</button>
