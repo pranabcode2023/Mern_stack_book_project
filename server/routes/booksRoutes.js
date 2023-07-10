@@ -38,13 +38,14 @@ booksRouter.get("/allcomments/:bookId", jwtAuth, getAllComments);
 
 
 
-booksRouter.post("/new", multerUpload.single("image"), jwtAuth, createBook);
+booksRouter.post("/new",jwtAuth, multerUpload.single("image"), createBook);
+// booksRouter.post("/new", multerUpload.single("image"), createBook);
 booksRouter.post("/comments/:bookId", jwtAuth, createComment);
 
 
 
 booksRouter.put("/likes/:bookId", jwtAuth, addOrRemoveLike);
-booksRouter.put("/update/:bookId", multerUpload.single("image"), jwtAuth, updateBook);
+booksRouter.put("/update/:bookId",jwtAuth, multerUpload.single("image"),  updateBook);
 
 
 booksRouter.delete("/delete/:bookId", jwtAuth, deleteBook);

@@ -16,7 +16,44 @@ import { FaEdit } from "react-icons/fa";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { ModalContext } from "../../contexts/ModalContext";
 
-interface Owner {
+// interface UserWhoPosted {
+//   _id: string;
+//   email: string;
+//   username: string;
+//   avatar: string;
+// }
+
+// interface Comment {
+//   authorId: string;
+//   authorName: string;
+//   authorImage: string;
+//   text: string;
+//   _id: string;
+//   createdAt: string;
+//   updatedAt: string;
+// }
+
+// interface Book {
+//   _id: string;
+//   userWhoPosted: UserWhoPosted;
+//   image: string;
+//   description: string;
+//   price: string;
+//   likes: string[];
+//   Comments: Comment[];
+//   createdAt: string;
+//   updatedAt: string;
+//   __v: number;
+// }
+// type Image = string | File;
+
+// interface FormData {
+//   description: string;
+//   price: string;
+//   image: Image;
+// }
+
+interface UserWhoPosted {
   _id: string;
   email: string;
   username: string;
@@ -35,7 +72,7 @@ interface Comment {
 
 interface Book {
   _id: string;
-  owner: Owner;
+  userWhoPosted: UserWhoPosted;
   image: string;
   description: string;
   price: string;
@@ -45,12 +82,17 @@ interface Book {
   updatedAt: string;
   __v: number;
 }
+
 type Image = string | File;
 
 interface FormData {
+  bookName: string,
+  userWhoPosted: string,
   description: string;
   price: string;
+  available:string;
   image: Image;
+  
 }
 
 interface BookCardProps {
@@ -78,8 +120,11 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
   const [textInput, setTextInput] = useState("");
   // const [, forceUpdate] = useReducer((x) => x + 1, 0);
   const [editFormData, setEditFormData] = useState<FormData>({
+    bookName: "",
+    userWhoPosted: "",
     description: "",
     price: "",
+    available:"",
     image: "",
   });
   const fileInput = React.useRef<HTMLInputElement>(null);
@@ -160,8 +205,11 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
 
       setIsFlipped(false);
       setEditFormData({
+        bookName: "",
+        userWhoPosted: "",
         description: "",
         price: "",
+        available:"",
         image: "",
       });
 
@@ -377,7 +425,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
           <p className="testclass">Description: {book.description}</p>
           <p>price: {book.price}</p>
           <p>
-            Posted by: {book.owner.username}, on:{" "}
+            Posted by: {book.userWhoPosted.username}, on:{" "}
             {new Date(book.createdAt).toLocaleDateString()}{" "}
             {new Date(book.createdAt).toLocaleTimeString()}
           </p>
@@ -402,13 +450,13 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
                 onClick={addOrRemoveLike}
               />
             )}
-            {book.owner._id === userId && (
+            {book.userWhoPosted._id === userId && (
               <MdDeleteForever
                 className="book-card-btn"
                 onClick={handleDeleteBook}
               />
             )}
-            {book.owner._id === userId && (
+            {book.userWhoPosted._id === userId && (
               <FaEdit className="book-card-btn" onClick={handleFlip} />
             )}
           </div>
@@ -419,6 +467,14 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
           <RiArrowGoBackFill className="flip-back-icon" onClick={handleFlip} />
 
           <form onSubmit={handleEditSubmit}>
+          <input
+              type="text"
+              name="bookName"
+              value={editFormData.bookName}
+              onChange={handleEditChange}
+              placeholder="Book Name"
+            />
+            <br />
             <textarea
               name="description"
               value={editFormData.description}

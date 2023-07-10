@@ -3,13 +3,13 @@ const commentSchema = new mongoose.Schema({
     authorId: { type: String, required: true, },
     authorName: { type: String, required: true, },
     authorImage: { type: String, required: true, },
+    // userInfo:[{ type: mongoose.Schema.Types.ObjectId, ref: "user" }], // this option would be in case you prefer not to take the user image url from the context when creating the message.
     text: { type: String, required: true, },
 }, { timestamps: true });
 
 const bookSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    owner: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
-    owner: { type: String, required: true },
+    bookName: { type: String, required: true },
+    userWhoPosted: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
     description: { type: String, required: true },
     price: { type: Number, required: true },
     available: { type: Boolean },

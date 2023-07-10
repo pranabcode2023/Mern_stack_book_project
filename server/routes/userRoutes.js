@@ -16,10 +16,10 @@ userRouter.post("/new", multerUpload.single("avatar"), createUser);
 userRouter.post("/login", login);
 
 
-userRouter.put("/update/:id", multerUpload.single("avatar"), jwtAuth, updateUser);
+userRouter.put("/update/:id",jwtAuth, multerUpload.single("avatar"), updateUser);
 
 
-userRouter.delete("/delete/:id", deleteUser);
+userRouter.delete("/delete/:id",jwtAuth, deleteUser); //NOTE do not forget that if we use jwtAuth, we need to send the token from the client
 
 export default userRouter;
 

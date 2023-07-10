@@ -13,7 +13,7 @@ import { FiMinusSquare } from "react-icons/fi";
 
 type Props = {};
 
-interface Owner {
+interface UserWhoPosted {
   _id: string;
   email: string;
   username: string;
@@ -32,7 +32,7 @@ interface Comment {
 
 interface Book {
   _id: string;
-  owner: Owner;
+  userWhoPosted: UserWhoPosted;
   image: string;
   description: string;
   price: string;
@@ -41,14 +41,18 @@ interface Book {
   createdAt: string;
   updatedAt: string;
   __v: number;
-}
+} 
 
 type Image = string | File;
 
 interface FormData {
+  bookName: string,
+  userWhoPosted: string,
   description: string;
   price: string;
+  available:string;
   image: Image;
+  
 }
 
 const Books = (props: Props) => {
@@ -62,10 +66,13 @@ const Books = (props: Props) => {
     book.Comments.some((Comment) => Comment.authorId.toString() === userId)
   );
   const [editFormData, setEditFormData] = useState<FormData>({
+    bookName: "",
+    userWhoPosted: "",
     description: "",
     price: "",
+    available:"",
     image: "",
-  });
+ });
   const fileInput = React.useRef<HTMLInputElement>(null);
   const [showForm, setShowForm] = useState(false);
   const { loading, setLoading } = useContext(AuthContext);
@@ -91,8 +98,11 @@ const Books = (props: Props) => {
     e.preventDefault();
 
     const submitData = new FormData();
+    submitData.append("description", editFormData.bookName);
+    submitData.append("userWhoPosted", editFormData.userWhoPosted);
     submitData.append("description", editFormData.description);
     submitData.append("price", editFormData.price);
+    submitData.append("available", editFormData.available);
     submitData.append("image", editFormData.image);
 
     const requestOptions = {
@@ -122,8 +132,11 @@ const Books = (props: Props) => {
       );
 
       setEditFormData({
+        bookName: "",
+        userWhoPosted: "",
         description: "",
         price: "",
+        available:"",
         image: "",
       });
 
@@ -201,7 +214,7 @@ const Books = (props: Props) => {
       setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
       setModalContent(null);
     } catch (error) {
-      console.error("Failed to delete succulent:", error);
+      console.error("Failed to delete book:", error);
     }
   };
 
@@ -274,6 +287,16 @@ const Books = (props: Props) => {
         {showForm && (
           <form className="create-book-form" onSubmit={handleEditSubmit}>
             <br />
+            <input
+              type="text"
+              name="bookName"
+              value={editFormData.bookName}
+              onChange={handleEditChange}
+              placeholder="Book Name"
+              required
+            />
+            <br />
+
             <textarea
               name="description"
               value={editFormData.description}

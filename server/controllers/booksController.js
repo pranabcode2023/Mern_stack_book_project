@@ -1,11 +1,14 @@
 
+import mongoose from "mongoose";
 import BooksModel from "../models/booksModel.js";
 import { imageUpload } from "../utils/imageManagement.js";
 
 
 const getAllBooks = async (req, res) => {
+    
     try {
-        const books = await BooksModel.find().populate({ path: "owner", select: ["username", "email", "avatar"] })
+        const books = await BooksModel.find().populate({ path: "userWhoPosted", select: ["username", "email", "avatar"] })
+        
         res.status(200).json({ books });
     } catch (error) {
         res.status(500).json({ error: "Something went wrong..." });
@@ -35,39 +38,43 @@ const getAllComments = async (req, res) => {
 
 const createBook = async (req, res) => {
     const userId = req.user._id; // The jwtAuth middleware decoding the token from the Authorization-header request and attaching the user's info in the req.user object.
+// const userId="test"
+console.log('req.body', req.body)
+// const userWhoPostedObjectId = new mongoose.Types.ObjectId(req.body.userWhoPosted)
 
-    if (!req.body.name || !req.body.description || !req.body.price) {
+    if (!req.body.bookName || !req.body.description || !req.body.price) {
+
         return res.status(406).json({ error: "Please fill out all required fields" });
     }
 
     const image = await imageUpload(req.file, "user_books");
     // "user_books" represent the folder, it will create a folder if not exist already.
-
+console.log('image>>>>>>>>', image)
     const newBook = new BooksModel({
         ...req.body,
         image: image,
-        owner: userId, // Use the userId from the token
+        userWhoPosted:userId, //userWhoPostedObjectId, // Use the userId from the token
         likes: [], // Initialize the likes array as empty
         Comments: []
     });
 
-
+    console.log('newBook>>>>>>>>', newBook)
 
 
     try {
         const createdBook = await newBook.save();
-        console.log(createdBook);
+        console.log("newBook>>>>>>>>",createdBook);
 
         // Find the user by the owner field and update their books array
-        const updatedUser = await UserModel.findByIdAndUpdate(
-            userId,
-            { $push: { books: createdBook._id } },
-            { new: true, useFindAndModify: false }
-        );
+        // const updatedUser = await UserModel.findByIdAndUpdate(
+        //     userId,
+        //     { $push: { books: createdBook._id } },
+        //     { new: true, useFindAndModify: false }
+        // );
 
 
 
-        console.log("User'books array updated successfully:", updatedUser.books);
+        // console.log("User'books array updated successfully:", updatedUser.books);
         res.status(200).json({ msg: "book successfully created!", newBook: createdBook });
     } catch (e) {
         console.log(e);

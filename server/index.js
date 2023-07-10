@@ -23,31 +23,31 @@ const port = process.env.PORT || 5000;
 //NOTE - Middlewares & cors
 
 const setMiddlewares = () => {
-    app.use(express.json());
-    app.use(
-        express.urlencoded({
-            extended: true,
-        })
-    );
-    app.use(cors());
-    cloudinaryConfig();
-    passportConfig();
+  app.use(express.json());
+  app.use(
+    express.urlencoded({
+      extended: true,
+    })
+  );
+  app.use(cors());
+  cloudinaryConfig();
+  passportConfig();
 };
 
 //NOTE - moongoose connection
 
 const connectMongoose = () => {
-    mongoose
-        .connect(process.env.MONGO_URI)
-        .then(() => {
-            app.listen(port, () => {
-                console.log(
-                    "Connection to MongoDB established, and server is running on port " +
-                    port
-                );
-            });
-        })
-        .catch((err) => console.log(err));
+  mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => {
+      app.listen(port, () => {
+        console.log(
+          "Connection to MongoDB established, and server is running on port " +
+            port
+        );
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 // app.listen(port, () => {
@@ -57,18 +57,21 @@ const connectMongoose = () => {
 //NOTE - Endpoint
 
 const connectRoutes = () => {
-    app.use("/api/users", userRouter);
-    app.use("/api/books", booksRouter);
-    // app.use('/api/pets', petRouter);
+  app.use("/api/users", userRouter);
+  app.use("/api/books", booksRouter);
+  // app.use('/api/pets', petRouter);
 
-    app.use("*", (req, res) => {
-        res.status(500).json({ error: "Endpoint not found" });
-    });
+//   app.use("*", (req, res) => {
+//     res.status(500).json({ error: "Endpoint not found" });
+//   });
+console.log("routes loaded")
 };
 
-setMiddlewares();
-connectMongoose();
-connectRoutes();
+(async function controller() {
+  setMiddlewares();
+  connectMongoose();
+  connectRoutes();
+})() //NOTE this is an IIFE : Inmidiate Invoked Function
 
 //NOTE -  for understanding code
 

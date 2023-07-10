@@ -18,7 +18,7 @@ interface Comment {
   updatedAt: string;
 }
 
-interface Owner {
+interface UserWhoPosted {
   _id: string;
   email: string;
   username: string;
@@ -27,7 +27,7 @@ interface Owner {
 
 interface Book {
   _id: string;
-  owner: Owner;
+  userWhoPosted: UserWhoPosted;
   image: string;
   description: string;
   price: string;

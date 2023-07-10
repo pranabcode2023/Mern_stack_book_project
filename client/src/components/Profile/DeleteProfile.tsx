@@ -70,7 +70,7 @@ import { ModalContext } from "../../contexts/ModalContext";
 
 type Props = {};
 
-interface Owner {
+interface UserWhoPosted {
   _id: string;
   email: string;
   username: string;
@@ -89,7 +89,7 @@ interface Comment {
 
 interface Book {
   _id: string;
-  owner: Owner;
+  userWhoPosted: UserWhoPosted;
   image: string;
   description: string;
   price: string;
@@ -250,7 +250,7 @@ const DeleteProfile = (props: Props) => {
       <div className="history-profile-container">
         <div className="profile-succulents-container">
           {books
-            .filter((book) => book.owner._id === user?._id)
+            .filter((book) => book.userWhoPosted._id === user?._id)
             .map((book) => (
               <BookCard
                 key={book._id}

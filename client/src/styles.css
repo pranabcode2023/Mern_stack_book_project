@@ -15,7 +15,7 @@ body {
     background-color: #f1f1f1;
     padding: 20px;
     text-align: center;
-    border: 2px solid red;
+    border: 10px solid red;
 }
 
 /* Style the top navigation bar */
@@ -94,7 +94,7 @@ login/register */
     height: 80vh;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     background-color: #f8f9fd;
-    /* border: 2px solid red; */
+   
 }
 
 
