@@ -1,7 +1,7 @@
 
-import mongoose from "mongoose";
 import BooksModel from "../models/booksModel.js";
 import { imageUpload } from "../utils/imageManagement.js";
+import UserModel from "../models/userModels.js";
 
 
 const getAllBooks = async (req, res) => {
@@ -50,7 +50,9 @@ console.log('req.body', req.body)
     const image = await imageUpload(req.file, "user_books");
     // "user_books" represent the folder, it will create a folder if not exist already.
 console.log('image>>>>>>>>', image)
-    const newBook = new BooksModel({
+    
+
+   const newBook = new BooksModel({
         ...req.body,
         image: image,
         userWhoPosted:userId, //userWhoPostedObjectId, // Use the userId from the token
@@ -66,15 +68,15 @@ console.log('image>>>>>>>>', image)
         console.log("newBook>>>>>>>>",createdBook);
 
         // Find the user by the owner field and update their books array
-        // const updatedUser = await UserModel.findByIdAndUpdate(
-        //     userId,
-        //     { $push: { books: createdBook._id } },
-        //     { new: true, useFindAndModify: false }
-        // );
+        const updatedUser = await UserModel.findByIdAndUpdate(
+            userId,
+            { $push: { books: createdBook._id } },
+            { new: true, useFindAndModify: false }
+        );
 
 
 
-        // console.log("User'books array updated successfully:", updatedUser.books);
+        console.log("User'books array updated successfully:", updatedUser);
         res.status(200).json({ msg: "book successfully created!", newBook: createdBook });
     } catch (e) {
         console.log(e);

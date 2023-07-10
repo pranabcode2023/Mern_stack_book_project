@@ -47,7 +47,6 @@ type Image = string | File;
 
 interface FormData {
   bookName: string,
-  userWhoPosted: string,
   description: string;
   price: string;
   available:string;
@@ -57,17 +56,20 @@ interface FormData {
 
 const Books = (props: Props) => {
   const { user } = useContext(AuthContext);
-  const { isModalOpen, closeModal, modalContent, setModalContent, openModal } =
+  const { 
+    // isModalOpen, closeModal, modalContent, 
+    setModalContent, openModal } =
     useContext(ModalContext);
+  
   const token = localStorage.getItem("token");
   const [books, setBooks] = useState<Book[]>([]);
+  
   const userId = user?._id.toString();
   const userComments = books.filter((book) =>
-    book.Comments.some((Comment) => Comment.authorId.toString() === userId)
+    book.Comments.some((comment) => comment.authorId.toString() === userId)
   );
   const [editFormData, setEditFormData] = useState<FormData>({
     bookName: "",
-    userWhoPosted: "",
     description: "",
     price: "",
     available:"",
@@ -99,7 +101,6 @@ const Books = (props: Props) => {
 
     const submitData = new FormData();
     submitData.append("description", editFormData.bookName);
-    submitData.append("userWhoPosted", editFormData.userWhoPosted);
     submitData.append("description", editFormData.description);
     submitData.append("price", editFormData.price);
     submitData.append("available", editFormData.available);
@@ -113,11 +114,13 @@ const Books = (props: Props) => {
       body: submitData,
     };
     setLoading(true);
+    
     try {
       const response = await fetch(
         `${process.env.REACT_APP_BASE_URL}books/new`,
         requestOptions
       );
+      console.log('<response><<<<<<<<<<<<<<<<<', response)
 
       if (!response.ok) {
         throw new Error("HTTP error " + response.status);
@@ -125,15 +128,14 @@ const Books = (props: Props) => {
       const result = await response.json();
       console.log(result);
 
-      setBooks((prevState) =>
-        prevState.map((book) =>
-          book._id === result.updatedBook._id ? result.updatedBook : book
-        )
-      );
+      // setBooks((prevState) =>
+      //   prevState.map((book) =>
+      //     book._id === result.updatedBook._id ? result.updatedBook : book
+      //   )
+      // );
 
       setEditFormData({
         bookName: "",
-        userWhoPosted: "",
         description: "",
         price: "",
         available:"",
@@ -155,7 +157,9 @@ const Books = (props: Props) => {
     }
   };
 
-  
+
+    
+  //!SECTION********************************************************************************************************
   
   const fetchBooks = async () => {
     const requestOptions = {
@@ -187,6 +191,10 @@ const Books = (props: Props) => {
     fetchBooks();
   }, []);
 
+  
+  //!SECTION********************************************************************************************************
+  
+  
   const deleteBook = async (id: string) => {
     if (!user) {
       setModalContent("Members only feature");
@@ -211,7 +219,7 @@ const Books = (props: Props) => {
       }
 
       console.log(data.msg); // Book successfully deleted!
-      setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
+      setBooks(books.filter((book) => book._id !== id));
       setModalContent(null);
     } catch (error) {
       console.error("Failed to delete book:", error);

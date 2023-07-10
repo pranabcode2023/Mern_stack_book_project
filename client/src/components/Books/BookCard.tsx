@@ -104,10 +104,10 @@ interface BookCardProps {
 const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
   const { user } = useContext(AuthContext);
   const {
-    isModalOpen,
-    closeModal,
+    // isModalOpen,
+    // closeModal,
     openModal,
-    modalContent,
+    // modalContent,
     setModalContent,
     setModalContent2,
   } = useContext(ModalContext);
@@ -173,6 +173,9 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
     e.preventDefault();
 
     const submitData = new FormData();
+    if (editFormData.bookName !== "") {
+      submitData.append("bookName", editFormData.bookName);
+    }
 
     if (editFormData.description !== "") {
       submitData.append("description", editFormData.description);
