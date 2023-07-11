@@ -1,5 +1,5 @@
 import { AuthContext } from "../../contexts/AuthContext";
-import BookCardModal from "./BookCardModal";
+// import BookCardModal from "./BookCardModal";
 import BookModalElement from "./BookModalElement";
 import React, {
   ChangeEvent,
@@ -15,43 +15,6 @@ import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { ModalContext } from "../../contexts/ModalContext";
-
-// interface UserWhoPosted {
-//   _id: string;
-//   email: string;
-//   username: string;
-//   avatar: string;
-// }
-
-// interface Comment {
-//   authorId: string;
-//   authorName: string;
-//   authorImage: string;
-//   text: string;
-//   _id: string;
-//   createdAt: string;
-//   updatedAt: string;
-// }
-
-// interface Book {
-//   _id: string;
-//   userWhoPosted: UserWhoPosted;
-//   image: string;
-//   description: string;
-//   price: string;
-//   likes: string[];
-//   Comments: Comment[];
-//   createdAt: string;
-//   updatedAt: string;
-//   __v: number;
-// }
-// type Image = string | File;
-
-// interface FormData {
-//   description: string;
-//   price: string;
-//   image: Image;
-// }
 
 interface UserWhoPosted {
   _id: string;
@@ -90,7 +53,7 @@ interface FormData {
   userWhoPosted: string,
   description: string;
   price: string;
-  available:string;
+  // available:string;
   image: Image;
   
 }
@@ -124,7 +87,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
     userWhoPosted: "",
     description: "",
     price: "",
-    available:"",
+    // available:"",
     image: "",
   });
   const fileInput = React.useRef<HTMLInputElement>(null);
@@ -153,6 +116,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
 
   useEffect(() => {
     fetchBooks();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -212,7 +176,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
         userWhoPosted: "",
         description: "",
         price: "",
-        available:"",
+        // available:"",
         image: "",
       });
 
@@ -465,8 +429,8 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
           </div>
         </div>
         <div className="back">
-          {/* <p>this is the back of the Card</p> */}
-          {/* <button onClick={handleFlip}>flip back</button> */}
+          <p>this is the back of the Card</p>
+          <button onClick={handleFlip}>flip back</button>
           <RiArrowGoBackFill className="flip-back-icon" onClick={handleFlip} />
 
           <form onSubmit={handleEditSubmit}>

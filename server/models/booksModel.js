@@ -12,7 +12,7 @@ const bookSchema = new mongoose.Schema({
     userWhoPosted: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
     description: { type: String, required: true },
     price: { type: Number, required: true },
-    available: { type: Boolean },
+    // available: { type: Boolean },
     image: { type: String, required: true },
     likes: [{ type: String }],
     Comments: [commentSchema]

@@ -36,6 +36,7 @@ interface Book {
   image: string;
   description: string;
   price: string;
+  // available:true;
   likes: string[];
   Comments: Comment[];
   createdAt: string;
@@ -49,14 +50,14 @@ interface FormData {
   bookName: string,
   description: string;
   price: string;
-  available:string;
+  // available:true;
   image: Image;
   
 }
 
 const Books = (props: Props) => {
   const { user } = useContext(AuthContext);
-  console.log('user<<<<<<<<<<<<<<<', user)
+  // console.log('user<<<<<<<<<<<<<<<', user)
   const { 
     // isModalOpen, closeModal, modalContent, 
     setModalContent, openModal } =
@@ -75,7 +76,7 @@ const Books = (props: Props) => {
     bookName: "",
     description: "",
     price: "",
-    available:"",
+    // available:true,
     image: "",
  });
   const fileInput = React.useRef<HTMLInputElement>(null);
@@ -106,7 +107,7 @@ const Books = (props: Props) => {
     submitData.append("bookName", editFormData.bookName);
     submitData.append("description", editFormData.description);
     submitData.append("price", editFormData.price);
-    submitData.append("available", editFormData.available);
+    // submitData.append("available", editFormData.available);
     submitData.append("image", editFormData.image);
 
     const requestOptions = {
@@ -129,7 +130,7 @@ const Books = (props: Props) => {
       }
       const result = await response.json();
       console.log(result);
-
+  
       // setBooks((prevState) =>
       //   prevState.map((book) =>
       //     book._id === result.updatedBook._id ? result.updatedBook : book
@@ -140,7 +141,7 @@ const Books = (props: Props) => {
         bookName: "",
         description: "",
         price: "",
-        available:"",
+        // available:true,
         image: "",
       });
 
@@ -178,12 +179,16 @@ const Books = (props: Props) => {
         throw new Error("HTTP error " + response.status);
       }
       const result = await response.json();
+      
+     
+        setBooks(result.books);
 
-      if (Array.isArray(result)) {
-        setBooks(result);
-      } else {
-        console.error("Returned data is not an array:", result);
-      }
+    
+      // if (Array.isArray(result.books)) {
+      //   setBooks(result.books);
+      // } else {
+      //   console.error("Returned data is not an array:", result.books);
+      // }
     } catch (error) {
       console.error("Failed to fetch books:", error);
     }
@@ -191,9 +196,12 @@ const Books = (props: Props) => {
 
   useEffect(() => {
     fetchBooks();
-  }, [token]);
+  }, []);
 
-  
+
+
+
+
   //!SECTION********************************************************************************************************
   
   
