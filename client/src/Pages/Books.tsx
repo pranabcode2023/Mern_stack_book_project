@@ -56,6 +56,7 @@ interface FormData {
 
 const Books = (props: Props) => {
   const { user } = useContext(AuthContext);
+  console.log('user<<<<<<<<<<<<<<<', user)
   const { 
     // isModalOpen, closeModal, modalContent, 
     setModalContent, openModal } =
@@ -65,9 +66,11 @@ const Books = (props: Props) => {
   const [books, setBooks] = useState<Book[]>([]);
   
   const userId = user?._id.toString();
+  
   const userComments = books.filter((book) =>
     book.Comments.some((comment) => comment.authorId.toString() === userId)
   );
+  
   const [editFormData, setEditFormData] = useState<FormData>({
     bookName: "",
     description: "",
@@ -100,7 +103,7 @@ const Books = (props: Props) => {
     e.preventDefault();
 
     const submitData = new FormData();
-    submitData.append("description", editFormData.bookName);
+    submitData.append("bookName", editFormData.bookName);
     submitData.append("description", editFormData.description);
     submitData.append("price", editFormData.price);
     submitData.append("available", editFormData.available);
@@ -120,7 +123,6 @@ const Books = (props: Props) => {
         `${process.env.REACT_APP_BASE_URL}books/new`,
         requestOptions
       );
-      console.log('<response><<<<<<<<<<<<<<<<<', response)
 
       if (!response.ok) {
         throw new Error("HTTP error " + response.status);
@@ -189,7 +191,7 @@ const Books = (props: Props) => {
 
   useEffect(() => {
     fetchBooks();
-  }, []);
+  }, [token]);
 
   
   //!SECTION********************************************************************************************************
@@ -238,6 +240,7 @@ const Books = (props: Props) => {
     const sortedBooks = [...books].sort(
       (a, b) => b.Comments.length - a.Comments.length
     );
+    console.log("test for sorting by comments", sortedBooks);
     setBooks(sortedBooks);
   };
 

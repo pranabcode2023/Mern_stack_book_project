@@ -49,7 +49,7 @@ console.log('req.body', req.body)
 
     const image = await imageUpload(req.file, "user_books");
     // "user_books" represent the folder, it will create a folder if not exist already.
-console.log('image>>>>>>>>', image)
+    console.log('image>>>>>>>>', image)
     
 
    const newBook = new BooksModel({
@@ -67,10 +67,10 @@ console.log('image>>>>>>>>', image)
         const createdBook = await newBook.save();
         console.log("newBook>>>>>>>>",createdBook);
 
-        // Find the user by the owner field and update their books array
+        // Find the user by the userWhoPosted field and update their books array
         const updatedUser = await UserModel.findByIdAndUpdate(
             userId,
-            { $push: { books: createdBook._id } },
+            { $push: { books: createdBook._id }},
             { new: true, useFindAndModify: false }
         );
 
@@ -188,24 +188,24 @@ const deleteBook = async (req, res) => {
             return res.status(404).json({ error: "book not found" });
         }
 
-        // Check if the user is the owner of the succulent or the user is an admin
-        if (book.owner.toString() !== userId.toString() && req.user.role !== 'admin') {
+        // Check if the user is the userWhoPosted of the succulent or the user is an admin
+        if (book.userWhoPosted.toString() !== userId.toString() && req.user.role !== 'admin') {
             return res.status(403).json({ error: "for admin!" });
         }
 
         // Delete the book
         await BooksModel.findByIdAndRemove(bookId);
 
-        // Remove the book from the user's succulents array
+        // Remove the book from the user's books array
         await UserModel.updateOne(
-            { _id: book.owner },
+            { _id: book.userWhoPosted },
             { $pull: { books: bookId } }
         );
 
         res.status(200).json({ msg: "Book successfully deleted!" });
     } catch (e) {
         console.log(e);
-        res.status(500).json({ msg: "Something went wrong while deleting the succulent." });
+        res.status(500).json({ msg: "Something went wrong while deleting the book." });
     }
 };
 
@@ -260,8 +260,8 @@ const updateBook = async (req, res) => {
             return res.status(404).json({ error: "book not found" });
         }
 
-        // Check if the user is the owner of the book or an admin
-        if (book.owner.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+        // Check if the user is the userWhoPosted of the book or an admin
+        if (book.userWhoPosted.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
             return res.status(403).json({ error: "for Admin!" });
         }
 

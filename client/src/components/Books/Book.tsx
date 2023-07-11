@@ -160,8 +160,8 @@
 
 import React from "react";
 
-const Book = () => {
+const singleBook = () => {
   return <div>Book</div>;
 };
 
-export default Book;
+export default singleBook;
