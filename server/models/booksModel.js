@@ -3,6 +3,7 @@ const commentSchema = new mongoose.Schema({
     authorId: { type: String, required: true, },
     authorName: { type: String, required: true, },
     authorImage: { type: String, required: true, },
+    // authorImage: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
     // userInfo:[{ type: mongoose.Schema.Types.ObjectId, ref: "user" }], // this option would be in case you prefer not to take the user image url from the context when creating the message.
     text: { type: String, required: true, },
 }, { timestamps: true });

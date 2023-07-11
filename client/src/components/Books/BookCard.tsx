@@ -144,9 +144,11 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
     if (editFormData.description !== "") {
       submitData.append("description", editFormData.description);
     }
+    
     if (editFormData.price !== "") {
       submitData.append("price", editFormData.price);
     }
+    
     if (editFormData.image !== "") {
       submitData.append("image", editFormData.image);
     }
@@ -183,7 +185,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
       fetchBooks();
       setLoading(false);
     } catch (error) {
-      console.error("Failed to update succulent:", error);
+      console.error("Failed to update book:", error);
     }
   };
 
@@ -307,7 +309,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
       return;
     }
     try {
-      // Send a PUT request to the server with the succulent's ID
+      // Send a PUT request to the server with the book's ID
       const response = await fetch(
         `${process.env.REACT_APP_BASE_URL}books/likes/${book._id}`,
         {
@@ -342,7 +344,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
   };
   /////////////////////////////////////////////////////////////////////////////////////
   const getAllComments = async (bookId: string) => {
-    // console.log('%cbook ID',"color:blue",  booktId)
+    // console.log('%cbook ID',"color:blue",  bookId)
     const requestOptions = {
       method: "GET",
       headers: {
@@ -367,7 +369,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
       setComments(updatedComments);
       toggleModal(updatedComments);
       // toggleModal()
-      // openModal();
+      openModal();
     } catch (error) {
       console.error("Failed to delete comment:", error);
     }

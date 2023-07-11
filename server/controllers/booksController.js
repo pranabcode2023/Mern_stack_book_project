@@ -8,14 +8,12 @@ const getAllBooks = async (req, res) => {
     
     try {
         const books = await BooksModel.find().populate({ path: "userWhoPosted", select: ["username", "email", "avatar"] })
-        
         res.status(200).json({ books });
     } catch (error) {
         res.status(500).json({ error: "Something went wrong..." });
         console.log(error);
     }
 };
-
 
 
 const getAllComments = async (req, res) => {
@@ -33,7 +31,6 @@ const getAllComments = async (req, res) => {
         console.log("error showing all comments >>>>", error);
     }
 };
-
 
 
 const createBook = async (req, res) => {
@@ -86,10 +83,6 @@ console.log('req.body', req.body)
 };
 
 
-
-
-
-
 const createComment = async (req, res) => {
     const userId = req.user._id; // The jwtAuth middleware decoding the token from the Authorization-header request and attaching the user's info in the req.user object.
     const { bookId } = req.params; // Get the book ID from the request params
@@ -119,7 +112,7 @@ const createComment = async (req, res) => {
         const comment = {
             authorId: userId,
             authorName: user.username,
-            authorImage: user.avatar, // assuming the user's profile image is stored in a field named avatar
+            authorImage: user.avatar, // assuming the user's profile image is stored in a field named users_avatar
             text: commentText
         };
 
@@ -143,7 +136,7 @@ const addOrRemoveLike = async (req, res) => {
     const { bookId } = req.params; // Get the succulent ID from the request params
 
     try {
-        // Find the succulent by its ID
+        // Find the book by its ID
         const book = await BooksModel.findById(bookId);
 
         if (!book) {
@@ -285,6 +278,8 @@ export { getAllBooks, createBook, createComment, addOrRemoveLike, deleteBook, de
 
 
 
+
+
 // import BooksModel from "../models/booksModel.js";
 // import { imageUpload } from "../utils/imageManagement.js";
 
@@ -354,6 +349,10 @@ export { getAllBooks, createBook, createComment, addOrRemoveLike, deleteBook, de
 //     }
 // };
 
+
+
+
+
 // const commentsBook = async (req, res) => {
 
 //     const newComments = {
@@ -397,6 +396,9 @@ export { getAllBooks, createBook, createComment, addOrRemoveLike, deleteBook, de
 //         res.status(403).json({ message: "you can't delete someone comment" })
 //     }
 // };
+
+
+
 
 // const deleteBook = async (req, res) => {
 //     const id = req.params.id;

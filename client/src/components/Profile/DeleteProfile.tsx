@@ -263,7 +263,7 @@ const DeleteProfile = (props: Props) => {
         <hr />
         <div className="profile-comments-container">
           {userComments.length === 0 ? (
-            <p>You did not comment on any succulent, Go and hit the keyboard</p>
+            <p>You did not comment on any book, Go and hit the keyboard</p>
           ) : (
             userComments.flatMap((book) =>
               book.Comments.filter(

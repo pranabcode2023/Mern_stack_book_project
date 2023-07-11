@@ -181,14 +181,14 @@ const Books = (props: Props) => {
       const result = await response.json();
       
      
-        setBooks(result.books);
+        // setBooks(result.books);
 
     
-      // if (Array.isArray(result.books)) {
-      //   setBooks(result.books);
-      // } else {
-      //   console.error("Returned data is not an array:", result.books);
-      // }
+      if (Array.isArray(result.books)) {
+        setBooks(result.books);
+      } else {
+        console.error("Returned data is not an array:", result.books);
+      }
     } catch (error) {
       console.error("Failed to fetch books:", error);
     }
@@ -236,6 +236,7 @@ const Books = (props: Props) => {
     }
   };
 
+  
   const sortBooksByLikes = () => {
     const sortedBooks = [...books].sort(
       (a, b) => b.likes.length - a.likes.length
@@ -244,6 +245,7 @@ const Books = (props: Props) => {
     setBooks(sortedBooks);
   };
 
+  
   const sortBooksByComments = () => {
     const sortedBooks = [...books].sort(
       (a, b) => b.Comments.length - a.Comments.length
@@ -252,6 +254,7 @@ const Books = (props: Props) => {
     setBooks(sortedBooks);
   };
 
+  
   const toggleFormVisibility = () => {
     if (!user) {
       setModalContent("Members only feature");
