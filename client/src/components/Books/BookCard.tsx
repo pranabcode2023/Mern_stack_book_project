@@ -35,6 +35,7 @@ interface Comment {
 
 interface Book {
   _id: string;
+  bookName:string;
   userWhoPosted: UserWhoPosted;
   image: string;
   description: string;

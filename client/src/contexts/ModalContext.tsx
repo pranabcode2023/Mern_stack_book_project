@@ -1,4 +1,9 @@
-import React, { createContext, useState, ReactNode } from "react";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React, { 
+  createContext, 
+  // useState, 
+  ReactNode } from "react";
 
 export interface ModalContextInterface {
   isModalOpen: boolean;
@@ -20,6 +25,6 @@ export const ModalContext = createContext<ModalContextInterface>({
   setModalContent2: () => {},
 });
 
-interface ModalContextProviderProps {
-  children: ReactNode;
-}
+// interface ModalContextProviderProps {
+//   children: ReactNode;
+// }

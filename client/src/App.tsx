@@ -47,14 +47,16 @@
 
 import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Register from "./Pages/Register";
-import { Homepage } from "./Pages/Homepage";
-import { AuthContextProvider } from "./contexts/AuthContext";
-import UserProfile from "./Pages/UserProfile";
-import ProtectedRoute from "./components/ProtectedRoute";
 import NavBar from "./components/Navbar/NavBar";
-import ErrorPage from "./Pages/errorPage";
+import { Homepage } from "./Pages/Homepage";
 import Books from "./Pages/Books";
+import Register from "./Pages/Register";
+import UserProfile from "./Pages/UserProfile";
+import ErrorPage from "./Pages/errorPage";
+
+
+import { AuthContextProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 import { ModalContext } from "./contexts/ModalContext";
 import BookCardModal from "./components/Books/BookCardModal";
 

@@ -7,6 +7,7 @@ import DeleteProfile from "../components/Profile/DeleteProfile";
 type Props = {};
 
 const UserProfile = (props: Props) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { loading, setLoading } = useContext(AuthContext);
 
   return (

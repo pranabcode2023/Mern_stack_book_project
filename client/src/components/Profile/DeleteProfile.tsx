@@ -89,6 +89,7 @@ interface Comment {
 
 interface Book {
   _id: string;
+  bookName:string;
   userWhoPosted: UserWhoPosted;
   image: string;
   description: string;
@@ -102,16 +103,18 @@ interface Book {
 
 const DeleteProfile = (props: Props) => {
   const { user } = useContext(AuthContext);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isModalOpen, closeModal, modalContent, setModalContent } =
     useContext(ModalContext);
   const token = localStorage.getItem("token");
   const [books, setBooks] = useState<Book[]>([]);
   const userId = user?._id.toString();
+  
   const userComments = books.filter((book) =>
     book.Comments.some((comment) => comment.authorId.toString() === userId)
   );
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   const fetchBooks = async () => {
     const requestOptions = {
       method: "GET",
@@ -127,7 +130,7 @@ const DeleteProfile = (props: Props) => {
       }
       const result = await response.json();
       // console.log(result);
-      setBooks(result);
+      setBooks(result.books);
     } catch (error) {
       console.error("Failed to fetch books:", error);
     }
@@ -137,6 +140,7 @@ const DeleteProfile = (props: Props) => {
     fetchBooks();
   }, []);
 
+  
   const deleteComment = async (bookId: string, commentId: string) => {
     const requestOptions = {
       method: "DELETE",
@@ -245,7 +249,7 @@ const DeleteProfile = (props: Props) => {
   return (
     <div className="inner-component">
       <h1 className="profile-page-header">
-        Posts &#8674; Comments &#8674; Likes
+        {/* Posts &#8674; Comments &#8674; Likes */}
       </h1>
       <div className="history-profile-container">
         <div className="profile-succulents-container">
@@ -278,7 +282,7 @@ const DeleteProfile = (props: Props) => {
                   <div className="book-card">
                     <img
                       src={book.image}
-                      alt={book.image}
+                      alt={book.bookName}
                       style={{
                         width: "100%",
                         height: "200px",

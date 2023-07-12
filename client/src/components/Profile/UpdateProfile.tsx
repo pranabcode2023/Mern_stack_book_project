@@ -137,7 +137,6 @@
 // export default UpdateProfile;
 
 import { AuthContext } from "../../contexts/AuthContext";
-import { Form } from "react-router-dom";
 import React, { ChangeEvent, FormEvent, useState, useContext } from "react";
 
 type Props = {};
@@ -161,6 +160,7 @@ const UpdateProfile = (props: Props) => {
     username: "",
     avatar: "",
   });
+  
   const fileInput = React.useRef<HTMLInputElement>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -201,7 +201,7 @@ const UpdateProfile = (props: Props) => {
         requestOptions
       );
       const result = await response.json();
-      setUser(result);
+      setUser(result.users);
       setFormData({
         // Reset form
         email: "",
@@ -236,7 +236,7 @@ const UpdateProfile = (props: Props) => {
                 Current eamil : {user && user.email}
                 <br /> Current username : {user && user.username}
               </p>
-              <Form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 <input
                   type="email"
                   name="email"
@@ -280,13 +280,11 @@ const UpdateProfile = (props: Props) => {
                 >
                   Update
                 </button>
-              </Form>
+              </form>
             </div>
 
             <div className="profile-pic-text-div">
-              It's never too late,
-              <br />
-              To make a positive change!
+             Change your Profile
             </div>
           </div>
         </div>

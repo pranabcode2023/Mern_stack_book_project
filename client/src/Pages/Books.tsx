@@ -32,17 +32,17 @@ interface Comment {
 
 interface Book {
   _id: string;
+  bookName:string;
   userWhoPosted: UserWhoPosted;
   image: string;
   description: string;
   price: string;
-  // available:true;
   likes: string[];
   Comments: Comment[];
   createdAt: string;
   updatedAt: string;
   __v: number;
-} 
+}
 
 type Image = string | File;
 
@@ -68,6 +68,7 @@ const Books = (props: Props) => {
   
   const userId = user?._id.toString();
   
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const userComments = books.filter((book) =>
     book.Comments.some((comment) => comment.authorId.toString() === userId)
   );

@@ -27,6 +27,7 @@ interface UserWhoPosted {
 
 interface Book {
   _id: string;
+  bookName:string;
   userWhoPosted: UserWhoPosted;
   image: string;
   description: string;
@@ -98,6 +99,7 @@ const BookModalElement = ({
   useEffect(() => {
     console.log("%cuseEffectmodal", "color:lightblue", book._id);
     getModalComments(book._id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [comments.length, modalComments.length]);
   return (
     <>
