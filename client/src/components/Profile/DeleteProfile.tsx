@@ -252,7 +252,7 @@ const DeleteProfile = (props: Props) => {
         {/* Posts &#8674; Comments &#8674; Likes */}
       </h1>
       <div className="history-profile-container">
-        <div className="profile-succulents-container">
+        <div className="profile-books-container">
           {books
             .filter((book) => book.userWhoPosted._id === user?._id)
             .map((book) => (

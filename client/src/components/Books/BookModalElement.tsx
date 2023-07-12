@@ -85,7 +85,7 @@ const BookModalElement = ({
       }
       const result = await response.json();
       // console.log("%call comments :>> ", "color:green",result);
-      const updatedComments = result.succulent.Comments; // this is the new succulent back from the server without the comment we deleted
+      const updatedComments = result.book.Comments; // this is the new book back from the server without the comment we deleted
       console.log("%call comments :>> ", "color:green", updatedComments);
 
       setModalComments(updatedComments);

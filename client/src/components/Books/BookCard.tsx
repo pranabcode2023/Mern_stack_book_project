@@ -16,6 +16,20 @@ import { FaEdit } from "react-icons/fa";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { ModalContext } from "../../contexts/ModalContext";
 
+
+
+///testing dialog
+import { useRef } from "react";
+
+interface ExtendedHTMLDialogElement extends HTMLDialogElement {
+  open: boolean;
+  close: () => void;
+  showModal: () => void;
+}
+
+/// testing dialog
+
+
 interface UserWhoPosted {
   _id: string;
   email: string;
@@ -94,6 +108,46 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
   const fileInput = React.useRef<HTMLInputElement>(null);
   const { loading, setLoading } = useContext(AuthContext);
 
+  const [modalComments, setModalComments] = useState<Comment[]>([]);
+
+  ////dialog test
+  const dialogRef = useRef<ExtendedHTMLDialogElement>(null);
+  useEffect(() => {
+    const dialogElement = dialogRef.current;
+    const isModalDialogOpen = sessionStorage.getItem("isModalDialogOpen");
+
+    if (dialogElement) {
+      if (isModalDialogOpen === "true" && !dialogElement.open) {
+        dialogElement.showModal();
+      }
+    }
+
+    return () => {
+      if (dialogElement && dialogElement.open) {
+        dialogElement.close();
+      }
+    };
+  }, []);
+
+  const openModalDialog = () => {
+    const dialogElement = dialogRef.current;
+    if (dialogElement && !dialogElement.open) {
+      getModalComments(book._id);
+      dialogElement.showModal();
+      sessionStorage.setItem("isModalDialogOpen", "true");
+    }
+  };
+
+  const closeModalDialog = () => {
+    const dialogElement = dialogRef.current;
+    if (dialogElement && dialogElement.open) {
+      dialogElement.close();
+      sessionStorage.removeItem("isModalDialogOpen");
+    }
+  };
+
+  ////dialog test
+
   const fetchBooks = async () => {
     const requestOptions = {
       method: "GET",
@@ -107,9 +161,11 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
       if (!response.ok) {
         throw new Error("HTTP error " + response.status);
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const result = await response.json();
-      console.log(result);
-      fetchBooks();
+      // console.log(result);
+      // fetchBooks();
+    
     } catch (error) {
       console.error("Failed to fetch books:", error);
     }
@@ -120,7 +176,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+ 
   const handleEditChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -190,17 +246,18 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
     }
   };
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
 
   const handleCommentChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
     setTextInput(e.target.value);
   };
-  console.log(textInput);
+  
+  // console.log(textInput);
 
   const handleCommentSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(textInput);
+ 
     if (!user) {
       setModalContent("Members only feature!");
       openModal();
@@ -227,10 +284,10 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
         `${process.env.REACT_APP_BASE_URL}books/comments/${book._id}`,
         requestOptions
       );
-
+      console.log('response<<<<<<<<<<<<<<<<<', response)
       // convert the response to JSON
       const data = await response.json();
-
+      // console.log('data<<<<<<<<<<<<<<<<<', data)
       if (!response.ok) {
         setModalContent(data.error); // set the error message as modal content
         openModal();
@@ -247,7 +304,6 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
     }
   };
 
-  /////////////////////////////////////////////////////////////////////////////////////////////
 
   const deleteCommentModal = async (bookId: string, commentId: string) => {
     const requestOptions = {
@@ -344,7 +400,39 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
     }
   };
   /////////////////////////////////////////////////////////////////////////////////////
-  const getAllComments = async (bookId: string) => {
+  // const getAllComments = async (bookId: string) => {
+  //   // console.log('%cbook ID',"color:blue",  bookId)
+  //   const requestOptions = {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   };
+
+  //   try {
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_BASE_URL}books/allcomments/${bookId}`,
+  //       requestOptions
+  //     );
+  //     console.log("%call comments :>> ", "color:green", response);
+  //     if (!response.ok) {
+  //       throw new Error("HTTP error " + response.status);
+  //     }
+  //     const result = await response.json();
+  //     console.log("%call comments :>> ", "color:green", result);
+  //     const updatedComments = result.succulent.Comments; // this is the new succulent back from the server without the comment we deleted
+  //     console.log("%call comments :>> ", "color:green", updatedComments);
+
+  //     setComments(updatedComments);
+  //     toggleModal(updatedComments);
+  //     // toggleModal()
+  //     openModal();
+  //   } catch (error) {
+  //     console.error("Failed to delete comment:", error);
+  //   }
+  // };
+
+  const getModalComments = async (bookId: string) => {
     // console.log('%cbook ID',"color:blue",  bookId)
     const requestOptions = {
       method: "GET",
@@ -358,24 +446,29 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
         `${process.env.REACT_APP_BASE_URL}books/allcomments/${bookId}`,
         requestOptions
       );
-      console.log("%call comments :>> ", "color:green", response);
+      //  console.log("%call comments :>> ", "color:green",response);
       if (!response.ok) {
         throw new Error("HTTP error " + response.status);
       }
       const result = await response.json();
-      console.log("%call comments :>> ", "color:green", result);
-      const updatedComments = result.succulent.Comments; // this is the new succulent back from the server without the comment we deleted
+      // console.log("%call comments :>> ", "color:green",result);
+      const updatedComments = result.book.Comments; // this is the new book back from the server without the comment we deleted
+      
       console.log("%call comments :>> ", "color:green", updatedComments);
 
-      setComments(updatedComments);
-      toggleModal(updatedComments);
-      // toggleModal()
-      openModal();
+      setModalComments(updatedComments);
+
+      // openModal();
     } catch (error) {
       console.error("Failed to delete comment:", error);
     }
   };
-  //////////////////////////////////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    // console.log("%cuseEffectmodal", "color:lightblue", succulent._id);
+    getModalComments(book._id);
+    //eslint-disable-next-line
+  }, [comments.length, modalComments.length]);
 
   return (
     <>
@@ -391,11 +484,34 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
       )}
       <div className={`book-card-div ${isFlipped ? "flipped" : ""}`}>
         <div className="front">
-          <img src={book.image} alt={book.image} className="book-card-img" />
-          <p className="testclass">Description: {book.description}</p>
-          <p>price: {book.price}</p>
+          <img
+            src={book.image}
+            alt={book.bookName}
+            className="book-card-img"
+          />
           <p>
-            Posted by: {book.userWhoPosted.username}, on:{" "}
+            <b>
+              <i>Book Name:</i>
+            </b>{" "}
+            {book.bookName}
+          </p>
+          <p className="testclass">
+            <i>
+              <b>Description:</b>
+            </i>{" "}
+            {book.description}
+          </p>
+          <p>
+            <i>
+              <b>City: </b>
+            </i>
+            {book.price}
+          </p>
+          <p>
+            <i>
+              <b>Posted by: </b>
+            </i>
+            {book.userWhoPosted.username}, on:{" "}
             {new Date(book.createdAt).toLocaleDateString()}{" "}
             {new Date(book.createdAt).toLocaleTimeString()}
           </p>
@@ -412,8 +528,80 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
             )}
           </p>
           <div className="book-card-buttons">
+            {/* <MdComment className="book-card-btn" onClick={toggleModal} />  */}
+            {/* testing modal dialog  */}
+
+            <MdComment
+              className="succulent-card-btn"
+              onClick={openModalDialog}
+            />
+            <dialog ref={dialogRef}>
+              <button onClick={closeModalDialog}>Close</button>
+              <>
+                {user ? (
+                  <>
+                    <h3>Comments</h3>
+                    {console.log('JSX modal "comments">>> :', modalComments)}
+                    {modalComments.length > 0 ? (
+                      modalComments.map((comment) => (
+                        <div key={comment._id} className="single-comment-modal">
+                          <img
+                            src={comment.authorImage}
+                            alt="profile-img-author"
+                            className="comment-user-pic"
+                          ></img>
+                          <span>
+                            {comment.authorName}: {comment.text}
+                          </span>
+                          <p>
+                            Posted on:{" "}
+                            {new Date(comment.createdAt).toLocaleDateString()}{" "}
+                            {new Date(comment.createdAt).toLocaleTimeString()}
+                          </p>
+                          {user && comment.authorId === user._id && (
+                            <MdDeleteForever
+                              className="delete-icon-comment"
+                              onClick={() => {
+                                deleteCommentModal(book._id, comment._id);
+                                // getModalComments(book._id)
+                              }}
+                            />
+                          )}
+                        </div>
+                      ))
+                    ) : (
+                      <h4>No comments found for this post</h4>
+                      // <p>No comments found for this post</p>
+                    )}
+                    <form onSubmit={handleCommentSubmit}>
+                      <input
+                        type="text"
+                        name="comment"
+                        placeholder="write something"
+                        onChange={handleCommentChange}
+                        value={textInput}
+                      />
+                      <br />
+                      <button className="custom-button" type="submit">
+                        Submit
+                      </button>
+                    </form>
+                  </>
+                ) : (
+                  <p>You have to log in to comment</p>
+                )}
+              </>
+            </dialog>
+
+            {/* <FaRobot
+              className="book-card-btn"
+              onClick={() => getPlantCareAi(book.bookName)}
+            /> */}
             {user && likes.includes(user._id) ? (
-              <AiFillLike className="book-card-btn" onClick={addOrRemoveLike} />
+              <AiFillLike
+                className="book-card-btn"
+                onClick={addOrRemoveLike}
+              />
             ) : (
               <AiOutlineLike
                 className="book-card-btn"
@@ -432,14 +620,14 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
           </div>
         </div>
         <div className="back">
-          <p>this is the back of the Card</p>
-          <button onClick={handleFlip}>flip back</button>
+          <p>this is the back of the Card</p> 
+          <button onClick={handleFlip}>flip back</button> 
           <RiArrowGoBackFill className="flip-back-icon" onClick={handleFlip} />
 
           <form onSubmit={handleEditSubmit}>
-          <input
+            <input
               type="text"
-              name="bookName"
+              name="bookNmae"
               value={editFormData.bookName}
               onChange={handleEditChange}
               placeholder="Book Name"
@@ -457,10 +645,10 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
             <br />
             <input
               type="text"
-              name="price"
+              name="city"
               value={editFormData.price}
               onChange={handleEditChange}
-              placeholder="Price"
+              placeholder="City"
             />
             <br />
             <input
@@ -482,3 +670,4 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
 };
 
 export default BookCard;
+
