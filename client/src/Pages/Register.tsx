@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
@@ -13,7 +13,7 @@ interface FormData {
 }
 
 const Register = (props: Props) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
@@ -37,7 +37,7 @@ const Register = (props: Props) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // navigate("/login");
+    navigate("/login");
     console.log(formData)
     const submitData = new FormData();
     submitData.append("email", formData.email);

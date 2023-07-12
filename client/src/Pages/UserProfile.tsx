@@ -24,6 +24,8 @@ const UserProfile = (props: Props) => {
 export default UserProfile;
 
 
+
+
 // import React, { useContext, useEffect, useState } from "react";
 // import { Card, Button } from "react-bootstrap";
 // import DeleteProfile from "../components/Profile/DeleteProfile";

@@ -53,6 +53,7 @@ import Books from "./Pages/Books";
 import Register from "./Pages/Register";
 import UserProfile from "./Pages/UserProfile";
 import ErrorPage from "./Pages/errorPage";
+import Login from "./Pages/Login";
 
 
 import { AuthContextProvider } from "./contexts/AuthContext";
@@ -74,6 +75,7 @@ function App() {
             <Route path="*" element={<ErrorPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/books" element={<Books />} />
+            <Route path="/login" element={<Login />} />
             {/* <Route path="/profile" element={<UserProfile />} /> */}
             <Route
               path="/profile"
