@@ -46,6 +46,7 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
+  border: 10px solid red;
 }
 
 .page-container {
@@ -53,7 +54,7 @@ body {
     margin-top: 6rem;
     width: 80%;
     padding: 20px;
-    border: 1px solid #000;
+    border: 10px solid #000;
     border-radius: 10px;
     background-color: #e8f4ea;
 }
@@ -400,10 +401,11 @@ transform: scale(1.1);
   justify-content: space-around;
   row-gap: 55px;
   column-gap: 55px;
+  
 /* need to change the % on smaller screens !!!!! */
 }
 
-/* ///////////////////////////////////////// SUCCULENTS PAGE /////////////////////////////////////// */
+/* ///////////////////////////////////////// BOOK PAGE /////////////////////////////////////// */
 .wobble-hor-bottom {
   -webkit-animation: wobble-hor-bottom 5s both;
   animation: wobble-hor-bottom 5s both;
@@ -562,7 +564,7 @@ cursor: pointer;
 }
 
 .custom-button2 {
-  --color: #32CD32;
+  --color: #01d28e;
   font-family: inherit;
   display: inline-block;
   width: 12em;
@@ -700,7 +702,7 @@ align-items: center;
 .home-page-gif{
   width: 400px;
   height: 400px;
-  /* background-image: url("https://res.cloudinary.com/danq3q4qv/image/upload/v1688561682/plantgif_xxadoy.gif"); */
+  background-image: url("https://res.cloudinary.com/dtdsw5fg2/image/upload/v1689202224/user_books/izytc5yrnoxd7ae8up52.gif");
   background-size: contain ;
   background-repeat: no-repeat;
   /* border: 2px solid black; */
@@ -764,7 +766,7 @@ color: #053313;
   border-radius: 50%;
   height: 100%;
   width: 100%;
-  background-color: #9b59b6;
+  background-color: #68231e;
   /* background-image: linear-gradient(#9b59b6, #84cdfa, #5ad1cd); */
 }
 

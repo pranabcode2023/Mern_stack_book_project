@@ -81,9 +81,20 @@ import React from 'react'
 
 export const Homepage = () => {
   return (
-    <div>
-      <h1>Welcome to Book Lovers Platform </h1>
-    </div>
+
+
+<div className="home-page-container">
+<h1>Wellcome to my Websites to Sell Books</h1>
+<div className="home-page-text fadeInText">
+  <h4 style={{ fontSize: "clamp(1.1rem, 2.1vw, 1.7rem)" }}>
+    This is an app for book lovers where you can share your own
+    book and sell book online and get review from book lovers. You can
+    also add comment/favorite/likes books in your profile .hopefully 
+    you all enjoy this app.
+  </h4>
+</div>
+<div className="home-page-gif"></div>
+</div>
   )
 }
 
