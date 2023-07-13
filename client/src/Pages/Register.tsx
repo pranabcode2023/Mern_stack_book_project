@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { serverURL } from "../utilis/serverURL";
 
 type Props = {};
 
@@ -51,7 +52,9 @@ const Register = (props: Props) => {
     };
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}users/new`,
+       
+        // `${process.env.REACT_APP_BASE_URL}users/new`,
+        `${serverURL}/api/users/new`,
         requestOptions
       );
       const result = await response.json();

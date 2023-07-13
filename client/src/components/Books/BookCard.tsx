@@ -15,6 +15,7 @@ import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { ModalContext } from "../../contexts/ModalContext";
+import { serverURL } from "../../utilis/serverURL";
 
 
 
@@ -110,7 +111,8 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
 
   const [modalComments, setModalComments] = useState<Comment[]>([]);
 
-  ////dialog test
+  //NOTE - dialog for comment
+  
   const dialogRef = useRef<ExtendedHTMLDialogElement>(null);
   useEffect(() => {
     const dialogElement = dialogRef.current;
@@ -155,7 +157,8 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/all`,
+        // `${process.env.REACT_APP_BASE_URL}books/all`,
+        `${serverURL}/api/books/all`,
         requestOptions
       );
       if (!response.ok) {
@@ -220,7 +223,8 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/update/${book._id}`,
+        // `${process.env.REACT_APP_BASE_URL}books/update/${book._id}`,
+        `${serverURL}/api/books/update/${book._id}`,
         requestOptions
       );
       if (!response.ok) {
@@ -281,7 +285,8 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
 
       // send a POST request to create a new comment
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/comments/${book._id}`,
+        // `${process.env.REACT_APP_BASE_URL}books/comments/${book._id}`,
+        `${serverURL}/api/books/comments/${book._id}`,
         requestOptions
       );
       console.log('response<<<<<<<<<<<<<<<<<', response)
@@ -315,7 +320,8 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/delete/${bookId}/comments/${commentId}`,
+        // `${process.env.REACT_APP_BASE_URL}books/delete/${bookId}/comments/${commentId}`,
+        `${serverURL}/api/books/delete/${bookId}/comments/${commentId}`,
         requestOptions
       );
       if (!response.ok) {
@@ -368,7 +374,8 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
     try {
       // Send a PUT request to the server with the book's ID
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/likes/${book._id}`,
+        // `${process.env.REACT_APP_BASE_URL}books/likes/${book._id}`,
+        `${serverURL}/api/books/likes/${book._id}`,
         {
           method: "PUT",
           headers: {
@@ -399,9 +406,9 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
       console.error("Failed to delete book:", error);
     }
   };
-  /////////////////////////////////////////////////////////////////////////////////////
+ 
   // const getAllComments = async (bookId: string) => {
-  //   // console.log('%cbook ID',"color:blue",  bookId)
+    // console.log('%cbook ID',"color:blue",  bookId)
   //   const requestOptions = {
   //     method: "GET",
   //     headers: {
@@ -443,7 +450,8 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/allcomments/${bookId}`,
+        // `${process.env.REACT_APP_BASE_URL}books/allcomments/${bookId}`,
+        `${serverURL}/api/books/allcomments/${bookId}`,
         requestOptions
       );
       //  console.log("%call comments :>> ", "color:green",response);

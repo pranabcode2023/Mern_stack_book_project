@@ -67,6 +67,7 @@ import React, { useState, useContext, useEffect } from "react";
 import BookCard from "../Books/BookCard";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ModalContext } from "../../contexts/ModalContext";
+import { serverURL } from "../../utilis/serverURL";
 
 type Props = {};
 
@@ -122,7 +123,8 @@ const DeleteProfile = (props: Props) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/all`,
+        // `${process.env.REACT_APP_BASE_URL}books/all`,
+        `${serverURL}/api/books/all`,
         requestOptions
       );
       if (!response.ok) {
@@ -151,7 +153,8 @@ const DeleteProfile = (props: Props) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/delete/${bookId}/comments/${commentId}`,
+        // `${process.env.REACT_APP_BASE_URL}books/delete/${bookId}/comments/${commentId}`,
+        `${serverURL}/api/books/delete/${bookId}/comments/${commentId}`,
         requestOptions
       );
       if (!response.ok) {
@@ -189,7 +192,8 @@ const DeleteProfile = (props: Props) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/likes/${bookId}`,
+        // `${process.env.REACT_APP_BASE_URL}books/likes/${bookId}`,
+        `${serverURL}/api/books/likes/${bookId}`,
         requestOptions
       );
       if (!response.ok) {
@@ -222,7 +226,8 @@ const DeleteProfile = (props: Props) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/delete/${id}`,
+        // `${process.env.REACT_APP_BASE_URL}books/delete/${id}`,
+        `${serverURL}/api/books/delete/${id}`,
         {
           method: "DELETE",
           headers: {

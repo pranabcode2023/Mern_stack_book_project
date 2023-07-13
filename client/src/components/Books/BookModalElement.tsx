@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { MdDeleteForever } from "react-icons/md";
+import { serverURL } from "../../utilis/serverURL";
 
 interface User {
   _id: string;
@@ -76,7 +77,8 @@ const BookModalElement = ({
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/allcomments/${bookId}`,
+        // `${process.env.REACT_APP_BASE_URL}books/allcomments/${bookId}`,
+        `${serverURL}/api/books/allcomments/${bookId}`,
         requestOptions
       );
       //  console.log("%call comments :>> ", "color:green",response);

@@ -10,6 +10,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { ModalContext } from "../contexts/ModalContext";
 import { FiPlusSquare } from "react-icons/fi"
 import { FiMinusSquare } from "react-icons/fi";
+import { serverURL } from "../utilis/serverURL";
 
 type Props = {};
 
@@ -122,7 +123,8 @@ const Books = (props: Props) => {
     
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/new`,
+        // `${process.env.REACT_APP_BASE_URL}books/new`,
+        `${serverURL}/api/books/new`,
         requestOptions
       );
 
@@ -172,7 +174,8 @@ const Books = (props: Props) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/all`,
+        // `${process.env.REACT_APP_BASE_URL}books/all`,
+        `${serverURL}/api/books/all`,
         requestOptions
       );
 
@@ -214,7 +217,8 @@ const Books = (props: Props) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}books/delete/${id}`,
+        // `${process.env.REACT_APP_BASE_URL}books/delete/${id}`,
+        `${serverURL}/api/books/delete/${id}`,
         {
           method: "DELETE",
           headers: {
