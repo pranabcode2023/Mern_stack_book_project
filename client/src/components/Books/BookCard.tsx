@@ -514,6 +514,9 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
               <b>Price: </b>
             </i>
             {book.price}
+            <i>
+              <b>€: </b>
+            </i>
           </p>
           <p>
             <i>
