@@ -34,22 +34,22 @@ const setMiddlewares = () => {
 //REVIEW[epic=deploy, seq=2] once the client is deployed we can add the URL to the list of allowed Origins
 
   //REVIEW[epic=deploy, seq=3] the first origin should be the localhost port our client runs on. The second one, vercel's URL for our client
-  const allowedOrigins = [
-    "http://localhost:5174",
-    "https://mern-stack-project-vercel-client.vercel.app",
-  ];
-  const corsOptions = {
-    origin: function (origin, callback) {
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-  };
+  // const allowedOrigins = [
+  //   "http://localhost:5174",
+  //   "https://mern-stack-project-vercel-client.vercel.app",
+  // ];
+  // const corsOptions = {
+  //   origin: function (origin, callback) {
+  //     if (allowedOrigins.indexOf(origin) !== -1) {
+  //       callback(null, true);
+  //     } else {
+  //       callback(new Error("Not allowed by CORS"));
+  //     }
+  //   },
+  // };
   
-  // app.use(cors());
- app.use(cors(corsOptions));
+  app.use(cors());
+//  app.use(cors(corsOptions));
   cloudinaryConfig();
   passportConfig();
 };
