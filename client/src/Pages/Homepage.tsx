@@ -86,7 +86,7 @@ export const Homepage = () => {
 <div className="home-page-container">
   <div className="home-page-text fadeInText">
   <h1 style={{ fontSize: "clamp(2.5rem, 2vw, 1rem)" }}>
-  Wellcome to my Websites to Sell Books
+  Online platform for Self Publishing Books
   </h1>
   </div>
  

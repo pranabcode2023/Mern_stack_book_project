@@ -315,7 +315,7 @@ dialog{
   max-height: 90%;
   overflow: auto;
   width: 400px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 2px solid rgb(0, 0, 0);
 }
 

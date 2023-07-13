@@ -95,6 +95,7 @@ import { NavLink } from "react-router-dom";
 type Props = {};
 
 const NavBar = (props: Props) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { user, login, logout } = useContext(AuthContext);
   // console.log('author in navbar', author)
 

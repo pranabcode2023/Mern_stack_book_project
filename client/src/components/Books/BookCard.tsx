@@ -536,7 +536,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
               onClick={openModalDialog}
             />
             <dialog ref={dialogRef}>
-              <button onClick={closeModalDialog}>Close</button>
+              <button className="custom-button" type="submit" onClick={closeModalDialog}>Close</button>
               <>
                 {user ? (
                   <>
