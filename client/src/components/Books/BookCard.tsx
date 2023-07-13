@@ -503,7 +503,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
           </p>
           <p>
             <i>
-              <b>City: </b>
+              <b>Price: </b>
             </i>
             {book.price}
           </p>
@@ -532,7 +532,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
             {/* testing modal dialog  */}
 
             <MdComment
-              className="succulent-card-btn"
+              className="book-card-btn"
               onClick={openModalDialog}
             />
             <dialog ref={dialogRef}>
@@ -593,10 +593,6 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
               </>
             </dialog>
 
-            {/* <FaRobot
-              className="book-card-btn"
-              onClick={() => getPlantCareAi(book.bookName)}
-            /> */}
             {user && likes.includes(user._id) ? (
               <AiFillLike
                 className="book-card-btn"
@@ -620,7 +616,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
           </div>
         </div>
         <div className="back">
-          <p>this is the back of the Card</p> 
+          <p>Back to Front side</p> 
           <button onClick={handleFlip}>flip back</button> 
           <RiArrowGoBackFill className="flip-back-icon" onClick={handleFlip} />
 

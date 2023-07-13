@@ -64,25 +64,26 @@ const Register = (props: Props) => {
   };
 
   return (
-    <div className="register">
-      <form className="form" onSubmit={handleSubmit}>
+    <div className="register-page-container">
+      <form className="register-page-form"  onSubmit={handleSubmit}>
         <div className="title">Register</div>
 
-        <div className="input-container">
+        {/* <div className="input-container"> */}
           <input
-            type="email"
+            type="text"
             name="email"
+            value={formData.email}
             placeholder="Email"
             onChange={handleChange}
           />
 
           <input
-            type="password"
+            type="text"
             name="password"
+            value={formData.password}
             placeholder="Password"
             onChange={handleChange}
           />
-
           <input
             type="text"
             name="username"
@@ -99,8 +100,9 @@ const Register = (props: Props) => {
           />
 
           <button type="submit">Register me!</button>
-        </div>
+        {/* </div> */}
       </form>
+      {/* <div className="register-div-gif"></div> */}
     </div>
   );
 };

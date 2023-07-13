@@ -84,12 +84,17 @@ export const Homepage = () => {
 
 
 <div className="home-page-container">
-<h1>Wellcome to my Websites to Sell Books</h1>
+  <div className="home-page-text fadeInText">
+  <h1 style={{ fontSize: "clamp(2.5rem, 2vw, 1rem)" }}>
+  Wellcome to my Websites to Sell Books
+  </h1>
+  </div>
+ 
 <div className="home-page-text fadeInText">
-  <h4 style={{ fontSize: "clamp(1.1rem, 2.1vw, 1.7rem)" }}>
+  <h4 style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)" }}>
     This is an app for book lovers where you can share your own
     book and sell book online and get review from book lovers. You can
-    also add comment/favorite/likes books in your profile .hopefully 
+    also add comment/favorite/likes books in your profile. Hopefully 
     you all enjoy this app.
   </h4>
 </div>

@@ -28,30 +28,27 @@ const Login = (props: Props) => {
   };
 
   return (
-    <div className="login">
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="title">Login</div>
-        <div className="input-container">
-          <label>Username </label>
+    <div className="login-page-container">
+      <form className="login-page-form" onSubmit={handleSubmit}>
+        
+      <div className="title">Login</div>
           <input
-            type="email"
+            type="text"
             name="email"
             placeholder="email"
             onChange={handleChange}
           />
-        </div>
-        <div className="input-container">
-          <label>Password </label>
+     
           <input
-            type="password"
+            type="text"
             name="password"
             placeholder="password"
             onChange={handleChange}
           />
-        </div>
-        <div className="button-container">
+      
+       
           <button type="submit">Login</button>
-        </div>
+        
       </form>
     </div>
   );

@@ -176,7 +176,7 @@ const DeleteProfile = (props: Props) => {
     }
   };
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
   const dislikeBook = async (bookId: string) => {
     const myHeaders = new Headers();
@@ -266,8 +266,9 @@ const DeleteProfile = (props: Props) => {
         </div>
         <hr />
         <div className="profile-comments-container">
+          {/* <h2>Comments</h2> */}
           {userComments.length === 0 ? (
-            <p>You did not comment on any book, Go and hit the keyboard</p>
+            <p>Comments.......</p>
           ) : (
             userComments.flatMap((book) =>
               book.Comments.filter(
@@ -298,11 +299,13 @@ const DeleteProfile = (props: Props) => {
                       {comment.text}
                     </p>
                     <p>{new Date(comment.createdAt).toLocaleString()}</p>
-                    <button
-                      onClick={() => deleteComment(book._id, comment._id)}
+                    
+                    {/* <button 
+                    type="submit" 
+                    onClick={() => deleteComment(book._id, comment._id)}
                     >
                       Delete Comment
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               ))
@@ -311,9 +314,10 @@ const DeleteProfile = (props: Props) => {
         </div>
         <hr />
         <div className="profile-likes-container">
+          {/* <h2>Liked Books</h2> */}
           {books.filter((book) => userId && book.likes.includes(userId))
             .length === 0 ? (
-            <p>You did not like anything yet, go an hit the like button</p>
+            <p>likes.......</p>
           ) : (
             books
               .filter((book) => userId && book.likes.includes(userId))

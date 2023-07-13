@@ -42,29 +42,30 @@ body {
 }
 
 
+/***************************************************    Profile   ********************************************************/
+.page-container {
+  margin: 2rem 2rem;
+  margin-top: 6rem;
+  width: 80%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #e8f4ea;
+  /* border: 10px solid #000; */
+}
+
+
+.inner-component{
+width: 100%;
+}
+
 .parent-div {
   display: flex;
   justify-content: center;
   width: 100%;
-  border: 10px solid red;
-}
-
-.page-container {
-    margin: 2rem 2rem;
-    margin-top: 6rem;
-    width: 80%;
-    padding: 20px;
-    border: 10px solid #000;
-    border-radius: 10px;
-    background-color: #e8f4ea;
-}
-.inner-component{
-  width: 100%;
+  /* border: 10px solid red; */
 }
 
 
-
-/***************************************************    Profile   ********************************************************/
 .profile-pic{
   width: 300px;
   height:305px ;
@@ -72,6 +73,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   margin-bottom: 1rem;
+  border-radius: 10px;
 }
 
 
@@ -80,6 +82,7 @@ body {
  background-color: white;
  padding-bottom: 0%;
  line-height: 0.7;
+ border-radius: 10px;
 }
 
 .profile-edit-frame {
@@ -87,9 +90,10 @@ body {
   background-color: white;
   /* border-bottom: 80px solid white; */
   display: inline-block;
-  width: 332px;
-  padding-bottom: 0rem;
-  border-top: 5px;
+  width: 350px;
+  padding-bottom: 5rem;
+  border-radius: 10px;
+  
 }
 .profile-pic-text{
   font-family:'Gloria Hallelujah',
@@ -107,8 +111,10 @@ body {
   font-size: 1.3rem;
 }
 .semi-img-edit-profile{
-background-color: lightseagreen;
-height: 305px;
+/* background-color: rgb(130, 161, 134); */
+border-radius: 10px;
+background-color: rgb(142, 193, 184);
+height: 350px;
 }
 .semi-img-edit-profile p{
   padding-top: 1.5rem;
@@ -210,9 +216,13 @@ height: 305px;
   background-color: #d2e7d6;
   border-radius: 8px;
 }
+
+
 .book-card-div.flipped {
   transform: rotateY(180deg);
 }
+
+
 .front,
 .back {
   position: absolute;
@@ -296,6 +306,8 @@ margin-bottom: 0.5rem;
   overflow: auto;
   width: 400px;   
 }
+
+
 dialog{
   padding: 1em;
   padding-top: 4rem;
@@ -404,8 +416,11 @@ transform: scale(1.1);
   
 /* need to change the % on smaller screens !!!!! */
 }
+                                                   
 
-/* ///////////////////////////////////////// BOOK PAGE /////////////////////////////////////// */
+/***************************************    book page   ******************************************/
+
+
 .wobble-hor-bottom {
   -webkit-animation: wobble-hor-bottom 5s both;
   animation: wobble-hor-bottom 5s both;
@@ -616,6 +631,30 @@ color: #053313;
 text-decoration: underline;
 }
 
+.login-page-container{
+  margin: 6rem auto;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 50%;
+  padding: 1rem;
+  background-color: #CFFDE1;
+  /* background-color: red; */
+}
+
+.login-page-form{
+  margin: 0 auto;
+  border: 2px solid black;
+  border-bottom: none;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  background-color: white;
+  }
+  
+
+
+
 
 .register-page-header{
   font-weight: 800;
@@ -634,6 +673,8 @@ text-decoration: underline;
   background-color: #CFFDE1;
   /* background-color: red; */
 }
+
+
 
 @media (max-width: 1050px) {
   .register-page-container {
@@ -678,7 +719,8 @@ background-color: white;
   border-top: none;
   margin: 0 auto;
   margin-bottom: 2rem;
-  /* background-image: url("https://res.cloudinary.com/danq3q4qv/image/upload/v1688561744/giphy_lzyjdt.gif"); */
+  /* background-image: 
+  url("https://res.cloudinary.com/dtdsw5fg2/image/upload/v1689202224/user_books/izytc5yrnoxd7ae8up52.gif"); */
   background-size: cover;
 }
 .register-container-test{
@@ -702,7 +744,8 @@ align-items: center;
 .home-page-gif{
   width: 400px;
   height: 400px;
-  background-image: url("https://res.cloudinary.com/dtdsw5fg2/image/upload/v1689202224/user_books/izytc5yrnoxd7ae8up52.gif");
+  background-image: 
+  url("https://res.cloudinary.com/dtdsw5fg2/image/upload/v1689202224/user_books/izytc5yrnoxd7ae8up52.gif");
   background-size: contain ;
   background-repeat: no-repeat;
   /* border: 2px solid black; */

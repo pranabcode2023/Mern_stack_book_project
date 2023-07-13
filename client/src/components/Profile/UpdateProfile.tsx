@@ -233,7 +233,7 @@ const UpdateProfile = (props: Props) => {
           <div className="profile-edit">
             <div className="semi-img-edit-profile">
               <p>
-                Current eamil : {user && user.email}
+                Current E-mail : {user && user.email}
                 <br /> Current username : {user && user.username}
               </p>
               <form onSubmit={handleSubmit}>
@@ -246,7 +246,7 @@ const UpdateProfile = (props: Props) => {
                   className="input-text-area"
                   id="email-input-profile-page"
                 />
-                <br />
+            
                 <input
                   type="password"
                   name="password"
@@ -255,7 +255,7 @@ const UpdateProfile = (props: Props) => {
                   onChange={handleChange}
                   className="input-text-area"
                 />
-                <br />
+  
                 <input
                   type="text"
                   name="username"
@@ -263,7 +263,7 @@ const UpdateProfile = (props: Props) => {
                   placeholder="username"
                   onChange={handleChange}
                 />
-                <br />
+              
                 <input
                   ref={fileInput}
                   type="file"
@@ -272,7 +272,7 @@ const UpdateProfile = (props: Props) => {
                   accept="image/png, image/jpg, image/jpeg"
                   className="text-input-position"
                 />
-                <br />
+                
                 <button
                   id="submit-btn-profile-page"
                   className="custom-button"
@@ -281,11 +281,12 @@ const UpdateProfile = (props: Props) => {
                   Update
                 </button>
               </form>
-            </div>
-
-            <div className="profile-pic-text-div">
+              <div className="profile-pic-text-div">
              Change your Profile
             </div>
+            </div>
+
+            
           </div>
         </div>
       </div>
