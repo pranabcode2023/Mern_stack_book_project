@@ -38,17 +38,17 @@ const setMiddlewares = () => {
     "https://mern-stack-project-vercel-client.vercel.app",
   ];
   
-  const corsOptions = {
-    origin: function (origin, callback) {
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-  };
-  // app.use(cors());
-  app.use(cors(corsOptions));
+  // const corsOptions = {
+  //   origin: function (origin, callback) {
+  //     if (allowedOrigins.indexOf(origin) !== -1) {
+  //       callback(null, true);
+  //     } else {
+  //       callback(new Error("Not allowed by CORS"));
+  //     }
+  //   },
+  // };
+  app.use(cors());
+  // app.use(cors(corsOptions));
   cloudinaryConfig();
   
   cloudinaryConfig();
