@@ -72,7 +72,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const urlencoded = new URLSearchParams();
     urlencoded.append("email", email);
     urlencoded.append("password", password);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
@@ -82,8 +81,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       const response = await fetch(
        
         // `${process.env.REACT_APP_BASE_URL}users/login`,
-        `$ ${serverURL}/api/users/login`,
-        //  requestOptions
+        `${serverURL}/api/users/login`,
+         requestOptions
       );
       console.log(response);
 
