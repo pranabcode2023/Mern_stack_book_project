@@ -490,6 +490,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
           </div>
         </>
       )}
+   
       <div className={`book-card-div ${isFlipped ? "flipped" : ""}`}>
         <div className="front">
           <img
@@ -515,7 +516,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
             </i>
             {book.price}
             <i>
-              <b>€: </b>
+              <b> €</b>
             </i>
           </p>
           <p>
@@ -672,7 +673,9 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
           </form>
         </div>
       </div>
+      
     </>
+    
   );
 };
 
