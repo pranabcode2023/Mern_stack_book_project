@@ -202,13 +202,17 @@ height: 350px;
 /***************************************    book card    ******************************************/
 
 .book-card-div {
-  border: 2px solid rgb(0, 0, 0);
+  /* border: 2px solid rgb(0, 0, 0); */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   width: 300px;
-  height: 690px;
-  padding: 2rem;
+  height: 590px;
+  /* padding: 2rem; */
   transition: transform 0.6s;
   transform-style: preserve-3d;
+
+  margin: auto;
+  text-align: center;
 }
 
 .book-card-div:hover{
@@ -250,12 +254,18 @@ height: 350px;
   border-radius: 10px;
 }
 .front{
-display: flex;
+/* display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: space-between;
   border-radius: 10px;
-  background-color:#d2e7d6;
+  background-color:#d2e7d6; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+
 }
 
 .book-card-buttons{
@@ -405,12 +415,13 @@ transform: scale(1.1);
 }
 
 .books-page-container{
+  display: flex;
+  flex-wrap: wrap;
   width: 80%;
   margin: 1.5rem auto;
   margin-bottom: 4rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   row-gap: 55px;
   column-gap: 55px;
   
