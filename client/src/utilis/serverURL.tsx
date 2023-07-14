@@ -5,12 +5,12 @@
 //NOTE for apps created with CRA, the env variable will be process.env.NODE_ENV
 const serverURL =
 process.env.NODE_ENV=== "development"
-    ? "http://localhost:5000"
-    : "https://mern-stack-project-vercel-server.vercel.app";
+    // ? "http://localhost:5000"
+    // : "https://mern-stack-project-vercel-server.vercel.app";
     
 
-    // ? `${process.env.REACT_APP_LOCALHOST_SERVER}`
-    // : `${process.env.REACT_APP_VERCEL_SERVER}`;
+    ? `${process.env.REACT_APP_LOCALHOST_SERVER}`
+    : `${process.env.REACT_APP_VERCEL_SERVER}`;
     
 
 export { serverURL };
