@@ -36,7 +36,7 @@ const setMiddlewares = () => {
   //REVIEW[epic=deploy, seq=3] the first origin should be the localhost port our client runs on. The second one, vercel's URL for our client
   // console.log('LOCALHOST_CLIENT', process.env.LOCALHOST_CLIENT)
   const allowedOrigins = [
-    "http://localhost:3000",
+    "http://localhost:3001",
     "https://mern-stack-project-vercel-client.vercel.app",
 
     // //NOTE - url put into env file
