@@ -40,8 +40,8 @@ const setMiddlewares = () => {
     // "https://mern-stack-project-vercel-client.vercel.app",
 
     //NOTE - url put into env file
-      `${process.env.LOCALHOST_CLIENT}`,
-      `${process.env.VERCEL_CLIENT}`,
+      process.env.LOCALHOST_CLIENT,
+      process.env.VERCEL_CLIENT,
    
   ];
   const corsOptions = {
