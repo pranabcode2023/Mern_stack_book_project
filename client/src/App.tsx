@@ -65,6 +65,9 @@ function App() {
   const { isModalOpen, closeModal, modalContent, modalContent2 } =
     useContext(ModalContext);
 
+    // console.log(process.env.REACT_APP_VERCEL_SERVER)
+    // console.log(process.env.REACT_APP_BASE_URL)
+
   return (
     <div className="app-container" style={{ width: "100%" }}>
       <AuthContextProvider>

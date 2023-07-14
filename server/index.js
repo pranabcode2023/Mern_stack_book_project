@@ -34,14 +34,15 @@ const setMiddlewares = () => {
 //REVIEW[epic=deploy, seq=2] once the client is deployed we can add the URL to the list of allowed Origins
 
   //REVIEW[epic=deploy, seq=3] the first origin should be the localhost port our client runs on. The second one, vercel's URL for our client
-  
+  // console.log('LOCALHOST_CLIENT', process.env.LOCALHOST_CLIENT)
   const allowedOrigins = [
-    "http://localhost:3000",
-    "https://mern-stack-project-vercel-client.vercel.app",
+    // "http://localhost:3000",
+    // "https://mern-stack-project-vercel-client.vercel.app",
 
-    // //NOTE - url put into env file
-    //   `${LOCALHOST_CLIENT}`,
-    //   `${VERCEL_CLIENT}`,
+    //NOTE - url put into env file
+      `${process.env.LOCALHOST_CLIENT}`,
+      `${process.env.VERCEL_CLIENT}`,
+   
   ];
   const corsOptions = {
     origin: function (origin, callback) {
