@@ -49,7 +49,7 @@ body {
   width: 80%;
   padding: 20px;
   border-radius: 10px;
-  background-color: #e8f4ea;
+  background-color: whitesmoke;
   /* border: 10px solid #000; */
 }
 
@@ -113,7 +113,7 @@ width: 100%;
 .semi-img-edit-profile{
 /* background-color: rgb(130, 161, 134); */
 border-radius: 10px;
-background-color: rgb(142, 193, 184);
+background-color: #d2cbc1;
 height: 350px;
 }
 .semi-img-edit-profile p{
@@ -417,13 +417,16 @@ transform: scale(1.1);
 .books-page-container{
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
-  margin: 1.5rem auto;
-  margin-bottom: 4rem;
+  width: 90%;
+  margin:auto auto;
+  margin-bottom: 2rem;
   justify-content: center;
   align-items: center;
   row-gap: 55px;
   column-gap: 55px;
+  padding: 2rem;
+  background-color: whitesmoke;
+  border-radius: 10px;
   
 /* need to change the % on smaller screens !!!!! */
 }
@@ -549,7 +552,7 @@ textarea, .input-text-area {
   padding: 0.2em 0.7em;
   border: transparent;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-  background: rgb(110, 171, 110);
+  background: #1a4646;
   color: white;
   border-radius: 4px;
 }
@@ -562,14 +565,14 @@ textarea, .input-text-area {
   transform: translate(0em, 0.2em);
 }
 .book-page-header{
-color: #053313;
+color: #1a4646;
 font-weight:bold;
 margin-top: 2rem;
 }
 .create-post-icon{
 width: 4rem;
 height: 4rem;
-color: #053313;
+color: #1a4646;
 cursor: pointer;
 margin-bottom: 2rem;
 }
@@ -577,9 +580,9 @@ margin-bottom: 2rem;
 .flip-back-icon {
 width: 3rem;
 height: 3rem;
-color: #053313;
+color: #1a4646;
 margin: 1.5rem auto;
-border: 2px solid #053313;
+border: 2px solid #1a4646;
 border-radius: 50%;
 padding: 0.5rem 0.5rem;
 cursor: pointer;
@@ -590,7 +593,7 @@ cursor: pointer;
 }
 
 .custom-button2 {
-  --color: #01d28e;
+  --color: #1a4646;
   font-family: inherit;
   display: inline-block;
   width: 12em;
@@ -648,7 +651,7 @@ text-decoration: underline;
   border-radius: 10px;
   width: 50%;
   padding: 1rem;
-  background-color: #CFFDE1;
+  background-color:#1a4646;
   /* background-color: red; */
 }
 
@@ -681,7 +684,7 @@ text-decoration: underline;
   border-radius: 10px;
   width: 50%;
   padding: 1rem;
-  background-color: #CFFDE1;
+  background-color: #1a4646;
   /* background-color: red; */
 }
 
