@@ -28,10 +28,8 @@ const port = process.env.PORT || 5000;
   // console.log('LOCALHOST_CLIENT', process.env.LOCALHOST_CLIENT)
 
 const allowedOrigins = [
-  // "http://localhost:3000",
-  // "https://mern-stack-project-vercel-client.vercel.app",
-
-  //NOTE - url put into env file
+  
+//NOTE - url put into env file
     process.env.LOCALHOST_CLIENT,
     process.env.VERCEL_CLIENT,
  
@@ -101,22 +99,6 @@ const connectRoutes = () => {
 console.log("routes loaded")
 };
 
-
-
-// const connectServer = () => {
-//   app.listen(port, () => {
-//   console.log("Server is running on port ", port);
-//     });
-//   } 
-  
-//   async function controller() {
-//   setMiddlewares();
-//   await connectMongoose();
-//     connectRoutes();
-//     connectServer();  
-//   }
-  
-//   controller()
 
 (async function controller() {
   setMiddlewares();
