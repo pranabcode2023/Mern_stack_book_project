@@ -462,7 +462,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
       // console.log("%call comments :>> ", "color:green",result);
       const updatedComments = result.book.Comments; // this is the new book back from the server without the comment we deleted
       
-      console.log("%call comments :>> ", "color:green", updatedComments);
+      // console.log("%call comments :>> ", "color:green", updatedComments);
 
       setModalComments(updatedComments);
 
@@ -553,7 +553,7 @@ const BookCard = ({ book, deleteBook, setBooks }: BookCardProps) => {
                 {user ? (
                   <>
                     <h3>Comments</h3>
-                    {console.log('JSX modal "comments">>> :', modalComments)}
+                    {/* {console.log('JSX modal "comments">>> :', modalComments)} */}
                     {modalComments.length > 0 ? (
                       modalComments.map((comment) => (
                         <div key={comment._id} className="single-comment-modal">
