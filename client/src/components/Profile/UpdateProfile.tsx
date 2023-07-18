@@ -287,9 +287,7 @@ const UpdateProfile = (props: Props) => {
              Change your Profile
             </div>
             </div>
-
-            
-          </div>
+         </div>
         </div>
       </div>
     </div>
