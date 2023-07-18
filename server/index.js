@@ -27,12 +27,11 @@ const port = process.env.PORT || 5000;
   //REVIEW[epic=deploy, seq=3] the first origin should be the localhost port our client runs on. The second one, vercel's URL for our client
   // console.log('LOCALHOST_CLIENT', process.env.LOCALHOST_CLIENT)
 
+
 const allowedOrigins = [
-  
 //NOTE - url put into env file
     process.env.LOCALHOST_CLIENT,
     process.env.VERCEL_CLIENT,
- 
 ];
 
 
@@ -86,6 +85,7 @@ const connectMongoose = () => {
 //     console.log("Server is running on port" + port);
 // });
 
+
 //NOTE - Endpoint
 
 const connectRoutes = () => {
@@ -123,6 +123,7 @@ console.log("routes loaded")
 // app.post('/test', (req, res) => {
 // res.send({ message: 'Hello World!', array: [1, 2, 3, 4, 5, 6] })
 // });
+
 
 //NOTE - understanding (req, res, next)
 
