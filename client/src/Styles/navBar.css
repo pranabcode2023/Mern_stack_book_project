@@ -1,6 +1,6 @@
 /* header/navbar/ body */
 
-
+/* 
 * {
     box-sizing: border-box;
     text-align: center;
@@ -8,7 +8,7 @@
 
 body {
     margin: 0;
-}
+} */
 
 /* Style the header */
 .header {
@@ -112,10 +112,10 @@ login/register */
     background-color: #f8f9fd;
 } */
 
-.title {
+/* .title {
     font-size: 25px;
     margin-bottom: 20px;
-}
+} */
 
 
 .form{
@@ -130,37 +130,25 @@ input[type="password"] {
     border: 2px solid rgba(0, 0, 0, 0.2);
 }
 
-button[type="submit"] {
-    margin-top: 10px;
-    cursor: pointer;
-    font-size: 15px;
-    background: #01d28e;
-    border: 1px solid #01d28e;
-    color: #fff;
-    padding: 10px 20px;
-}
 
-button[type="submit"]:hover {
-    background: #6cf0c2;
-}
 
-.button-container {
+/* .button-container {
     display: flex;
     justify-content: center;
-}
 
-.input-container {
+
+ .input-container {
     display: flex;
     flex-direction: column;
     gap: 8px;
     margin: 10px;
-}
+} */
 
 
 
 /* 
  //// book card ////// */
-.bookCard {
+/* .bookCard {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 16px;
@@ -225,4 +213,4 @@ button[type="submit"]:hover {
     margin: 16px;
 }
 
-
+ */

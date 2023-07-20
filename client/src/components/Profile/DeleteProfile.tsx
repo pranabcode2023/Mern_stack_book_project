@@ -179,9 +179,7 @@ const DeleteProfile = (props: Props) => {
     }
   };
 
-
-
-  const dislikeBook = async (bookId: string) => {
+const dislikeBook = async (bookId: string) => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
 

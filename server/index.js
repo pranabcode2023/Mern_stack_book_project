@@ -12,7 +12,6 @@ dotenv.config();
 //NOTE -  Routes
 import userRouter from "./routes/userRoutes.js";
 import booksRouter from "./routes/booksRoutes.js";
-
 // import petRouter from "./routes/petRoutes.js";
 
 //NOTE - port
@@ -81,9 +80,7 @@ const connectMongoose = () => {
     .catch((err) => console.log(err));
 };
 
-// app.listen(port, () => {
-//     console.log("Server is running on port" + port);
-// });
+
 
 
 //NOTE - Endpoint
