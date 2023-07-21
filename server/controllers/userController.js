@@ -1,7 +1,7 @@
 
 import { encryptPassword, verifyPassword } from "../utils/bcrypt.js";
 import { imageUpload } from "../utils/imageManagement.js";
-import UserModel from "../models/userModels.js";
+import UserModel from "../models/userModel.js";
 import {generateToken} from "../utils/jwt.js"
 
 const getUsers = async (req, res) => {

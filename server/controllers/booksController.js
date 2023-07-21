@@ -1,7 +1,7 @@
 
 import BooksModel from "../models/booksModel.js";
 import { imageUpload } from "../utils/imageManagement.js";
-import UserModel from "../models/userModels.js";
+import UserModel from "../models/userModel.js";
 
 
 const getAllBooks = async (req, res) => {

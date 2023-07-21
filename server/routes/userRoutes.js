@@ -1,6 +1,6 @@
 import express from "express";
 import multerUpload from "../middlewares/multer.js"
-import { getUsers, getUserById, createUser, updateUser, deleteUser, login, getActiveUser } from "../controllers/userControllers.js";
+import { getUsers, getUserById, createUser, updateUser, deleteUser, login, getActiveUser } from "../controllers/userController.js";
 import jwtAuth from "../middlewares/jwtAuth.js";
 
 const userRouter = express.Router()
