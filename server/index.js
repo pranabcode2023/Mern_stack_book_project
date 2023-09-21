@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 import cloudinaryConfig from "./config/cloudinary.js";
 import cors from "cors";
 import passportConfig from "./config/passport.js";
-import { corsOptions } from "cors";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -39,7 +38,7 @@ const corsOptions = {
     }
   },
 };
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 //NOTE - Middlewares & cors
 
@@ -51,7 +50,7 @@ const setMiddlewares = () => {
     })
   );
 
-  // app.use(cors());
+  app.use(cors());
   cloudinaryConfig();
   passportConfig();
 };
