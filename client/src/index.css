@@ -1,62 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 /* font-family: 'Poppins', sans-serif; */
 
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@700&family=Poppins:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Play:wght@700&family=Poppins:wght@300;400&display=swap");
 
 /* font-family: 'Play', sans-serif; */
 
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
-
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-    text-align: center;
+  text-align: center;
 }
 
-
 .header {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #f1f1f1;
   padding: 20px;
   text-align: center;
   border: 10px solid rgb(87, 184, 126);
 }
 
-
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  /* font-family: 'Sigmar',
-  cursive; */
+  font-family: "Poppins", sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .app-container {
   text-align: center;
-  font-family: 'Josefin Sans',
-  sans-serif;
-  /* font-family: 'Gloria Hallelujah',
-    cursive;
-    font-family: 'Josefin Sans',
-    sans-serif;
-    font-family: 'Sigmar',cursive; */
+  font-family: "Poppins", sans-serif;
 }
-
-
 
 button[type="submit"] {
   margin-top: 10px;
@@ -72,9 +47,7 @@ button[type="submit"]:hover {
   background: #6cf0c2;
 }
 
-
-
-.form{
+.form {
   background-color: white;
   padding: 2rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -94,12 +67,10 @@ input[type="password"] {
   padding: 20px;
   border-radius: 10px;
   background-color: whitesmoke;
-  /* border: 10px solid #000; */
 }
 
-
-.inner-component{
-width: 100%;
+.inner-component {
+  width: 100%;
 }
 
 .parent-div {
@@ -109,10 +80,9 @@ width: 100%;
   /* border: 10px solid red; */
 }
 
-
-.profile-pic{
+.profile-pic {
   width: 300px;
-  height:305px ;
+  height: 305px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -120,13 +90,12 @@ width: 100%;
   border-radius: 10px;
 }
 
-
-.profile-pic-frame{
- padding: 1rem;
- background-color: white;
- padding-bottom: 0%;
- line-height: 0.7;
- border-radius: 10px;
+.profile-pic-frame {
+  padding: 1rem;
+  background-color: white;
+  padding-bottom: 0%;
+  line-height: 0.7;
+  border-radius: 10px;
 }
 
 .profile-edit-frame {
@@ -137,36 +106,30 @@ width: 100%;
   width: 350px;
   padding-bottom: 5rem;
   border-radius: 10px;
-  
 }
-.profile-pic-text{
-  font-family:'Gloria Hallelujah',
-  cursive;
+.profile-pic-text {
+  font-family: "Gloria Hallelujah", cursive;
   font-weight: 900;
   font-size: 1.3rem;
 }
-.profile-pic-text-div{
+.profile-pic-text-div {
   background-color: white;
-  /* margin-bottom: 0;
-  padding-bottom: 0; */
-  font-family:'Gloria Hallelujah',
-  cursive;
+  font-family: "Gloria Hallelujah", cursive;
   font-weight: 900;
   font-size: 1.3rem;
 }
-.semi-img-edit-profile{
-/* background-color: rgb(130, 161, 134); */
-border-radius: 10px;
-background-color: #d2cbc1;
-height: 350px;
+.semi-img-edit-profile {
+  border-radius: 10px;
+  background-color: #d2cbc1;
+  height: 350px;
 }
-.semi-img-edit-profile p{
+.semi-img-edit-profile p {
   padding-top: 1.5rem;
   line-height: 1.7rem;
 }
 
-.edit-profile-container{
-  display: flex ;
+.edit-profile-container {
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   column-gap: 20px;
@@ -174,32 +137,31 @@ height: 350px;
   margin-bottom: 4rem;
 }
 
-.profile-books-container{
-    display: flex;
+.profile-books-container {
+  display: flex;
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content: center;
   column-gap: 40px;
   row-gap: 40px;
   margin-bottom: 3rem;
 }
 
-
-.profile-comments-container{
+.profile-comments-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content: center;
   gap: 30px;
   margin: 3rem auto;
 }
-.profile-likes-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:center;
-    gap: 30px;
-    margin: 3rem auto;
+.profile-likes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin: 3rem auto;
 }
 
-.like-card{
+.like-card {
   position: relative;
   overflow: hidden;
   border: 2px solid #053313;
@@ -209,7 +171,7 @@ height: 350px;
   cursor: pointer;
 }
 .like-card:hover:before {
-  content: '\2715';
+  content: "\2715";
   position: absolute;
   top: 55%;
   left: 50%;
@@ -219,7 +181,7 @@ height: 350px;
   color: white;
 }
 
-.comment-card{
+.comment-card {
   position: relative;
   border: 2px solid #053313;
   border-radius: 10px;
@@ -228,20 +190,19 @@ height: 350px;
 .comment-card p {
   margin: 0.5rem;
 }
-.comment-card:hover{
+.comment-card:hover {
   cursor: pointer;
 }
-.comment-card:hover:before{
-    content: '\2715';
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 7em;
-    color: white;
-    font-weight: bolder;
+.comment-card:hover:before {
+  content: "\2715";
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 7em;
+  color: white;
+  font-weight: bolder;
 }
-
 
 /***************************************    book card    ******************************************/
 
@@ -259,17 +220,15 @@ height: 350px;
   text-align: center;
 }
 
-.book-card-div:hover{
+.book-card-div:hover {
   border: 4px solid rgb(149, 255, 87);
   background-color: #d2e7d6;
   border-radius: 8px;
 }
 
-
 .book-card-div.flipped {
   transform: rotateY(180deg);
 }
-
 
 .front,
 .back {
@@ -284,12 +243,11 @@ height: 350px;
 }
 
 .book-card-div p {
-  margin-left:2rem ;
-  margin-right:2rem ;
-  max-width:250px ;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  max-width: 250px;
   word-break: break-word;
 }
-
 
 .back {
   transform: rotateY(180deg);
@@ -297,8 +255,8 @@ height: 350px;
   background-size: cover;
   border-radius: 10px;
 }
-.front{
-/* display: flex;
+.front {
+  /* display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: space-between;
@@ -309,28 +267,24 @@ justify-content: space-between;
   margin: auto;
   text-align: center;
   font-family: arial;
-
 }
 
-.book-card-buttons{
- margin-bottom: 1rem;
+.book-card-buttons {
+  margin-bottom: 1rem;
 }
 
-.book-card-div p{
+.book-card-div p {
   border-bottom: 1px dotted black;
-  
 }
 
-
-.book-card-img{
-width: 250px;
-height: 250px;
-object-fit:cover;
-margin-top: 1.3rem;
-border-radius: 10px;
-margin-bottom: 0.5rem;
+.book-card-img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  margin-top: 1.3rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
 }
-
 
 .Book-Card-Modal {
   position: fixed;
@@ -358,11 +312,10 @@ margin-bottom: 0.5rem;
   max-width: 90%;
   max-height: 90%;
   overflow: auto;
-  width: 400px;   
+  width: 400px;
 }
 
-
-dialog{
+dialog {
   padding: 1em;
   padding-top: 4rem;
   max-width: 90%;
@@ -390,23 +343,22 @@ dialog{
   padding: 0.5rem 0.5rem;
   cursor: pointer;
 }
-.close-modal-btn:hover{
-background-color: lightgrey;
-transform: scale(1.1);
+.close-modal-btn:hover {
+  background-color: lightgrey;
+  transform: scale(1.1);
 }
 
-
-.comment-user-pic{
+.comment-user-pic {
   width: 55px;
-  height:55px;
-  object-fit:cover;
+  height: 55px;
+  object-fit: cover;
   border-radius: 50%;
   border: 4px solid rgba(128, 128, 128, 0.312);
   box-sizing: content-box;
   margin-right: 1rem;
   margin-bottom: 1rem;
 }
-.single-comment-modal{
+.single-comment-modal {
   border: 2px dotted black;
   border-radius: 5px;
   margin-top: 0.5rem;
@@ -458,11 +410,11 @@ transform: scale(1.1);
   transform: scale(1.1);
 }
 
-.books-page-container{
+.books-page-container {
   display: flex;
   flex-wrap: wrap;
   width: 90%;
-  margin:auto auto;
+  margin: auto auto;
   margin-bottom: 2rem;
   justify-content: center;
   align-items: center;
@@ -471,13 +423,11 @@ transform: scale(1.1);
   padding: 2rem;
   background-color: whitesmoke;
   border-radius: 10px;
-  
-/* need to change the % on smaller screens !!!!! */
+
+  /* need to change the % on smaller screens !!!!! */
 }
-                                                   
 
 /***************************************    book page   ******************************************/
-
 
 .wobble-hor-bottom {
   -webkit-animation: wobble-hor-bottom 5s both;
@@ -485,7 +435,6 @@ transform: scale(1.1);
 }
 
 @-webkit-keyframes wobble-hor-bottom {
-
   0%,
   100% {
     -webkit-transform: translateX(0%);
@@ -521,7 +470,6 @@ transform: scale(1.1);
 }
 
 @keyframes wobble-hor-bottom {
-
   0%,
   100% {
     -webkit-transform: translateX(0%);
@@ -556,8 +504,6 @@ transform: scale(1.1);
   }
 }
 
-
-
 /* .text-input-position-edit-from{
   transform: translateX(45px);
 } */
@@ -565,29 +511,31 @@ transform: scale(1.1);
   transform: translateX(0px)
 } */
 
-.create-book-form{
-margin-top: 2rem;
-border: 2px dotted black;
-border-radius: 5px;
-width: 260px;
-margin: 2rem auto;
-padding-top: 2rem;
-padding-bottom: 2rem;
-/* background-image: url("https://res.cloudinary.com/danq3q4qv/image/upload/v1688561231/vector-light-grey-succulent-plant-texture-drawing-seamless-pattern-background-great-subtle-botanical-modern-backgrounds-fabric-90904464_owtkj6.jpg"); */
-background-size: cover;
-
+.create-book-form {
+  margin-top: 2rem;
+  border: 2px dotted black;
+  border-radius: 5px;
+  width: 260px;
+  margin: 2rem auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  /* background-image: url("https://res.cloudinary.com/danq3q4qv/image/upload/v1688561231/vector-light-grey-succulent-plant-texture-drawing-seamless-pattern-background-great-subtle-botanical-modern-backgrounds-fabric-90904464_owtkj6.jpg"); */
+  background-size: cover;
 }
 
-input[type="text"],input[type="file"],button[type="submit"],
-textarea, .input-text-area {
+input[type="text"],
+input[type="file"],
+button[type="submit"],
+textarea,
+.input-text-area {
   width: 172px;
   margin: 0.5rem auto;
-  outline-color:lightseagreen;
+  outline-color: lightseagreen;
 }
-#email-input-profile-page{
+#email-input-profile-page {
   margin-top: 0;
 }
-#submit-btn-profile-page{
+#submit-btn-profile-page {
   margin-bottom: 1.1rem;
 }
 
@@ -602,36 +550,40 @@ textarea, .input-text-area {
 }
 
 .custom-button:hover {
-  background: linear-gradient(135deg, rgb(111, 189, 111) 0%, rgb(149, 234, 23) 100%);
+  background: linear-gradient(
+    135deg,
+    rgb(111, 189, 111) 0%,
+    rgb(149, 234, 23) 100%
+  );
 }
 
 .custom-button:active {
   transform: translate(0em, 0.2em);
 }
-.book-page-header{
-color: #1a4646;
-font-weight:bold;
-margin-top: 2rem;
+.book-page-header {
+  color: #1a4646;
+  font-weight: bold;
+  margin-top: 2rem;
 }
-.create-post-icon{
-width: 4rem;
-height: 4rem;
-color: #1a4646;
-cursor: pointer;
-margin-bottom: 2rem;
+.create-post-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #1a4646;
+  cursor: pointer;
+  margin-bottom: 2rem;
 }
 
 .flip-back-icon {
-width: 3rem;
-height: 3rem;
-color: #1a4646;
-margin: 1.5rem auto;
-border: 2px solid #1a4646;
-border-radius: 50%;
-padding: 0.5rem 0.5rem;
-cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  color: #1a4646;
+  margin: 1.5rem auto;
+  border: 2px solid #1a4646;
+  border-radius: 50%;
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
 }
-.flip-back-icon:hover{
+.flip-back-icon:hover {
   background-color: lightgrey;
   transform: scale(1.1);
 }
@@ -663,7 +615,7 @@ cursor: pointer;
   right: -100%;
   bottom: -100%;
   left: -100%;
-  transition: .3s all;
+  transition: 0.3s all;
   z-index: -1;
 }
 
@@ -682,47 +634,14 @@ cursor: pointer;
   margin-top: 5rem;
   margin-bottom: 1rem;
 }
-.profile-page-header{
-font-weight: 800;
-margin: 3rem auto;
-color: #053313;
-text-decoration: underline;
-}
-
-.login-page-container{
-  margin: 6rem auto;
-  border: 2px solid black;
-  border-radius: 10px;
-  width: 50%;
-  padding: 1rem;
-  background-color:#1a4646;
-  /* background-color: red; */
-}
-
-.login-page-form{
-  margin: 0 auto;
-  border: 2px solid black;
-  border-bottom: none;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  width: 250px;
-  background-color: white;
-  }
-  
-
-
-
-
-.register-page-header{
+.profile-page-header {
   font-weight: 800;
-  margin: 1rem auto;
-  margin-bottom: 5rem;
+  margin: 3rem auto;
   color: #053313;
-  line-height: 4rem;
-text-decoration: underline;
+  text-decoration: underline;
 }
-.register-page-container{
+
+.login-page-container {
   margin: 6rem auto;
   border: 2px solid black;
   border-radius: 10px;
@@ -732,23 +651,45 @@ text-decoration: underline;
   /* background-color: red; */
 }
 
+.login-page-form {
+  margin: 0 auto;
+  border: 2px solid black;
+  border-bottom: none;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  background-color: white;
+}
 
+.register-page-header {
+  font-weight: 800;
+  margin: 1rem auto;
+  margin-bottom: 5rem;
+  color: #053313;
+  line-height: 4rem;
+  text-decoration: underline;
+}
+.register-page-container {
+  margin: 6rem auto;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 50%;
+  padding: 1rem;
+  background-color: #1a4646;
+  /* background-color: red; */
+}
 
 @media screen and (max-width: 768px) {
   .register-page-container {
-
     width: 80%;
-
   }
 }
 @media screen and (max-width: 768px) {
   .login-page-container {
-
     width: 80%;
-
   }
 }
-
 
 hr {
   border: none;
@@ -759,73 +700,65 @@ hr {
   /* gradient effect */
 }
 
-.register-page-form{
-margin: 0 auto;
-border: 2px solid black;
-border-bottom: none;
-padding: 2rem;
-display: flex;
-flex-direction: column;
-width: 250px;
-background-color: white;
+.register-page-form {
+  margin: 0 auto;
+  border: 2px solid black;
+  border-bottom: none;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  background-color: white;
 }
 
-.register-div-gif{
+.register-div-gif {
   width: 250px;
   height: 250px;
-  border: 2px solid black; 
+  border: 2px solid black;
   border-top: none;
   margin: 0 auto;
   margin-bottom: 2rem;
-  /* background-image: 
-  url("https://res.cloudinary.com/dtdsw5fg2/image/upload/v1689202224/user_books/izytc5yrnoxd7ae8up52.gif"); */
   background-size: cover;
 }
-.register-container-test{
+.register-container-test {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
-.home-page-container{
-background-color: #3dab7f15;
-height: 100vh;
-width: 100vw;
-display: flex;
-flex-direction: column;
-/* justify-content: flex-end; */
-justify-content:space-around;
-align-items: center;
-
-
+.home-page-container {
+  background-color: #3dab7f15;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; */
+  justify-content: space-around;
+  align-items: center;
 }
-.home-page-gif{
+.home-page-gif {
   width: 400px;
   height: 400px;
-  background-image: 
-  url("https://res.cloudinary.com/dtdsw5fg2/image/upload/v1689202224/user_books/izytc5yrnoxd7ae8up52.gif");
+  background-image: url("https: //res.cloudinary.com/pranabapp/image/upload/v1698660691/rbkfvueina4um3ww0cnz.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   /* border: 2px solid black; */
-  
 }
-.home-page-text{
+.home-page-text {
   max-width: 780px;
   margin-top: 5rem;
   padding-left: 2rem;
   padding-right: 2rem;
   font-weight: bold;
 }
-.home-page-text h4{
+.home-page-text h4 {
   font-weight: bold;
   line-height: 2.5rem;
 }
 
 @media screen and (max-width: 768px) {
   .page-container {
-   
     width: 70%;
-   
   }
 }
 
@@ -844,9 +777,8 @@ align-items: center;
   animation-duration: 5s;
   animation-delay: 0;
   animation-fill-mode: forwards;
-color: #053313;
+  color: #053313;
 }
-
 
 .spinner {
   position: fixed;
@@ -908,4 +840,3 @@ color: #053313;
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-
