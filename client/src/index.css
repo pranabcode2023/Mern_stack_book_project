@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+/* font-family: 'Poppins', sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@700&family=Poppins:wght@300;400&display=swap');
+
+/* font-family: 'Play', sans-serif; */
+
 /* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -21,6 +28,7 @@ code {
 
 
 .header {
+  font-family: 'Poppins', sans-serif;
   background-color: #f1f1f1;
   padding: 20px;
   text-align: center;
@@ -30,8 +38,7 @@ code {
 
 body {
   margin: 0;
-  font-family: 'Josefin Sans',
-  sans-serif;
+  font-family: 'Poppins', sans-serif;
   /* font-family: 'Sigmar',
   cursive; */
   -webkit-font-smoothing: antialiased;
