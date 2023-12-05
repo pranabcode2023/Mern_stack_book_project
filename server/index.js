@@ -38,7 +38,7 @@ const corsOptions = {
     }
   },
 };
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 //NOTE - Middlewares & cors
 
@@ -57,20 +57,32 @@ const setMiddlewares = () => {
 
 //NOTE - moongoose connection
 
-const connectMongoose = () => {
-  mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => {
-      app.listen(port, () => {
-        console.log(
-          "Connection to MongoDB established, and server is running on port " +
-            port
-        );
-      });
-    })
-    .catch((err) => console.log(err));
-};
+// const connectMongoose = () => {
+//   mongoose
+//     .connect(process.env.MONGO_URI)
+//     .then(() => {
+//       app.listen(port, () => {
+//         console.log(
+//           "Connection to MongoDB established, and server is running on port " +
+//             port
+//         );
+//       });
+//     })
+//     .catch((err) => console.log(err));
+// };
 
+const connectMongoose = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    app.listen(port, () => {
+      console.log(
+        `Connection to MongoDB established, and server is running on port ${port}`
+      );
+    });
+  } catch (err) {
+    console.error("Error connecting to MongoDB:", err);
+  }
+};
 //NOTE - Endpoint
 
 const connectRoutes = () => {
