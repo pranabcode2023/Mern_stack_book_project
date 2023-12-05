@@ -1,6 +1,5 @@
 // import React, { useEffect, useState } from 'react';
 
-
 // type Props = {};
 
 // interface Author {
@@ -70,36 +69,32 @@
 //           })}
 //       </div>
 
-     
 //     </div>
 //   );
 // };
 
 // export default AuthorHomepage;
 
-import React from 'react'
+import React from "react";
 
 export const Homepage = () => {
   return (
+    <div className="home-page-container">
+      <div className="home-page-text fadeInText">
+        <h1 style={{ fontSize: "clamp(2.5rem, 2vw, 1rem)" }}>
+          Online platform for Self Publishing Books
+        </h1>
+      </div>
 
-
-<div className="home-page-container">
-  <div className="home-page-text fadeInText">
-  <h1 style={{ fontSize: "clamp(2.5rem, 2vw, 1rem)" }}>
-  Online platform for Self Publishing Books
-  </h1>
-  </div>
- 
-<div className="home-page-text fadeInText">
-  <h4 style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)" }}>
-    This is an app for book lovers where you can share your own
-    book and sell book online and get review from book lovers. You can
-    also add comment/favorite/likes books in your profile. Hopefully 
-    you all enjoy this app.
-  </h4>
-</div>
-<div className="home-page-gif"></div>
-</div>
-  )
-}
-
+      <div className="home-page-text fadeInText">
+        <h4 style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)" }}>
+          This is an app for book lovers where you can share your own book and
+          sell book online and get review from book lovers. You can also add
+          comment/favorite/likes books in your profile. Hopefully you all enjoy
+          this app.
+        </h4>
+      </div>
+      <div className="home-page-gif"></div>
+    </div>
+  );
+};

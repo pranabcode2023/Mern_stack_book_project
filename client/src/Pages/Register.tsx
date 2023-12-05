@@ -39,7 +39,7 @@ const Register = (props: Props) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate("/login");
-    console.log(formData)
+    console.log(formData);
     const submitData = new FormData();
     submitData.append("email", formData.email);
     submitData.append("password", formData.password);
@@ -52,7 +52,6 @@ const Register = (props: Props) => {
     };
     try {
       const response = await fetch(
-       
         // `${process.env.REACT_APP_BASE_URL}users/new`,
         `${serverURL}/api/users/new`,
         requestOptions
@@ -68,41 +67,44 @@ const Register = (props: Props) => {
 
   return (
     <div className="register-page-container">
-      <form className="register-page-form"  onSubmit={handleSubmit}>
-        <div className="title">Register</div>
+      <form className="register-page-form" onSubmit={handleSubmit}>
+        <div className="title">
+          {" "}
+          <h4>Register</h4>
+        </div>
 
         {/* <div className="input-container"> */}
-          <input
-            type="text"
-            name="email"
-            value={formData.email}
-            placeholder="Email"
-            onChange={handleChange}
-          />
+        <input
+          type="text"
+          name="email"
+          value={formData.email}
+          placeholder="Email"
+          onChange={handleChange}
+        />
 
-          <input
-            type="text"
-            name="password"
-            value={formData.password}
-            placeholder="Password"
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            placeholder="username"
-            onChange={handleChange}
-          />
-          <input
-            type="file"
-            ref={fileInput}
-            name="avatar"
-            onChange={handleFile}
-            accept="image/png, image/jpg, image/jpeg, image/gif"
-          />
+        <input
+          type="text"
+          name="password"
+          value={formData.password}
+          placeholder="Password"
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="username"
+          value={formData.username}
+          placeholder="username"
+          onChange={handleChange}
+        />
+        <input
+          type="file"
+          ref={fileInput}
+          name="avatar"
+          onChange={handleFile}
+          accept="image/png, image/jpg, image/jpeg, image/gif"
+        />
 
-          <button type="submit">Register me!</button>
+        <button type="submit">Register me!</button>
         {/* </div> */}
       </form>
       {/* <div className="register-div-gif"></div> */}

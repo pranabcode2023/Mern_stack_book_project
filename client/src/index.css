@@ -642,24 +642,22 @@ textarea,
 }
 
 .login-page-container {
-  margin: 6rem auto;
+height: 90vh;
   border: 2px solid black;
-  border-radius: 10px;
-  width: 50%;
-  padding: 1rem;
   background-color: #1a4646;
   /* background-color: red; */
 }
 
 .login-page-form {
-  margin: 0 auto;
-  border: 2px solid black;
-  border-bottom: none;
-  padding: 2rem;
   display: flex;
-  flex-direction: column;
-  width: 250px;
-  background-color: white;
+    flex-direction: column;
+    margin: 0 auto;
+    border: 2px solid black;
+    margin-top: 200px;
+    padding: 2rem;
+  
+    width: 250px;
+    background-color: white;
 }
 
 .register-page-header {
@@ -671,11 +669,8 @@ textarea,
   text-decoration: underline;
 }
 .register-page-container {
-  margin: 6rem auto;
+ height: 90vh;
   border: 2px solid black;
-  border-radius: 10px;
-  width: 50%;
-  padding: 1rem;
   background-color: #1a4646;
   /* background-color: red; */
 }
@@ -701,12 +696,13 @@ hr {
 }
 
 .register-page-form {
+  display: flex;
+    flex-direction: column;
   margin: 0 auto;
   border: 2px solid black;
-  border-bottom: none;
+  margin-top: 200px;
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
+  
   width: 250px;
   background-color: white;
 }
