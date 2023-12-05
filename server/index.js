@@ -29,8 +29,20 @@ const allowedOrigins = [
   process.env.VERCEL_CLIENT,
 ];
 
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (allowedOrigins.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
+
 const corsOptions = {
   origin: function (origin, callback) {
+    console.log("Request Origin:", origin);
+
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -50,7 +62,7 @@ const setMiddlewares = () => {
     })
   );
 
-  app.use(cors());
+  // app.use(cors());
   cloudinaryConfig();
   passportConfig();
 };
