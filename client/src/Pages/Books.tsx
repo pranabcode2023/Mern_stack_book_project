@@ -8,7 +8,7 @@ import React, {
 import BookCard from "../components/Books/BookCard";
 import { AuthContext } from "../contexts/AuthContext";
 import { ModalContext } from "../contexts/ModalContext";
-import { FiPlusSquare } from "react-icons/fi"
+import { FiPlusSquare } from "react-icons/fi";
 import { FiMinusSquare } from "react-icons/fi";
 import { serverURL } from "../utilis/serverURL";
 
@@ -33,7 +33,7 @@ interface Comment {
 
 interface Book {
   _id: string;
-  bookName:string;
+  bookName: string;
   userWhoPosted: UserWhoPosted;
   image: string;
   description: string;
@@ -48,39 +48,39 @@ interface Book {
 type Image = string | File;
 
 interface FormData {
-  bookName: string,
+  bookName: string;
   description: string;
   price: string;
   // available:true;
   image: Image;
-  
 }
 
 const Books = (props: Props) => {
   const { user } = useContext(AuthContext);
   // console.log('user<<<<<<<<<<<<<<<', user)
-  const { 
-    // isModalOpen, closeModal, modalContent, 
-    setModalContent, openModal } =
-    useContext(ModalContext);
-  
+  const {
+    // isModalOpen, closeModal, modalContent,
+    setModalContent,
+    openModal,
+  } = useContext(ModalContext);
+
   const token = localStorage.getItem("token");
   const [books, setBooks] = useState<Book[]>([]);
-  
+
   const userId = user?._id.toString();
-  
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const userComments = books.filter((book) =>
     book.Comments.some((comment) => comment.authorId.toString() === userId)
   );
-  
+
   const [editFormData, setEditFormData] = useState<FormData>({
     bookName: "",
     description: "",
     price: "",
     // available:true,
     image: "",
- });
+  });
   const fileInput = React.useRef<HTMLInputElement>(null);
   const [showForm, setShowForm] = useState(false);
   const { loading, setLoading } = useContext(AuthContext);
@@ -120,7 +120,7 @@ const Books = (props: Props) => {
       body: submitData,
     };
     setLoading(true);
-    
+
     try {
       const response = await fetch(
         // `${process.env.REACT_APP_BASE_URL}books/new`,
@@ -133,12 +133,12 @@ const Books = (props: Props) => {
       }
       const result = await response.json();
       console.log(result);
-  
-      // setBooks((prevState) =>
-      //   prevState.map((book) =>
-      //     book._id === result.updatedBook._id ? result.updatedBook : book
-      //   )
-      // );
+
+      setBooks((prevState) =>
+        prevState.map((book) =>
+          book._id === result.updatedBook._id ? result.updatedBook : book
+        )
+      );
 
       setEditFormData({
         bookName: "",
@@ -163,10 +163,8 @@ const Books = (props: Props) => {
     }
   };
 
-
-    
   //!SECTION********************************************************************************************************
-  
+
   const fetchBooks = async () => {
     const requestOptions = {
       method: "GET",
@@ -183,11 +181,9 @@ const Books = (props: Props) => {
         throw new Error("HTTP error " + response.status);
       }
       const result = await response.json();
-      
-     
-        // setBooks(result.books);
 
-    
+      // setBooks(result.books);
+
       if (Array.isArray(result.books)) {
         setBooks(result.books);
       } else {
@@ -202,13 +198,8 @@ const Books = (props: Props) => {
     fetchBooks();
   }, []);
 
-
-
-
-
   //!SECTION********************************************************************************************************
-  
-  
+
   const deleteBook = async (id: string) => {
     if (!user) {
       setModalContent("Members only feature");
@@ -241,7 +232,6 @@ const Books = (props: Props) => {
     }
   };
 
-  
   const sortBooksByLikes = () => {
     const sortedBooks = [...books].sort(
       (a, b) => b.likes.length - a.likes.length
@@ -250,7 +240,6 @@ const Books = (props: Props) => {
     setBooks(sortedBooks);
   };
 
-  
   const sortBooksByComments = () => {
     const sortedBooks = [...books].sort(
       (a, b) => b.Comments.length - a.Comments.length
@@ -259,7 +248,6 @@ const Books = (props: Props) => {
     setBooks(sortedBooks);
   };
 
-  
   const toggleFormVisibility = () => {
     if (!user) {
       setModalContent("Members only feature");

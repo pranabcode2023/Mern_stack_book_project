@@ -161,7 +161,7 @@ const UpdateProfile = (props: Props) => {
     username: "",
     avatar: "",
   });
-  
+
   const fileInput = React.useRef<HTMLInputElement>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -247,8 +247,17 @@ const UpdateProfile = (props: Props) => {
                   onChange={handleChange}
                   className="input-text-area"
                   id="email-input-profile-page"
+                  readOnly
                 />
-            
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  placeholder="username"
+                  onChange={handleChange}
+                  required
+                />
+
                 <input
                   type="password"
                   name="password"
@@ -256,16 +265,9 @@ const UpdateProfile = (props: Props) => {
                   placeholder="password"
                   onChange={handleChange}
                   className="input-text-area"
+                  required
                 />
-  
-                <input
-                  type="text"
-                  name="username"
-                  value={formData.username}
-                  placeholder="username"
-                  onChange={handleChange}
-                />
-              
+
                 <input
                   ref={fileInput}
                   type="file"
@@ -274,7 +276,7 @@ const UpdateProfile = (props: Props) => {
                   accept="image/png, image/jpg, image/jpeg"
                   className="text-input-position"
                 />
-                
+
                 <button
                   id="submit-btn-profile-page"
                   className="custom-button"
@@ -283,11 +285,9 @@ const UpdateProfile = (props: Props) => {
                   Update
                 </button>
               </form>
-              <div className="profile-pic-text-div">
-             Change your Profile
+              <div className="profile-pic-text-div">Change your Profile</div>
             </div>
-            </div>
-         </div>
+          </div>
         </div>
       </div>
     </div>
